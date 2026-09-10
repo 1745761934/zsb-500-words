@@ -168,6 +168,15 @@
   ul.words .pos{color:var(--muted);font-style:italic;margin-right:6px;font-size:13px;}
   ul.words .cn{color:var(--ink);font-size:14px;padding:0;border:none;}
 
+  /* ===== 语速切换 ===== */
+  .btn-speed{
+    background:transparent;color:var(--deep);border:1px solid var(--line);
+    -webkit-tap-highlight-color:transparent;touch-action:manipulation;
+    transition:background .15s,border-color .15s,color .15s;
+  }
+  .btn-speed:hover{background:var(--accent-bg);color:var(--deep);}
+  .btn-speed[data-speed="s"]{border-color:var(--accent);color:var(--accent);background:var(--accent-bg);}
+
   /* ===== 朗读按钮（整句 / 单词） ===== */
   .speak-row{margin:2px 0 10px;display:flex;align-items:center;flex-wrap:wrap;gap:10px;}
   .speak-sentence{
@@ -323,7 +332,8 @@
     </ul>
   </div>
   <div class="toolbar">
-    <span class="hint">点喇叭可听整句或单个单词的英文发音（调用浏览器自带语音，手机、电脑均可，无需加载音频文件）；点每张卡片右上角可单独遮挡/恢复该句的翻译与释义，用于自测。</span>
+    <span class="hint">点「朗读整句」或单词旁的小喇叭即可听发音（真人级神经语音，手机/电脑音色一致，首次播放需加载音频，之后可缓存）；点每张卡片右上角可单独遮挡/恢复该句的翻译与释义，用于自测。</span>
+    <button id="btnSpeed" class="btn-speed" type="button" data-speed="s" aria-pressed="true">语速：慢速（学习）</button>
     <button id="btnStop" class="btn-stop" type="button">停止朗读</button>
     <button id="btnAll" type="button">一键进入背诵模式（隐藏全部翻译与释义）</button>
   </div>
@@ -1492,75 +1502,118 @@
 (function(){
   'use strict';
 
-  /* ============ 一、英文朗读（Web Speech API，浏览器/手机自带语音，零外部依赖） ============ */
+  /* ============ 一、英文朗读（预生成神经语音，浏览器语音兜底） ============ */
+  var SPEED = 's';                 // 's' = 慢速（学习默认，约 103 wpm）；'n' = 常速（约 124 wpm）
+  var AUDIO_BASE = 'audio/';
+
+  /* --- 兜底：浏览器自带语音（音频文件加载失败 / 离线首次访问时使用） --- */
   var synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
   var voices = [];
   function refreshVoices(){ if(synth){ voices = synth.getVoices() || []; } }
   if(synth){
     refreshVoices();
     if(synth.onvoiceschanged !== undefined){ synth.onvoiceschanged = refreshVoices; }
-    // 兼容部分安卓机：朗读中意外暂停时自动恢复
     setInterval(function(){
       try{ if(synth.paused && synth.speaking){ synth.resume(); } }catch(e){}
     }, 4000);
   }
+  // 优先挑自然音色（微软 Natural/Online、Chrome Google、苹果 Samantha 等），最后才退回系统老音色
+  var VOICE_OK  = /(natural|online|neural|google|samantha|ava|allison|karen|serena|michelle|jenny|aria)/i;
+  var VOICE_BAD = /(david|mark|hazel|george|zira|huihui|kangkang|yaoyao)/i;
   function pickVoice(){
     if(!voices.length){ refreshVoices(); }
-    var i, j, l, pref = ['en-US','en-GB','en-AU','en-CA'];
-    for(i = 0; i < pref.length; i++){
-      for(j = 0; j < voices.length; j++){
-        l = (voices[j].lang || '').toLowerCase();
-        if(l === pref[i].toLowerCase()){ return voices[j]; }
-      }
+    var i, v, l, en = [];
+    for(i = 0; i < voices.length; i++){
+      l = (voices[i].lang || '').toLowerCase().replace(/_/g, '-');
+      if(l === 'en' || l.indexOf('en-') === 0){ en.push(voices[i]); }
     }
-    for(j = 0; j < voices.length; j++){
-      if((voices[j].lang || '').toLowerCase().indexOf('en') === 0){ return voices[j]; }
+    if(!en.length){ return null; }
+    var us = [], pool;
+    for(i = 0; i < en.length; i++){
+      if((en[i].lang || '').toLowerCase().replace(/_/g, '-') === 'en-us'){ us.push(en[i]); }
     }
-    return null;
+    pool = us.length ? us : en;
+    for(i = 0; i < pool.length; i++){ v = pool[i]; if(VOICE_OK.test(v.name || '')){ return v; } }
+    for(i = 0; i < pool.length; i++){ v = pool[i]; if(!VOICE_BAD.test(v.name || '')){ return v; } }
+    return pool[0];
   }
-  var activeBtn = null, speakTimer = null;
+
+  /* --- 播放器 --- */
+  var audioEl = null, activeBtn = null, speakTimer = null;
+  function getAudio(){
+    if(!audioEl){
+      audioEl = document.createElement('audio');
+      audioEl.preload = 'auto';
+      audioEl.setAttribute('playsinline', '');   // iOS 不弹出全屏播放器
+      audioEl.style.display = 'none';
+      (document.body || document.documentElement).appendChild(audioEl);
+    }
+    return audioEl;
+  }
   function clearActive(){
     if(activeBtn){ activeBtn.classList.remove('playing'); activeBtn = null; }
   }
   function stopSpeak(){
     if(speakTimer){ clearTimeout(speakTimer); speakTimer = null; }
+    if(audioEl){ try{ audioEl.pause(); }catch(e){} }
     if(synth){ try{ synth.cancel(); }catch(e){} }
     clearActive();
   }
-  function speak(text, btn, rate){
-    if(!synth){
-      alert('当前浏览器不支持语音朗读，请使用最新版 Chrome、Edge 或手机自带浏览器/Safari 打开。');
-      return;
-    }
-    if(speakTimer){ clearTimeout(speakTimer); }
-    var wasSpeaking = !!(synth.speaking || synth.pending);
-    synth.cancel();                       // 先停掉上一段，避免排队叠读
+  function speakWithSynth(text, btn, rate, pitch){
+    if(!synth){ return; }
+    var u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-US';
+    u.rate = rate;
+    u.pitch = pitch || 1;
+    u.volume = 1;
+    var v = pickVoice();
+    if(v){ u.voice = v; }
+    u.onend = u.onerror = function(){ if(activeBtn === btn){ clearActive(); } };
+    try{ synth.speak(u); }catch(e){ clearActive(); }
+  }
+  // 播放预生成音频；文件不可用时自动退回浏览器语音
+  function playClip(url, btn, fb){
+    if(speakTimer){ clearTimeout(speakTimer); speakTimer = null; }
+    if(synth){ try{ synth.cancel(); }catch(e){} }
     clearActive();
     activeBtn = btn;
     btn.classList.add('playing');
-    var runSpeak = function(){
-      var u = new SpeechSynthesisUtterance(text);
-      u.lang = 'en-US';
-      u.rate = rate || 0.9;
-      u.pitch = 1;
-      u.volume = 1;
-      var v = pickVoice();
-      if(v){ u.voice = v; }
-      u.onend = u.onerror = function(){
-        btn.classList.remove('playing');
-        if(activeBtn === btn){ activeBtn = null; }
-      };
-      synth.speak(u);
+    var a = getAudio(), settled = false;
+    var fallback = function(){
+      if(settled){ return; }
+      settled = true;
+      if(activeBtn !== btn){ return; }
+      speakWithSynth(fb.text, btn, fb.rate, fb.pitch);
     };
-    // 空闲时立即朗读（保证 iOS 首次点击仍在用户手势内）；打断上一段时延迟 70ms 再读（修复 Chrome 丢句）
-    if(wasSpeaking){ speakTimer = setTimeout(runSpeak, 70); } else { runSpeak(); }
+    try{ a.pause(); }catch(e){}
+    a.onended = function(){ if(activeBtn === btn){ clearActive(); } };
+    a.onerror = function(){ if(activeBtn === btn){ fallback(); } };
+    try{ a.src = url; }catch(e){ fallback(); return; }
+    var p;
+    try{ p = a.play(); }catch(e){ fallback(); return; }
+    if(p && typeof p.then === 'function'){
+      p.then(function(){ settled = true; },
+             function(){ if(activeBtn === btn){ fallback(); } });
+    } else {
+      settled = true;
+    }
+  }
+  // 手机上先触碰再点击，提前把音频拉进缓存，减少首次点击等待
+  var warmed = {};
+  function warm(url){
+    if(warmed[url]){ return; }
+    warmed[url] = 1;
+    try{ fetch(url).catch(function(){}); }catch(e){}
   }
 
   // 喇叭图标（内联 SVG，无外部资源）
   var ICON = '<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M3.5 9.5v5h3.6L12.5 19V5L7.1 9.5H3.5z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6M17.8 6.8a7.4 7.4 0 0 1 0 10.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
 
-  // 1) 每个英文句后插入「朗读整句」按钮（朗读文本直接取句子纯文本，自动排除标签）
-  document.querySelectorAll('p.en').forEach(function(p){
+  function pad2(n){ return n < 10 ? '0' + n : '' + n; }
+
+  // 1) 每个英文句后插入「朗读整句」按钮
+  document.querySelectorAll('p.en').forEach(function(p, i){
+    var no = i + 1;                       // 必须在本轮循环内取值：var 是函数级作用域，回调里读外层变量会拿到最后一轮的 50
     var row = document.createElement('div');
     row.className = 'speak-row';
     var b = document.createElement('button');
@@ -1568,35 +1621,58 @@
     b.className = 'speak-sentence';
     b.innerHTML = ICON + '<span>朗读整句</span>';
     b.setAttribute('aria-label', '朗读整句');
+    b.addEventListener('pointerdown', function(){ warm(AUDIO_BASE + SPEED + '/s' + pad2(no) + '.mp3'); });
     b.addEventListener('click', function(){
-      if(b.classList.contains('playing')){ stopSpeak(); return; }  // 再点一次=停止
+      if(b.classList.contains('playing')){ stopSpeak(); return; }   // 再点一次＝停止
       var text = (p.textContent || '').replace(/\s+/g, ' ').trim();
-      speak(text, b, 0.9);
+      playClip(AUDIO_BASE + SPEED + '/s' + pad2(no) + '.mp3', b, { text: text, rate: 0.72, pitch: 1 });
     });
     row.appendChild(b);
     p.insertAdjacentElement('afterend', row);
   });
 
   // 2) 每个目标词后插入小喇叭按钮
+  function wordSlug(w){
+    return w.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'x';
+  }
   document.querySelectorAll('ul.words li').forEach(function(li){
     var w = li.querySelector('.w');
     if(!w){ return; }
     var word = (w.textContent || '').trim();
+    var url = AUDIO_BASE + SPEED + '/w/' + wordSlug(word) + '.mp3';
     var b = document.createElement('button');
     b.type = 'button';
     b.className = 'speak-word';
     b.innerHTML = ICON;
     b.title = '朗读 ' + word;
     b.setAttribute('aria-label', '朗读单词 ' + word);
+    b.addEventListener('pointerdown', function(){ warm(AUDIO_BASE + SPEED + '/w/' + wordSlug(word) + '.mp3'); });
     b.addEventListener('click', function(e){
       e.stopPropagation();
       if(b.classList.contains('playing')){ stopSpeak(); return; }
-      speak(word, b, 0.78);
+      playClip(AUDIO_BASE + SPEED + '/w/' + wordSlug(word) + '.mp3', b, { text: word, rate: 0.6, pitch: 1 });
     });
     w.insertAdjacentElement('afterend', b);
   });
 
-  // 3) 全局停止按钮；切走页面时自动停止
+  // 3) 语速切换（慢速 / 常速）
+  var speedBtn = document.getElementById('btnSpeed');
+  function renderSpeed(){
+    if(!speedBtn){ return; }
+    speedBtn.textContent = (SPEED === 's') ? '语速：慢速（学习）' : '语速：常速';
+    speedBtn.setAttribute('data-speed', SPEED);
+    speedBtn.setAttribute('aria-pressed', SPEED === 's' ? 'true' : 'false');
+  }
+  if(speedBtn){
+    speedBtn.addEventListener('click', function(){
+      stopSpeak();                       // 换档时停止当前朗读，避免两档混播
+      SPEED = (SPEED === 's') ? 'n' : 's';
+      renderSpeed();
+    });
+  }
+  renderSpeed();
+
+  // 4) 全局停止按钮；切走页面时自动停止
   var stopBtn = document.getElementById('btnStop');
   if(stopBtn){ stopBtn.addEventListener('click', stopSpeak); }
   document.addEventListener('visibilitychange', function(){
