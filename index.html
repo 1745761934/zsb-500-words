@@ -1560,7 +1560,7 @@
     clearActive();
   }
   function speakWithSynth(text, btn, rate, pitch){
-    if(!synth){ return; }
+    if(!synth){ clearActive(); return; }   // 既无音频也无语音引擎时，不能让按钮卡在播放中
     var u = new SpeechSynthesisUtterance(text);
     u.lang = 'en-US';
     u.rate = rate;
