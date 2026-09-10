@@ -170,12 +170,12 @@
 
   /* ===== 语速切换 ===== */
   .btn-speed{
-    background:transparent;color:var(--deep);border:1px solid var(--line);
+    background:var(--accent-bg);color:var(--accent);border:1px solid var(--accent);
     -webkit-tap-highlight-color:transparent;touch-action:manipulation;
     transition:background .15s,border-color .15s,color .15s;
   }
   .btn-speed:hover{background:var(--accent-bg);color:var(--deep);}
-  .btn-speed[data-speed="s"]{border-color:var(--accent);color:var(--accent);background:var(--accent-bg);}
+  .btn-speed:hover{background:var(--accent-bg);color:var(--deep);border-color:var(--deep);}
 
   /* ===== 朗读按钮（整句 / 单词） ===== */
   .speak-row{margin:2px 0 10px;display:flex;align-items:center;flex-wrap:wrap;gap:10px;}
@@ -333,7 +333,7 @@
   </div>
   <div class="toolbar">
     <span class="hint">点「朗读整句」或单词旁的小喇叭即可听发音（真人级神经语音，手机/电脑音色一致，首次播放需加载音频，之后可缓存）；点每张卡片右上角可单独遮挡/恢复该句的翻译与释义，用于自测。</span>
-    <button id="btnSpeed" class="btn-speed" type="button" data-speed="s" aria-pressed="true">语速：慢速（学习）</button>
+    <button id="btnSpeed" class="btn-speed" type="button" data-speed="n" aria-pressed="true">语速：常速（推荐）</button>
     <button id="btnStop" class="btn-stop" type="button">停止朗读</button>
     <button id="btnAll" type="button">一键进入背诵模式（隐藏全部翻译与释义）</button>
   </div>
@@ -1503,7 +1503,7 @@
   'use strict';
 
   /* ============ 一、英文朗读（预生成神经语音，浏览器语音兜底） ============ */
-  var SPEED = 's';                 // 's' = 慢速（学习默认，约 103 wpm）；'n' = 常速（约 124 wpm）
+  var SPEED = 'n';                 // s = 慢速(91 wpm) / n = 常速(111 wpm，默认) / f = 快速(138 wpm)
   var AUDIO_BASE = 'audio/';
 
   /* --- 兜底：浏览器自带语音（音频文件加载失败 / 离线首次访问时使用） --- */
@@ -1657,16 +1657,18 @@
 
   // 3) 语速切换（慢速 / 常速）
   var speedBtn = document.getElementById('btnSpeed');
+  var SPEED_ORDER = ['s', 'n', 'f'];                 // 慢速 → 常速 → 快速 → 循环
+  var SPEED_LABEL = { s: '语速：慢速', n: '语速：常速（推荐）', f: '语速：快速' };
   function renderSpeed(){
     if(!speedBtn){ return; }
-    speedBtn.textContent = (SPEED === 's') ? '语速：慢速（学习）' : '语速：常速';
+    speedBtn.textContent = SPEED_LABEL[SPEED] || '语速';
     speedBtn.setAttribute('data-speed', SPEED);
-    speedBtn.setAttribute('aria-pressed', SPEED === 's' ? 'true' : 'false');
+    speedBtn.setAttribute('aria-pressed', 'true');
   }
   if(speedBtn){
     speedBtn.addEventListener('click', function(){
       stopSpeak();                       // 换档时停止当前朗读，避免两档混播
-      SPEED = (SPEED === 's') ? 'n' : 's';
+      SPEED = SPEED_ORDER[(SPEED_ORDER.indexOf(SPEED) + 1) % SPEED_ORDER.length];
       renderSpeed();
     });
   }
