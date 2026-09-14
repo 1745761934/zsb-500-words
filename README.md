@@ -37,7 +37,7 @@
 
 ```
 index.html          单文件站点（样式/脚本/内容全部内联，可直接静态部署）
-audio-v6/           预生成发音（s/n/f 三档 × 整句 s01–s50 + 单词 w/*.mp3）
+audio-v7/           预生成发音（s/n/f 三档 × 整句 s01–s50 + 单词 w/*.mp3）
 data/words.json     500 词表
 data/sentences.json 50 句原文
 scripts/gen_audio.py      全量音频生成脚本（Kokoro → 后期 → MP3）
@@ -47,7 +47,7 @@ docs/screenshots/   预览截图
 
 ## 🚀 本地运行 / 重新生成音频
 
-**直接预览**：`index.html` 是单文件，但音频在 `audio-v6/`，直接双击打开会退回系统语音。完整效果请用任意静态服务器：
+**直接预览**：`index.html` 是单文件，但音频在 `audio-v7/`，直接双击打开会退回系统语音。完整效果请用任意静态服务器：
 
 ```bash
 python -m http.server 8899   # 然后打开 http://127.0.0.1:8899/
