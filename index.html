@@ -216,6 +216,13 @@
     background:transparent;color:var(--accent);border:1px solid var(--accent);
     -webkit-tap-highlight-color:transparent;touch-action:manipulation;
   }
+
+  .ipa{font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;font-size:.78em;color:var(--muted);margin-left:5px;letter-spacing:.02em;}
+  .search-bar{margin:10px 0 4px;display:flex;align-items:center;gap:8px;}
+  .search-bar input{flex:1;padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff;color:var(--ink);}
+  .search-bar input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .card.filtered-none{display:none;}
+
   .btn-stop:hover{background:var(--accent-bg);}
 
   /* 背诵模式：全局(body)与单卡(.card)共用同一套遮罩，修复单卡隐藏无反应 */
@@ -320,6 +327,7 @@
 
 <div class="wrap">
 
+<div class="search-bar" id="searchBar"><input type="search" id="wordSearch" placeholder="搜索单词 / 释义 / 例句…" aria-label="搜索单词"></div>
 <section class="guide">
   <h2>使用说明</h2>
   <p>本手册把专升本英语中最高频的 500 个核心词，按 50 个日常生活主题分组，每个主题写成一个<b>自然、通顺、贴近日常</b>的短句，句中恰好嵌入该组 10 个高频词（句中加粗标出）。先读句子理解用法，再看翻译确认意思，最后逐个记词义，比孤立背单词效率更高。</p>
@@ -357,16 +365,16 @@
   <p class="en">If you <b>prepare</b> for the <b>exam</b> with a proper <b>study</b> <b>method</b> and <b>review</b> your lessons every day, your <b>knowledge</b> will <b>improve</b>, you will make clear <b>progress</b>, and you can <b>achieve</b> a higher <b>score</b>.</p>
   <p class="cn">如果你用合适的学习方法备考、每天复习功课，你的知识会增长，会取得明显进步，也能拿到更高的分数。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">prepare</span><span class="pos">v.</span><span class="cn">准备；预备</span></li>
-    <li><span class="no">②</span><span class="w">exam</span><span class="pos">n.</span><span class="cn">考试；检查</span></li>
-    <li><span class="no">③</span><span class="w">study</span><span class="pos">v./n.</span><span class="cn">学习；研究</span></li>
-    <li><span class="no">④</span><span class="w">method</span><span class="pos">n.</span><span class="cn">方法；办法</span></li>
-    <li><span class="no">⑤</span><span class="w">review</span><span class="pos">v./n.</span><span class="cn">复习；回顾</span></li>
-    <li><span class="no">⑥</span><span class="w">knowledge</span><span class="pos">n.</span><span class="cn">知识；学问</span></li>
-    <li><span class="no">⑦</span><span class="w">improve</span><span class="pos">v.</span><span class="cn">改进；提高</span></li>
-    <li><span class="no">⑧</span><span class="w">progress</span><span class="pos">n./v.</span><span class="cn">进步；进展</span></li>
-    <li><span class="no">⑨</span><span class="w">achieve</span><span class="pos">v.</span><span class="cn">实现；达到</span></li>
-    <li><span class="no">⑩</span><span class="w">score</span><span class="pos">n./v.</span><span class="cn">分数；得分</span></li>
+    <li><span class="no">①</span><span class="w">prepare</span><span class="ipa">/pɹiˈpɛɹ/</span><span class="pos">v.</span><span class="cn">准备；预备</span></li>
+    <li><span class="no">②</span><span class="w">exam</span><span class="ipa">/ɪˈɡzæm/</span><span class="pos">n.</span><span class="cn">考试；检查</span></li>
+    <li><span class="no">③</span><span class="w">study</span><span class="ipa">/ˈstʌdi/</span><span class="pos">v./n.</span><span class="cn">学习；研究</span></li>
+    <li><span class="no">④</span><span class="w">method</span><span class="ipa">/ˈmɛθəd/</span><span class="pos">n.</span><span class="cn">方法；办法</span></li>
+    <li><span class="no">⑤</span><span class="w">review</span><span class="ipa">/ˌɹiˈvju/</span><span class="pos">v./n.</span><span class="cn">复习；回顾</span></li>
+    <li><span class="no">⑥</span><span class="w">knowledge</span><span class="ipa">/ˈnɑlədʒ/</span><span class="pos">n.</span><span class="cn">知识；学问</span></li>
+    <li><span class="no">⑦</span><span class="w">improve</span><span class="ipa">/ˌɪˈmpɹuv/</span><span class="pos">v.</span><span class="cn">改进；提高</span></li>
+    <li><span class="no">⑧</span><span class="w">progress</span><span class="ipa">/ˈpɹɑˌɡɹɛs/</span><span class="pos">n./v.</span><span class="cn">进步；进展</span></li>
+    <li><span class="no">⑨</span><span class="w">achieve</span><span class="ipa">/əˈtʃiv/</span><span class="pos">v.</span><span class="cn">实现；达到</span></li>
+    <li><span class="no">⑩</span><span class="w">score</span><span class="ipa">/ˈskɔɹ/</span><span class="pos">n./v.</span><span class="cn">分数；得分</span></li>
   </ul>
 </article>
 
@@ -380,16 +388,16 @@
   <p class="en">When we <b>attend</b> a <b>lecture</b>, we should pay close <b>attention</b>, <b>concentrate</b> on the key points, take <b>notes</b>, and ask <b>questions</b> about anything we don't <b>understand</b>, so the <b>professor</b> can <b>explain</b> it with a clear <b>example</b>.</p>
   <p class="cn">听讲座时，我们应该高度集中注意力、抓住重点、记好笔记，对不懂的地方提问，这样教授就能用清晰的例子讲解。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">lecture</span><span class="pos">n./v.</span><span class="cn">讲座；讲课</span></li>
-    <li><span class="no">②</span><span class="w">attend</span><span class="pos">v.</span><span class="cn">出席；参加</span></li>
-    <li><span class="no">③</span><span class="w">attention</span><span class="pos">n.</span><span class="cn">注意；关注</span></li>
-    <li><span class="no">④</span><span class="w">concentrate</span><span class="pos">v.</span><span class="cn">集中（注意力）；专心</span></li>
-    <li><span class="no">⑤</span><span class="w">note</span><span class="pos">n./v.</span><span class="cn">笔记；注意</span></li>
-    <li><span class="no">⑥</span><span class="w">question</span><span class="pos">n./v.</span><span class="cn">问题；提问</span></li>
-    <li><span class="no">⑦</span><span class="w">understand</span><span class="pos">v.</span><span class="cn">理解；明白</span></li>
-    <li><span class="no">⑧</span><span class="w">professor</span><span class="pos">n.</span><span class="cn">教授</span></li>
-    <li><span class="no">⑨</span><span class="w">explain</span><span class="pos">v.</span><span class="cn">解释；说明</span></li>
-    <li><span class="no">⑩</span><span class="w">example</span><span class="pos">n.</span><span class="cn">例子；榜样</span></li>
+    <li><span class="no">①</span><span class="w">lecture</span><span class="ipa">/ˈlɛktʃɚ/</span><span class="pos">n./v.</span><span class="cn">讲座；讲课</span></li>
+    <li><span class="no">②</span><span class="w">attend</span><span class="ipa">/əˈtɛnd/</span><span class="pos">v.</span><span class="cn">出席；参加</span></li>
+    <li><span class="no">③</span><span class="w">attention</span><span class="ipa">/əˈtɛnʃən/</span><span class="pos">n.</span><span class="cn">注意；关注</span></li>
+    <li><span class="no">④</span><span class="w">concentrate</span><span class="ipa">/ˈkɑnsəˌntɹeɪt/</span><span class="pos">v.</span><span class="cn">集中（注意力）；专心</span></li>
+    <li><span class="no">⑤</span><span class="w">note</span><span class="ipa">/ˈnoʊt/</span><span class="pos">n./v.</span><span class="cn">笔记；注意</span></li>
+    <li><span class="no">⑥</span><span class="w">question</span><span class="ipa">/ˈkwɛstʃən/</span><span class="pos">n./v.</span><span class="cn">问题；提问</span></li>
+    <li><span class="no">⑦</span><span class="w">understand</span><span class="ipa">/ˌʌndɚˈstænd/</span><span class="pos">v.</span><span class="cn">理解；明白</span></li>
+    <li><span class="no">⑧</span><span class="w">professor</span><span class="ipa">/pɹəˈfɛsɚ/</span><span class="pos">n.</span><span class="cn">教授</span></li>
+    <li><span class="no">⑨</span><span class="w">explain</span><span class="ipa">/ɪˈkspleɪn/</span><span class="pos">v.</span><span class="cn">解释；说明</span></li>
+    <li><span class="no">⑩</span><span class="w">example</span><span class="ipa">/ɪˈɡzæmpəl/</span><span class="pos">n.</span><span class="cn">例子；榜样</span></li>
   </ul>
 </article>
 
@@ -403,16 +411,16 @@
   <p class="en">In the <b>library</b>, you can <b>borrow</b> <b>reference</b> books and <b>research</b> <b>materials</b>, <b>return</b> them on time, use online <b>resources</b> as a useful <b>source</b> of information, and read every <b>detail</b> before you draw a <b>conclusion</b>.</p>
   <p class="cn">在图书馆里，你可以借阅参考书和研究资料，按时归还，把网络资源当作有用的信息来源，并在下结论前读清每个细节。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">library</span><span class="pos">n.</span><span class="cn">图书馆</span></li>
-    <li><span class="no">②</span><span class="w">borrow</span><span class="pos">v.</span><span class="cn">借；借用</span></li>
-    <li><span class="no">③</span><span class="w">reference</span><span class="pos">n.</span><span class="cn">参考；查阅</span></li>
-    <li><span class="no">④</span><span class="w">research</span><span class="pos">n./v.</span><span class="cn">研究；调查</span></li>
-    <li><span class="no">⑤</span><span class="w">material</span><span class="pos">n.</span><span class="cn">材料；资料</span></li>
-    <li><span class="no">⑥</span><span class="w">return</span><span class="pos">v./n.</span><span class="cn">归还；返回</span></li>
-    <li><span class="no">⑦</span><span class="w">resource</span><span class="pos">n.</span><span class="cn">资源</span></li>
-    <li><span class="no">⑧</span><span class="w">source</span><span class="pos">n.</span><span class="cn">来源；源头</span></li>
-    <li><span class="no">⑨</span><span class="w">detail</span><span class="pos">n./v.</span><span class="cn">细节；详述</span></li>
-    <li><span class="no">⑩</span><span class="w">conclusion</span><span class="pos">n.</span><span class="cn">结论</span></li>
+    <li><span class="no">①</span><span class="w">library</span><span class="ipa">/ˈlaɪbɹɛˌɹi/</span><span class="pos">n.</span><span class="cn">图书馆</span></li>
+    <li><span class="no">②</span><span class="w">borrow</span><span class="ipa">/ˈbɑˌɹoʊ/</span><span class="pos">v.</span><span class="cn">借；借用</span></li>
+    <li><span class="no">③</span><span class="w">reference</span><span class="ipa">/ˈɹɛfɚəns/</span><span class="pos">n.</span><span class="cn">参考；查阅</span></li>
+    <li><span class="no">④</span><span class="w">research</span><span class="ipa">/ɹiˈsɝtʃ/</span><span class="pos">n./v.</span><span class="cn">研究；调查</span></li>
+    <li><span class="no">⑤</span><span class="w">material</span><span class="ipa">/məˈtɪɹiəl/</span><span class="pos">n.</span><span class="cn">材料；资料</span></li>
+    <li><span class="no">⑥</span><span class="w">return</span><span class="ipa">/ɹɪˈtɝn/</span><span class="pos">v./n.</span><span class="cn">归还；返回</span></li>
+    <li><span class="no">⑦</span><span class="w">resource</span><span class="ipa">/ˈɹisɔɹs/</span><span class="pos">n.</span><span class="cn">资源</span></li>
+    <li><span class="no">⑧</span><span class="w">source</span><span class="ipa">/ˈsɔɹs/</span><span class="pos">n.</span><span class="cn">来源；源头</span></li>
+    <li><span class="no">⑨</span><span class="w">detail</span><span class="ipa">/dɪˈteɪl/</span><span class="pos">n./v.</span><span class="cn">细节；详述</span></li>
+    <li><span class="no">⑩</span><span class="w">conclusion</span><span class="ipa">/kəˈnkluʒən/</span><span class="pos">n.</span><span class="cn">结论</span></li>
   </ul>
 </article>
 
@@ -426,16 +434,16 @@
   <p class="en">If you <b>complete</b> the <b>assignment</b> before the <b>deadline</b>, <b>submit</b> your work on time, and <b>correct</b> every <b>mistake</b> <b>carefully</b>, you will receive a high <b>mark</b> for its <b>quality</b> and <b>standard</b>.</p>
   <p class="cn">为了在截止日期前完成作业，你要按时提交，仔细改正每一个错误，这样你的作业会因质量和水准而获得高分。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">complete</span><span class="pos">v./adj.</span><span class="cn">完成；完整的</span></li>
-    <li><span class="no">②</span><span class="w">assignment</span><span class="pos">n.</span><span class="cn">作业；任务</span></li>
-    <li><span class="no">③</span><span class="w">deadline</span><span class="pos">n.</span><span class="cn">截止日期；最后期限</span></li>
-    <li><span class="no">④</span><span class="w">submit</span><span class="pos">v.</span><span class="cn">提交；呈交</span></li>
-    <li><span class="no">⑤</span><span class="w">correct</span><span class="pos">v./adj.</span><span class="cn">改正；正确的</span></li>
-    <li><span class="no">⑥</span><span class="w">mistake</span><span class="pos">n./v.</span><span class="cn">错误；弄错</span></li>
-    <li><span class="no">⑦</span><span class="w">careful</span><span class="pos">adj.</span><span class="cn">仔细的；小心的</span></li>
-    <li><span class="no">⑧</span><span class="w">mark</span><span class="pos">n./v.</span><span class="cn">分数；标记</span></li>
-    <li><span class="no">⑨</span><span class="w">quality</span><span class="pos">n.</span><span class="cn">质量；品质</span></li>
-    <li><span class="no">⑩</span><span class="w">standard</span><span class="pos">n./adj.</span><span class="cn">标准；标准的</span></li>
+    <li><span class="no">①</span><span class="w">complete</span><span class="ipa">/kəˈmplit/</span><span class="pos">v./adj.</span><span class="cn">完成；完整的</span></li>
+    <li><span class="no">②</span><span class="w">assignment</span><span class="ipa">/əˈsaɪnmənt/</span><span class="pos">n.</span><span class="cn">作业；任务</span></li>
+    <li><span class="no">③</span><span class="w">deadline</span><span class="ipa">/ˈdɛˌdlaɪn/</span><span class="pos">n.</span><span class="cn">截止日期；最后期限</span></li>
+    <li><span class="no">④</span><span class="w">submit</span><span class="ipa">/səˈbmɪt/</span><span class="pos">v.</span><span class="cn">提交；呈交</span></li>
+    <li><span class="no">⑤</span><span class="w">correct</span><span class="ipa">/kɚˈɛkt/</span><span class="pos">v./adj.</span><span class="cn">改正；正确的</span></li>
+    <li><span class="no">⑥</span><span class="w">mistake</span><span class="ipa">/mɪˈsteɪk/</span><span class="pos">n./v.</span><span class="cn">错误；弄错</span></li>
+    <li><span class="no">⑦</span><span class="w">careful</span><span class="ipa">/ˈkɛɹfəl/</span><span class="pos">adj.</span><span class="cn">仔细的；小心的</span></li>
+    <li><span class="no">⑧</span><span class="w">mark</span><span class="ipa">/ˈmɑɹk/</span><span class="pos">n./v.</span><span class="cn">分数；标记</span></li>
+    <li><span class="no">⑨</span><span class="w">quality</span><span class="ipa">/ˈkwɑləti/</span><span class="pos">n.</span><span class="cn">质量；品质</span></li>
+    <li><span class="no">⑩</span><span class="w">standard</span><span class="ipa">/ˈstændɚd/</span><span class="pos">n./adj.</span><span class="cn">标准；标准的</span></li>
   </ul>
 </article>
 
@@ -449,16 +457,16 @@
   <p class="en">When you <b>choose</b> a <b>major</b> and <b>decide</b> which <b>courses</b> to take in <b>college</b>, you should <b>plan</b> carefully, because your <b>degree</b> will influence your <b>future</b> <b>career</b> after you <b>graduate</b>.</p>
   <p class="cn">当你选择专业、决定在大学修哪些课程时，应该仔细规划，因为你的学位会影响毕业后的未来职业。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">choose</span><span class="pos">v.</span><span class="cn">选择</span></li>
-    <li><span class="no">②</span><span class="w">major</span><span class="pos">n./adj.</span><span class="cn">专业；主要的</span></li>
-    <li><span class="no">③</span><span class="w">decide</span><span class="pos">v.</span><span class="cn">决定</span></li>
-    <li><span class="no">④</span><span class="w">course</span><span class="pos">n.</span><span class="cn">课程；过程</span></li>
-    <li><span class="no">⑤</span><span class="w">college</span><span class="pos">n.</span><span class="cn">学院；大学</span></li>
-    <li><span class="no">⑥</span><span class="w">plan</span><span class="pos">n./v.</span><span class="cn">计划</span></li>
-    <li><span class="no">⑦</span><span class="w">degree</span><span class="pos">n.</span><span class="cn">学位；程度</span></li>
-    <li><span class="no">⑧</span><span class="w">future</span><span class="pos">n./adj.</span><span class="cn">未来；将来的</span></li>
-    <li><span class="no">⑨</span><span class="w">career</span><span class="pos">n.</span><span class="cn">职业；生涯</span></li>
-    <li><span class="no">⑩</span><span class="w">graduate</span><span class="pos">v./n.</span><span class="cn">毕业；毕业生</span></li>
+    <li><span class="no">①</span><span class="w">choose</span><span class="ipa">/ˈtʃuz/</span><span class="pos">v.</span><span class="cn">选择</span></li>
+    <li><span class="no">②</span><span class="w">major</span><span class="ipa">/ˈmeɪdʒɚ/</span><span class="pos">n./adj.</span><span class="cn">专业；主要的</span></li>
+    <li><span class="no">③</span><span class="w">decide</span><span class="ipa">/ˌdɪˈsaɪd/</span><span class="pos">v.</span><span class="cn">决定</span></li>
+    <li><span class="no">④</span><span class="w">course</span><span class="ipa">/ˈkɔɹs/</span><span class="pos">n.</span><span class="cn">课程；过程</span></li>
+    <li><span class="no">⑤</span><span class="w">college</span><span class="ipa">/ˈkɑlɪdʒ/</span><span class="pos">n.</span><span class="cn">学院；大学</span></li>
+    <li><span class="no">⑥</span><span class="w">plan</span><span class="ipa">/ˈplæn/</span><span class="pos">n./v.</span><span class="cn">计划</span></li>
+    <li><span class="no">⑦</span><span class="w">degree</span><span class="ipa">/dɪˈɡɹi/</span><span class="pos">n.</span><span class="cn">学位；程度</span></li>
+    <li><span class="no">⑧</span><span class="w">future</span><span class="ipa">/ˈfjutʃɚ/</span><span class="pos">n./adj.</span><span class="cn">未来；将来的</span></li>
+    <li><span class="no">⑨</span><span class="w">career</span><span class="ipa">/kɚˈɪɹ/</span><span class="pos">n.</span><span class="cn">职业；生涯</span></li>
+    <li><span class="no">⑩</span><span class="w">graduate</span><span class="ipa">/ˈɡɹædʒəwət/</span><span class="pos">v./n.</span><span class="cn">毕业；毕业生</span></li>
   </ul>
 </article>
 
@@ -472,16 +480,16 @@
   <p class="en">Her excellent <b>performance</b> <b>proved</b> that she <b>deserved</b> the <b>scholarship</b>; the <b>award</b> was a great <b>honor</b> and <b>prize</b> for her <b>effort</b>, and it won <b>praise</b> from everyone, who now understood her true <b>aim</b>.</p>
   <p class="cn">她出色的表现证明她配得上这份奖学金；这个奖项是对她努力的极大荣誉和奖励，也赢得了大家的称赞，他们这才明白她真正的目标。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">performance</span><span class="pos">n.</span><span class="cn">表现；表演</span></li>
-    <li><span class="no">②</span><span class="w">prove</span><span class="pos">v.</span><span class="cn">证明；证实</span></li>
-    <li><span class="no">③</span><span class="w">deserve</span><span class="pos">v.</span><span class="cn">应得；值得</span></li>
-    <li><span class="no">④</span><span class="w">scholarship</span><span class="pos">n.</span><span class="cn">奖学金</span></li>
-    <li><span class="no">⑤</span><span class="w">award</span><span class="pos">n./v.</span><span class="cn">奖品；授予</span></li>
-    <li><span class="no">⑥</span><span class="w">honor</span><span class="pos">n./v.</span><span class="cn">荣誉；尊敬</span></li>
-    <li><span class="no">⑦</span><span class="w">prize</span><span class="pos">n./v.</span><span class="cn">奖；奖品</span></li>
-    <li><span class="no">⑧</span><span class="w">effort</span><span class="pos">n.</span><span class="cn">努力；尝试</span></li>
-    <li><span class="no">⑨</span><span class="w">praise</span><span class="pos">n./v.</span><span class="cn">称赞；表扬</span></li>
-    <li><span class="no">⑩</span><span class="w">aim</span><span class="pos">n./v.</span><span class="cn">目标；瞄准</span></li>
+    <li><span class="no">①</span><span class="w">performance</span><span class="ipa">/pɚˈfɔɹməns/</span><span class="pos">n.</span><span class="cn">表现；表演</span></li>
+    <li><span class="no">②</span><span class="w">prove</span><span class="ipa">/ˈpɹuv/</span><span class="pos">v.</span><span class="cn">证明；证实</span></li>
+    <li><span class="no">③</span><span class="w">deserve</span><span class="ipa">/dɪˈzɝv/</span><span class="pos">v.</span><span class="cn">应得；值得</span></li>
+    <li><span class="no">④</span><span class="w">scholarship</span><span class="ipa">/ˈskɑlɚˌʃɪp/</span><span class="pos">n.</span><span class="cn">奖学金</span></li>
+    <li><span class="no">⑤</span><span class="w">award</span><span class="ipa">/əˈwɔɹd/</span><span class="pos">n./v.</span><span class="cn">奖品；授予</span></li>
+    <li><span class="no">⑥</span><span class="w">honor</span><span class="ipa">/ˈɑnɚ/</span><span class="pos">n./v.</span><span class="cn">荣誉；尊敬</span></li>
+    <li><span class="no">⑦</span><span class="w">prize</span><span class="ipa">/ˈpɹaɪz/</span><span class="pos">n./v.</span><span class="cn">奖；奖品</span></li>
+    <li><span class="no">⑧</span><span class="w">effort</span><span class="ipa">/ˈɛfɚt/</span><span class="pos">n.</span><span class="cn">努力；尝试</span></li>
+    <li><span class="no">⑨</span><span class="w">praise</span><span class="ipa">/ˈpɹeɪz/</span><span class="pos">n./v.</span><span class="cn">称赞；表扬</span></li>
+    <li><span class="no">⑩</span><span class="w">aim</span><span class="ipa">/ˈeɪm/</span><span class="pos">n./v.</span><span class="cn">目标；瞄准</span></li>
   </ul>
 </article>
 
@@ -495,16 +503,16 @@
   <p class="en"><b>Apply</b> for the <b>position</b> by sending your <b>application</b> and a clear <b>resume</b>; if the <b>employer</b> <b>interviews</b> you and likes your answers, they may <b>offer</b> you the job with a good <b>salary</b> — a golden <b>opportunity</b> for any <b>employee</b>.</p>
   <p class="cn">你递交申请材料和清晰的简历来申请职位；如果雇主面试后喜欢你的回答，他们可能会给你一份薪水不错的工作——这对任何求职者来说都是绝佳机会。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">apply</span><span class="pos">v.</span><span class="cn">申请；应用</span></li>
-    <li><span class="no">②</span><span class="w">position</span><span class="pos">n.</span><span class="cn">职位；位置</span></li>
-    <li><span class="no">③</span><span class="w">application</span><span class="pos">n.</span><span class="cn">申请；申请表</span></li>
-    <li><span class="no">④</span><span class="w">resume</span><span class="pos">n.</span><span class="cn">简历</span></li>
-    <li><span class="no">⑤</span><span class="w">employer</span><span class="pos">n.</span><span class="cn">雇主</span></li>
-    <li><span class="no">⑥</span><span class="w">interview</span><span class="pos">n./v.</span><span class="cn">面试；采访</span></li>
-    <li><span class="no">⑦</span><span class="w">offer</span><span class="pos">v./n.</span><span class="cn">提供；出价</span></li>
-    <li><span class="no">⑧</span><span class="w">salary</span><span class="pos">n.</span><span class="cn">薪水；工资</span></li>
-    <li><span class="no">⑨</span><span class="w">opportunity</span><span class="pos">n.</span><span class="cn">机会</span></li>
-    <li><span class="no">⑩</span><span class="w">employee</span><span class="pos">n.</span><span class="cn">雇员；员工</span></li>
+    <li><span class="no">①</span><span class="w">apply</span><span class="ipa">/əˈplaɪ/</span><span class="pos">v.</span><span class="cn">申请；应用</span></li>
+    <li><span class="no">②</span><span class="w">position</span><span class="ipa">/pəˈzɪʃən/</span><span class="pos">n.</span><span class="cn">职位；位置</span></li>
+    <li><span class="no">③</span><span class="w">application</span><span class="ipa">/ˌæpləˈkeɪʃən/</span><span class="pos">n.</span><span class="cn">申请；申请表</span></li>
+    <li><span class="no">④</span><span class="w">resume</span><span class="ipa">/ɹɪˈzum/</span><span class="pos">n.</span><span class="cn">简历</span></li>
+    <li><span class="no">⑤</span><span class="w">employer</span><span class="ipa">/ɛˈmplɔɪɚ/</span><span class="pos">n.</span><span class="cn">雇主</span></li>
+    <li><span class="no">⑥</span><span class="w">interview</span><span class="ipa">/ˈɪntɚˌvju/</span><span class="pos">n./v.</span><span class="cn">面试；采访</span></li>
+    <li><span class="no">⑦</span><span class="w">offer</span><span class="ipa">/ˈɔfɚ/</span><span class="pos">v./n.</span><span class="cn">提供；出价</span></li>
+    <li><span class="no">⑧</span><span class="w">salary</span><span class="ipa">/ˈsælɚi/</span><span class="pos">n.</span><span class="cn">薪水；工资</span></li>
+    <li><span class="no">⑨</span><span class="w">opportunity</span><span class="ipa">/ˌɑpɚˈtunəti/</span><span class="pos">n.</span><span class="cn">机会</span></li>
+    <li><span class="no">⑩</span><span class="w">employee</span><span class="ipa">/ɛˈmplɔɪi/</span><span class="pos">n.</span><span class="cn">雇员；员工</span></li>
   </ul>
 </article>
 
@@ -518,16 +526,16 @@
   <p class="en">On your first day at the <b>company</b>, the <b>manager</b> will <b>welcome</b> you, <b>introduce</b> you to your <b>colleagues</b>, and show you around the <b>office</b>; the friendly <b>atmosphere</b> will leave you with a good <b>impression</b>, so behave in a <b>professional</b> and <b>responsible</b> way.</p>
   <p class="cn">入职第一天，经理会欢迎你，把你介绍给同事们，带你参观办公室；友好的氛围会给你留下好印象，所以要以专业、负责的方式行事。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">company</span><span class="pos">n.</span><span class="cn">公司</span></li>
-    <li><span class="no">②</span><span class="w">manager</span><span class="pos">n.</span><span class="cn">经理；管理人</span></li>
-    <li><span class="no">③</span><span class="w">welcome</span><span class="pos">v./n./adj.</span><span class="cn">欢迎；受欢迎的</span></li>
-    <li><span class="no">④</span><span class="w">introduce</span><span class="pos">v.</span><span class="cn">介绍；引进</span></li>
-    <li><span class="no">⑤</span><span class="w">colleague</span><span class="pos">n.</span><span class="cn">同事</span></li>
-    <li><span class="no">⑥</span><span class="w">office</span><span class="pos">n.</span><span class="cn">办公室</span></li>
-    <li><span class="no">⑦</span><span class="w">impression</span><span class="pos">n.</span><span class="cn">印象</span></li>
-    <li><span class="no">⑧</span><span class="w">atmosphere</span><span class="pos">n.</span><span class="cn">气氛；大气</span></li>
-    <li><span class="no">⑨</span><span class="w">professional</span><span class="pos">adj./n.</span><span class="cn">专业的；专业人士</span></li>
-    <li><span class="no">⑩</span><span class="w">responsible</span><span class="pos">adj.</span><span class="cn">负责的；有责任的</span></li>
+    <li><span class="no">①</span><span class="w">company</span><span class="ipa">/ˈkʌmpəˌni/</span><span class="pos">n.</span><span class="cn">公司</span></li>
+    <li><span class="no">②</span><span class="w">manager</span><span class="ipa">/ˈmænədʒɚ/</span><span class="pos">n.</span><span class="cn">经理；管理人</span></li>
+    <li><span class="no">③</span><span class="w">welcome</span><span class="ipa">/ˈwɛlkəm/</span><span class="pos">v./n./adj.</span><span class="cn">欢迎；受欢迎的</span></li>
+    <li><span class="no">④</span><span class="w">introduce</span><span class="ipa">/ˌɪntɹəˈdus/</span><span class="pos">v.</span><span class="cn">介绍；引进</span></li>
+    <li><span class="no">⑤</span><span class="w">colleague</span><span class="ipa">/ˈkɑliɡ/</span><span class="pos">n.</span><span class="cn">同事</span></li>
+    <li><span class="no">⑥</span><span class="w">office</span><span class="ipa">/ˈɔfɪs/</span><span class="pos">n.</span><span class="cn">办公室</span></li>
+    <li><span class="no">⑦</span><span class="w">impression</span><span class="ipa">/ˌɪˈmpɹɛʃən/</span><span class="pos">n.</span><span class="cn">印象</span></li>
+    <li><span class="no">⑧</span><span class="w">atmosphere</span><span class="ipa">/ˈætməˌsfɪɹ/</span><span class="pos">n.</span><span class="cn">气氛；大气</span></li>
+    <li><span class="no">⑨</span><span class="w">professional</span><span class="ipa">/pɹəˈfɛʃənəl/</span><span class="pos">adj./n.</span><span class="cn">专业的；专业人士</span></li>
+    <li><span class="no">⑩</span><span class="w">responsible</span><span class="ipa">/ɹiˈspɑnsəbəl/</span><span class="pos">adj.</span><span class="cn">负责的；有责任的</span></li>
   </ul>
 </article>
 
@@ -541,16 +549,16 @@
   <p class="en">Before the <b>meeting</b>, our manager <b>arranged</b> a clear <b>schedule</b> for every <b>task</b>; during the <b>discussion</b>, each of us gave a <b>report</b>, <b>discussed</b> the problems openly, and made <b>decisions</b> together, so we could <b>organize</b> and <b>manage</b> the work in an <b>efficient</b> way.</p>
   <p class="cn">会议前，经理为每项任务安排了清晰的日程；讨论中我们各自汇报、坦诚讨论问题并共同做决定，从而高效地组织和管理工作。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">meeting</span><span class="pos">n.</span><span class="cn">会议</span></li>
-    <li><span class="no">②</span><span class="w">arrange</span><span class="pos">v.</span><span class="cn">安排；排列</span></li>
-    <li><span class="no">③</span><span class="w">schedule</span><span class="pos">n./v.</span><span class="cn">时间表；安排</span></li>
-    <li><span class="no">④</span><span class="w">task</span><span class="pos">n.</span><span class="cn">任务</span></li>
-    <li><span class="no">⑤</span><span class="w">discussion</span><span class="pos">n.</span><span class="cn">讨论；商议</span></li>
-    <li><span class="no">⑥</span><span class="w">report</span><span class="pos">n./v.</span><span class="cn">报告；汇报</span></li>
-    <li><span class="no">⑦</span><span class="w">discuss</span><span class="pos">v.</span><span class="cn">讨论；商议</span></li>
-    <li><span class="no">⑧</span><span class="w">decision</span><span class="pos">n.</span><span class="cn">决定；决心</span></li>
-    <li><span class="no">⑨</span><span class="w">organize</span><span class="pos">v.</span><span class="cn">组织；整理</span></li>
-    <li><span class="no">⑩</span><span class="w">manage</span><span class="pos">v.</span><span class="cn">管理；设法做到</span></li>
+    <li><span class="no">①</span><span class="w">meeting</span><span class="ipa">/ˈmitɪŋ/</span><span class="pos">n.</span><span class="cn">会议</span></li>
+    <li><span class="no">②</span><span class="w">arrange</span><span class="ipa">/ɚˈeɪndʒ/</span><span class="pos">v.</span><span class="cn">安排；排列</span></li>
+    <li><span class="no">③</span><span class="w">schedule</span><span class="ipa">/ˈskɛdʒʊl/</span><span class="pos">n./v.</span><span class="cn">时间表；安排</span></li>
+    <li><span class="no">④</span><span class="w">task</span><span class="ipa">/ˈtæsk/</span><span class="pos">n.</span><span class="cn">任务</span></li>
+    <li><span class="no">⑤</span><span class="w">discussion</span><span class="ipa">/dɪˈskʌʃən/</span><span class="pos">n.</span><span class="cn">讨论；商议</span></li>
+    <li><span class="no">⑥</span><span class="w">report</span><span class="ipa">/ɹiˈpɔɹt/</span><span class="pos">n./v.</span><span class="cn">报告；汇报</span></li>
+    <li><span class="no">⑦</span><span class="w">discuss</span><span class="ipa">/dɪˈskʌs/</span><span class="pos">v.</span><span class="cn">讨论；商议</span></li>
+    <li><span class="no">⑧</span><span class="w">decision</span><span class="ipa">/dɪˈsɪʒən/</span><span class="pos">n.</span><span class="cn">决定；决心</span></li>
+    <li><span class="no">⑨</span><span class="w">organize</span><span class="ipa">/ˈɔɹɡəˌnaɪz/</span><span class="pos">v.</span><span class="cn">组织；整理</span></li>
+    <li><span class="no">⑩</span><span class="w">manage</span><span class="ipa">/ˈmænədʒ/</span><span class="pos">v.</span><span class="cn">管理；设法做到</span></li>
   </ul>
 </article>
 
@@ -564,16 +572,16 @@
   <p class="en">In a good <b>team</b>, members <b>communicate</b> openly, <b>cooperate</b> with each other, <b>share</b> <b>ideas</b> and <b>opinions</b>, <b>accept</b> useful <b>suggestions</b>, and <b>respect</b> and <b>support</b> one another.</p>
   <p class="cn">在一个好的团队里，成员们坦诚沟通、相互配合、分享想法和意见，接受有用的建议，并且彼此尊重和支持。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">team</span><span class="pos">n.</span><span class="cn">团队；队伍</span></li>
-    <li><span class="no">②</span><span class="w">communicate</span><span class="pos">v.</span><span class="cn">交流；沟通</span></li>
-    <li><span class="no">③</span><span class="w">cooperate</span><span class="pos">v.</span><span class="cn">合作；配合</span></li>
-    <li><span class="no">④</span><span class="w">share</span><span class="pos">v./n.</span><span class="cn">分享；份额</span></li>
-    <li><span class="no">⑤</span><span class="w">idea</span><span class="pos">n.</span><span class="cn">想法；主意</span></li>
-    <li><span class="no">⑥</span><span class="w">opinion</span><span class="pos">n.</span><span class="cn">意见；看法</span></li>
-    <li><span class="no">⑦</span><span class="w">accept</span><span class="pos">v.</span><span class="cn">接受；同意</span></li>
-    <li><span class="no">⑧</span><span class="w">suggestion</span><span class="pos">n.</span><span class="cn">建议；提议</span></li>
-    <li><span class="no">⑨</span><span class="w">respect</span><span class="pos">v./n.</span><span class="cn">尊重；尊敬</span></li>
-    <li><span class="no">⑩</span><span class="w">support</span><span class="pos">v./n.</span><span class="cn">支持；支撑</span></li>
+    <li><span class="no">①</span><span class="w">team</span><span class="ipa">/ˈtim/</span><span class="pos">n.</span><span class="cn">团队；队伍</span></li>
+    <li><span class="no">②</span><span class="w">communicate</span><span class="ipa">/kəˈmjunəˌkeɪt/</span><span class="pos">v.</span><span class="cn">交流；沟通</span></li>
+    <li><span class="no">③</span><span class="w">cooperate</span><span class="ipa">/koʊˈɑpɚˌeɪt/</span><span class="pos">v.</span><span class="cn">合作；配合</span></li>
+    <li><span class="no">④</span><span class="w">share</span><span class="ipa">/ˈʃɛɹ/</span><span class="pos">v./n.</span><span class="cn">分享；份额</span></li>
+    <li><span class="no">⑤</span><span class="w">idea</span><span class="ipa">/aɪˈdiə/</span><span class="pos">n.</span><span class="cn">想法；主意</span></li>
+    <li><span class="no">⑥</span><span class="w">opinion</span><span class="ipa">/əˈpɪnjən/</span><span class="pos">n.</span><span class="cn">意见；看法</span></li>
+    <li><span class="no">⑦</span><span class="w">accept</span><span class="ipa">/æˈksɛpt/</span><span class="pos">v.</span><span class="cn">接受；同意</span></li>
+    <li><span class="no">⑧</span><span class="w">suggestion</span><span class="ipa">/səˈdʒɛstʃən/</span><span class="pos">n.</span><span class="cn">建议；提议</span></li>
+    <li><span class="no">⑨</span><span class="w">respect</span><span class="ipa">/ɹɪˈspɛkt/</span><span class="pos">v./n.</span><span class="cn">尊重；尊敬</span></li>
+    <li><span class="no">⑩</span><span class="w">support</span><span class="ipa">/səˈpɔɹt/</span><span class="pos">v./n.</span><span class="cn">支持；支撑</span></li>
   </ul>
 </article>
 
@@ -588,16 +596,16 @@
   <p class="en">Working <b>overtime</b> every day puts great <b>pressure</b> and <b>stress</b> on us; we feel <b>tired</b> and the heavy <b>demand</b> becomes a <b>burden</b>, so instead of <b>complaining</b>, we should find a <b>balance</b> between work and rest and <b>relax</b> to regain our <b>energy</b>.</p>
   <p class="cn">每天加班给我们带来巨大的压力和紧张；我们感到疲惫，过高的要求成了负担，所以与其抱怨，不如在工作与休息之间找到平衡，放松自己以恢复精力。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">overtime</span><span class="pos">n./adv.</span><span class="cn">加班；超时</span></li>
-    <li><span class="no">②</span><span class="w">pressure</span><span class="pos">n.</span><span class="cn">压力；压强</span></li>
-    <li><span class="no">③</span><span class="w">stress</span><span class="pos">n./v.</span><span class="cn">压力；强调</span></li>
-    <li><span class="no">④</span><span class="w">tired</span><span class="pos">adj.</span><span class="cn">疲倦的</span></li>
-    <li><span class="no">⑤</span><span class="w">demand</span><span class="pos">n./v.</span><span class="cn">要求；需求</span></li>
-    <li><span class="no">⑥</span><span class="w">burden</span><span class="pos">n./v.</span><span class="cn">负担；使负重</span></li>
-    <li><span class="no">⑦</span><span class="w">complain</span><span class="pos">v.</span><span class="cn">抱怨；投诉</span></li>
-    <li><span class="no">⑧</span><span class="w">balance</span><span class="pos">n./v.</span><span class="cn">平衡</span></li>
-    <li><span class="no">⑨</span><span class="w">relax</span><span class="pos">v.</span><span class="cn">放松；休息</span></li>
-    <li><span class="no">⑩</span><span class="w">energy</span><span class="pos">n.</span><span class="cn">精力；能量</span></li>
+    <li><span class="no">①</span><span class="w">overtime</span><span class="ipa">/ˈoʊvɚˌtaɪm/</span><span class="pos">n./adv.</span><span class="cn">加班；超时</span></li>
+    <li><span class="no">②</span><span class="w">pressure</span><span class="ipa">/ˈpɹɛʃɚ/</span><span class="pos">n.</span><span class="cn">压力；压强</span></li>
+    <li><span class="no">③</span><span class="w">stress</span><span class="ipa">/ˈstɹɛs/</span><span class="pos">n./v.</span><span class="cn">压力；强调</span></li>
+    <li><span class="no">④</span><span class="w">tired</span><span class="ipa">/ˈtaɪɚd/</span><span class="pos">adj.</span><span class="cn">疲倦的</span></li>
+    <li><span class="no">⑤</span><span class="w">demand</span><span class="ipa">/dɪˈmænd/</span><span class="pos">n./v.</span><span class="cn">要求；需求</span></li>
+    <li><span class="no">⑥</span><span class="w">burden</span><span class="ipa">/ˈbɝdən/</span><span class="pos">n./v.</span><span class="cn">负担；使负重</span></li>
+    <li><span class="no">⑦</span><span class="w">complain</span><span class="ipa">/kəˈmpleɪn/</span><span class="pos">v.</span><span class="cn">抱怨；投诉</span></li>
+    <li><span class="no">⑧</span><span class="w">balance</span><span class="ipa">/ˈbæləns/</span><span class="pos">n./v.</span><span class="cn">平衡</span></li>
+    <li><span class="no">⑨</span><span class="w">relax</span><span class="ipa">/ɹɪˈlæks/</span><span class="pos">v.</span><span class="cn">放松；休息</span></li>
+    <li><span class="no">⑩</span><span class="w">energy</span><span class="ipa">/ˈɛnɚdʒi/</span><span class="pos">n.</span><span class="cn">精力；能量</span></li>
   </ul>
 </article>
 
@@ -611,16 +619,16 @@
   <p class="en">If you develop your <b>skills</b> and gain <b>experience</b>, your <b>ability</b> and <b>talent</b> will be <b>recognized</b>, and the company may <b>promote</b> you and <b>reward</b> you with <b>success</b> and <b>confidence</b>; your efforts will be <b>appreciated</b>.</p>
   <p class="cn">如果你提升技能、积累经验，你的能力和才华会被认可，公司可能会提拔你，用成功和信心回报你；你的努力也会得到赏识。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">skill</span><span class="pos">n.</span><span class="cn">技能；技巧</span></li>
-    <li><span class="no">②</span><span class="w">experience</span><span class="pos">n./v.</span><span class="cn">经验；经历</span></li>
-    <li><span class="no">③</span><span class="w">ability</span><span class="pos">n.</span><span class="cn">能力；才能</span></li>
-    <li><span class="no">④</span><span class="w">talent</span><span class="pos">n.</span><span class="cn">天赋；人才</span></li>
-    <li><span class="no">⑤</span><span class="w">recognize</span><span class="pos">v.</span><span class="cn">认出；认可</span></li>
-    <li><span class="no">⑥</span><span class="w">promote</span><span class="pos">v.</span><span class="cn">促进；晋升</span></li>
-    <li><span class="no">⑦</span><span class="w">reward</span><span class="pos">n./v.</span><span class="cn">奖励；报答</span></li>
-    <li><span class="no">⑧</span><span class="w">success</span><span class="pos">n.</span><span class="cn">成功</span></li>
-    <li><span class="no">⑨</span><span class="w">confidence</span><span class="pos">n.</span><span class="cn">信心；自信</span></li>
-    <li><span class="no">⑩</span><span class="w">appreciate</span><span class="pos">v.</span><span class="cn">欣赏；感激</span></li>
+    <li><span class="no">①</span><span class="w">skill</span><span class="ipa">/ˈskɪl/</span><span class="pos">n.</span><span class="cn">技能；技巧</span></li>
+    <li><span class="no">②</span><span class="w">experience</span><span class="ipa">/ɪˈkspɪɹiəns/</span><span class="pos">n./v.</span><span class="cn">经验；经历</span></li>
+    <li><span class="no">③</span><span class="w">ability</span><span class="ipa">/əˈbɪləˌti/</span><span class="pos">n.</span><span class="cn">能力；才能</span></li>
+    <li><span class="no">④</span><span class="w">talent</span><span class="ipa">/ˈtælənt/</span><span class="pos">n.</span><span class="cn">天赋；人才</span></li>
+    <li><span class="no">⑤</span><span class="w">recognize</span><span class="ipa">/ˈɹɛkəˌɡnaɪz/</span><span class="pos">v.</span><span class="cn">认出；认可</span></li>
+    <li><span class="no">⑥</span><span class="w">promote</span><span class="ipa">/pɹəˈmoʊt/</span><span class="pos">v.</span><span class="cn">促进；晋升</span></li>
+    <li><span class="no">⑦</span><span class="w">reward</span><span class="ipa">/ɹɪˈwɔɹd/</span><span class="pos">n./v.</span><span class="cn">奖励；报答</span></li>
+    <li><span class="no">⑧</span><span class="w">success</span><span class="ipa">/səˈksɛs/</span><span class="pos">n.</span><span class="cn">成功</span></li>
+    <li><span class="no">⑨</span><span class="w">confidence</span><span class="ipa">/ˈkɑnfədəns/</span><span class="pos">n.</span><span class="cn">信心；自信</span></li>
+    <li><span class="no">⑩</span><span class="w">appreciate</span><span class="ipa">/əˈpɹiʃiˌeɪt/</span><span class="pos">v.</span><span class="cn">欣赏；感激</span></li>
   </ul>
 </article>
 
@@ -634,16 +642,16 @@
   <p class="en">When you <b>shop</b> for clothes, <b>compare</b> the <b>prices</b> of different <b>brands</b>; a <b>cheap</b> price may mean poor <b>service</b>, while an <b>expensive</b> one may not always offer the best <b>value</b> for <b>customers</b>, so look for <b>discounts</b>.</p>
   <p class="cn">买衣服时要比较不同品牌的价格；便宜的价格可能意味着服务差，而贵的也不一定对顾客最有价值，所以要留意折扣。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">shop</span><span class="pos">n./v.</span><span class="cn">商店；购物</span></li>
-    <li><span class="no">②</span><span class="w">compare</span><span class="pos">v.</span><span class="cn">比较；对比</span></li>
-    <li><span class="no">③</span><span class="w">price</span><span class="pos">n.</span><span class="cn">价格</span></li>
-    <li><span class="no">④</span><span class="w">brand</span><span class="pos">n.</span><span class="cn">品牌</span></li>
-    <li><span class="no">⑤</span><span class="w">cheap</span><span class="pos">adj.</span><span class="cn">便宜的</span></li>
-    <li><span class="no">⑥</span><span class="w">service</span><span class="pos">n.</span><span class="cn">服务</span></li>
-    <li><span class="no">⑦</span><span class="w">expensive</span><span class="pos">adj.</span><span class="cn">昂贵的</span></li>
-    <li><span class="no">⑧</span><span class="w">value</span><span class="pos">n./v.</span><span class="cn">价值；重视</span></li>
-    <li><span class="no">⑨</span><span class="w">customer</span><span class="pos">n.</span><span class="cn">顾客</span></li>
-    <li><span class="no">⑩</span><span class="w">discount</span><span class="pos">n./v.</span><span class="cn">折扣；打折</span></li>
+    <li><span class="no">①</span><span class="w">shop</span><span class="ipa">/ˈʃɑp/</span><span class="pos">n./v.</span><span class="cn">商店；购物</span></li>
+    <li><span class="no">②</span><span class="w">compare</span><span class="ipa">/kəˈmpɛɹ/</span><span class="pos">v.</span><span class="cn">比较；对比</span></li>
+    <li><span class="no">③</span><span class="w">price</span><span class="ipa">/ˈpɹaɪs/</span><span class="pos">n.</span><span class="cn">价格</span></li>
+    <li><span class="no">④</span><span class="w">brand</span><span class="ipa">/ˈbɹænd/</span><span class="pos">n.</span><span class="cn">品牌</span></li>
+    <li><span class="no">⑤</span><span class="w">cheap</span><span class="ipa">/ˈtʃip/</span><span class="pos">adj.</span><span class="cn">便宜的</span></li>
+    <li><span class="no">⑥</span><span class="w">service</span><span class="ipa">/ˈsɝvəs/</span><span class="pos">n.</span><span class="cn">服务</span></li>
+    <li><span class="no">⑦</span><span class="w">expensive</span><span class="ipa">/ɪˈkspɛnsɪv/</span><span class="pos">adj.</span><span class="cn">昂贵的</span></li>
+    <li><span class="no">⑧</span><span class="w">value</span><span class="ipa">/ˈvælju/</span><span class="pos">n./v.</span><span class="cn">价值；重视</span></li>
+    <li><span class="no">⑨</span><span class="w">customer</span><span class="ipa">/ˈkʌstəmɚ/</span><span class="pos">n.</span><span class="cn">顾客</span></li>
+    <li><span class="no">⑩</span><span class="w">discount</span><span class="ipa">/dɪˈskaʊnt/</span><span class="pos">n./v.</span><span class="cn">折扣；打折</span></li>
   </ul>
 </article>
 
@@ -657,16 +665,16 @@
   <p class="en">Shopping <b>online</b> is <b>convenient</b>: you can <b>purchase</b> what you need on a <b>website</b>, make the <b>payment</b>, and <b>receive</b> the <b>package</b> <b>delivered</b> to your door; if it fails to <b>satisfy</b> you, you can ask for a <b>refund</b>.</p>
   <p class="cn">网购很方便：你可以在网站上购买所需商品、完成支付、收到送上门的包裹；如果商品不满意，还可以申请退款。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">online</span><span class="pos">adj./adv.</span><span class="cn">在线的；在线地</span></li>
-    <li><span class="no">②</span><span class="w">convenient</span><span class="pos">adj.</span><span class="cn">方便的</span></li>
-    <li><span class="no">③</span><span class="w">purchase</span><span class="pos">v./n.</span><span class="cn">购买</span></li>
-    <li><span class="no">④</span><span class="w">website</span><span class="pos">n.</span><span class="cn">网站</span></li>
-    <li><span class="no">⑤</span><span class="w">payment</span><span class="pos">n.</span><span class="cn">付款；支付</span></li>
-    <li><span class="no">⑥</span><span class="w">receive</span><span class="pos">v.</span><span class="cn">收到；接收</span></li>
-    <li><span class="no">⑦</span><span class="w">package</span><span class="pos">n.</span><span class="cn">包裹；包装</span></li>
-    <li><span class="no">⑧</span><span class="w">deliver</span><span class="pos">v.</span><span class="cn">递送；交付</span></li>
-    <li><span class="no">⑨</span><span class="w">satisfy</span><span class="pos">v.</span><span class="cn">使满意；满足</span></li>
-    <li><span class="no">⑩</span><span class="w">refund</span><span class="pos">n./v.</span><span class="cn">退款；退还</span></li>
+    <li><span class="no">①</span><span class="w">online</span><span class="ipa">/ˈɔˌnlaɪn/</span><span class="pos">adj./adv.</span><span class="cn">在线的；在线地</span></li>
+    <li><span class="no">②</span><span class="w">convenient</span><span class="ipa">/kəˈnvinjənt/</span><span class="pos">adj.</span><span class="cn">方便的</span></li>
+    <li><span class="no">③</span><span class="w">purchase</span><span class="ipa">/ˈpɝtʃəs/</span><span class="pos">v./n.</span><span class="cn">购买</span></li>
+    <li><span class="no">④</span><span class="w">website</span><span class="ipa">/ˈwɛˌbsaɪt/</span><span class="pos">n.</span><span class="cn">网站</span></li>
+    <li><span class="no">⑤</span><span class="w">payment</span><span class="ipa">/ˈpeɪmənt/</span><span class="pos">n.</span><span class="cn">付款；支付</span></li>
+    <li><span class="no">⑥</span><span class="w">receive</span><span class="ipa">/ɹəˈsiv/</span><span class="pos">v.</span><span class="cn">收到；接收</span></li>
+    <li><span class="no">⑦</span><span class="w">package</span><span class="ipa">/ˈpækədʒ/</span><span class="pos">n.</span><span class="cn">包裹；包装</span></li>
+    <li><span class="no">⑧</span><span class="w">deliver</span><span class="ipa">/dɪˈlɪvɚ/</span><span class="pos">v.</span><span class="cn">递送；交付</span></li>
+    <li><span class="no">⑨</span><span class="w">satisfy</span><span class="ipa">/ˈsætəˌsfaɪ/</span><span class="pos">v.</span><span class="cn">使满意；满足</span></li>
+    <li><span class="no">⑩</span><span class="w">refund</span><span class="ipa">/ɹɪˈfʌnd/</span><span class="pos">n./v.</span><span class="cn">退款；退还</span></li>
   </ul>
 </article>
 
@@ -680,16 +688,16 @@
   <p class="en">To manage <b>money</b> well, you should make a <b>budget</b>, <b>save</b> part of your <b>income</b>, control your daily <b>expenses</b> and <b>costs</b>, so you can <b>afford</b> to <b>invest</b> wisely and earn some <b>profit</b> instead of <b>spending</b> everything.</p>
   <p class="cn">要想管好钱，你应该做预算、存下一部分收入、控制日常开销和成本，这样你才有能力明智投资、赚取一些利润，而不是把钱全花光。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">money</span><span class="pos">n.</span><span class="cn">钱；货币</span></li>
-    <li><span class="no">②</span><span class="w">budget</span><span class="pos">n./v.</span><span class="cn">预算</span></li>
-    <li><span class="no">③</span><span class="w">save</span><span class="pos">v.</span><span class="cn">节省；储蓄</span></li>
-    <li><span class="no">④</span><span class="w">income</span><span class="pos">n.</span><span class="cn">收入</span></li>
-    <li><span class="no">⑤</span><span class="w">expense</span><span class="pos">n.</span><span class="cn">开支；费用</span></li>
-    <li><span class="no">⑥</span><span class="w">cost</span><span class="pos">n./v.</span><span class="cn">成本；花费</span></li>
-    <li><span class="no">⑦</span><span class="w">afford</span><span class="pos">v.</span><span class="cn">负担得起</span></li>
-    <li><span class="no">⑧</span><span class="w">invest</span><span class="pos">v.</span><span class="cn">投资</span></li>
-    <li><span class="no">⑨</span><span class="w">profit</span><span class="pos">n.</span><span class="cn">利润；收益</span></li>
-    <li><span class="no">⑩</span><span class="w">spend</span><span class="pos">v.</span><span class="cn">花费；度过</span></li>
+    <li><span class="no">①</span><span class="w">money</span><span class="ipa">/ˈmʌni/</span><span class="pos">n.</span><span class="cn">钱；货币</span></li>
+    <li><span class="no">②</span><span class="w">budget</span><span class="ipa">/ˈbʌdʒɪt/</span><span class="pos">n./v.</span><span class="cn">预算</span></li>
+    <li><span class="no">③</span><span class="w">save</span><span class="ipa">/ˈseɪv/</span><span class="pos">v.</span><span class="cn">节省；储蓄</span></li>
+    <li><span class="no">④</span><span class="w">income</span><span class="ipa">/ˈɪˌnkʌm/</span><span class="pos">n.</span><span class="cn">收入</span></li>
+    <li><span class="no">⑤</span><span class="w">expense</span><span class="ipa">/ɪˈkspɛns/</span><span class="pos">n.</span><span class="cn">开支；费用</span></li>
+    <li><span class="no">⑥</span><span class="w">cost</span><span class="ipa">/ˈkɑst/</span><span class="pos">n./v.</span><span class="cn">成本；花费</span></li>
+    <li><span class="no">⑦</span><span class="w">afford</span><span class="ipa">/əˈfɔɹd/</span><span class="pos">v.</span><span class="cn">负担得起</span></li>
+    <li><span class="no">⑧</span><span class="w">invest</span><span class="ipa">/ˌɪˈnvɛst/</span><span class="pos">v.</span><span class="cn">投资</span></li>
+    <li><span class="no">⑨</span><span class="w">profit</span><span class="ipa">/ˈpɹɑfət/</span><span class="pos">n.</span><span class="cn">利润；收益</span></li>
+    <li><span class="no">⑩</span><span class="w">spend</span><span class="ipa">/ˈspɛnd/</span><span class="pos">v.</span><span class="cn">花费；度过</span></li>
   </ul>
 </article>
 
@@ -703,16 +711,16 @@
   <p class="en">Every month I <b>pay</b> the <b>rent</b>, the phone <b>bill</b>, and the service <b>fee</b>; I can <b>charge</b> them to my <b>bank</b> <b>account</b> and <b>pay</b> by <b>card</b> or <b>cash</b>, and I must remember to pay the <b>tax</b> on time.</p>
   <p class="cn">每个月我要付房租、电话费和服务费；这些费用可以记到我的银行账户里，用卡或现金支付，而且必须记得按时缴税。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">pay</span><span class="pos">v.</span><span class="cn">支付；付款</span></li>
-    <li><span class="no">②</span><span class="w">rent</span><span class="pos">n./v.</span><span class="cn">租金；租用</span></li>
-    <li><span class="no">③</span><span class="w">bill</span><span class="pos">n.</span><span class="cn">账单；钞票</span></li>
-    <li><span class="no">④</span><span class="w">fee</span><span class="pos">n.</span><span class="cn">费用；酬金</span></li>
-    <li><span class="no">⑤</span><span class="w">charge</span><span class="pos">n./v.</span><span class="cn">收费；充电；指控</span></li>
-    <li><span class="no">⑥</span><span class="w">bank</span><span class="pos">n.</span><span class="cn">银行；岸</span></li>
-    <li><span class="no">⑦</span><span class="w">account</span><span class="pos">n.</span><span class="cn">账户；描述</span></li>
-    <li><span class="no">⑧</span><span class="w">card</span><span class="pos">n.</span><span class="cn">卡片；纸牌</span></li>
-    <li><span class="no">⑨</span><span class="w">cash</span><span class="pos">n.</span><span class="cn">现金</span></li>
-    <li><span class="no">⑩</span><span class="w">tax</span><span class="pos">n./v.</span><span class="cn">税；征税</span></li>
+    <li><span class="no">①</span><span class="w">pay</span><span class="ipa">/ˈpeɪ/</span><span class="pos">v.</span><span class="cn">支付；付款</span></li>
+    <li><span class="no">②</span><span class="w">rent</span><span class="ipa">/ˈɹɛnt/</span><span class="pos">n./v.</span><span class="cn">租金；租用</span></li>
+    <li><span class="no">③</span><span class="w">bill</span><span class="ipa">/ˈbɪl/</span><span class="pos">n.</span><span class="cn">账单；钞票</span></li>
+    <li><span class="no">④</span><span class="w">fee</span><span class="ipa">/ˈfi/</span><span class="pos">n.</span><span class="cn">费用；酬金</span></li>
+    <li><span class="no">⑤</span><span class="w">charge</span><span class="ipa">/ˈtʃɑɹdʒ/</span><span class="pos">n./v.</span><span class="cn">收费；充电；指控</span></li>
+    <li><span class="no">⑥</span><span class="w">bank</span><span class="ipa">/ˈbæŋk/</span><span class="pos">n.</span><span class="cn">银行；岸</span></li>
+    <li><span class="no">⑦</span><span class="w">account</span><span class="ipa">/əˈkaʊnt/</span><span class="pos">n.</span><span class="cn">账户；描述</span></li>
+    <li><span class="no">⑧</span><span class="w">card</span><span class="ipa">/ˈkɑɹd/</span><span class="pos">n.</span><span class="cn">卡片；纸牌</span></li>
+    <li><span class="no">⑨</span><span class="w">cash</span><span class="ipa">/ˈkæʃ/</span><span class="pos">n.</span><span class="cn">现金</span></li>
+    <li><span class="no">⑩</span><span class="w">tax</span><span class="ipa">/ˈtæks/</span><span class="pos">n./v.</span><span class="cn">税；征税</span></li>
   </ul>
 </article>
 
@@ -726,16 +734,16 @@
   <p class="en">To enjoy good <b>health</b> and stay <b>healthy</b>, you should stay <b>active</b>, <b>exercise</b> regularly, eat a balanced <b>diet</b>, and take <b>medicine</b> only on a doctor's advice; this can <b>prevent</b> <b>disease</b> and help <b>patients</b> <b>recover</b> faster.</p>
   <p class="cn">为了拥有健康、保持良好体质，你应该保持活跃、规律运动、均衡饮食，并且只遵医嘱服药；这样可以预防疾病，帮助病人更快康复。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">health</span><span class="pos">n.</span><span class="cn">健康</span></li>
-    <li><span class="no">②</span><span class="w">healthy</span><span class="pos">adj.</span><span class="cn">健康的</span></li>
-    <li><span class="no">③</span><span class="w">exercise</span><span class="pos">n./v.</span><span class="cn">锻炼；练习</span></li>
-    <li><span class="no">④</span><span class="w">diet</span><span class="pos">n.</span><span class="cn">饮食；节食</span></li>
-    <li><span class="no">⑤</span><span class="w">medicine</span><span class="pos">n.</span><span class="cn">药；医学</span></li>
-    <li><span class="no">⑥</span><span class="w">active</span><span class="pos">adj.</span><span class="cn">积极的；活跃的</span></li>
-    <li><span class="no">⑦</span><span class="w">prevent</span><span class="pos">v.</span><span class="cn">预防；阻止</span></li>
-    <li><span class="no">⑧</span><span class="w">disease</span><span class="pos">n.</span><span class="cn">疾病</span></li>
-    <li><span class="no">⑨</span><span class="w">patient</span><span class="pos">n./adj.</span><span class="cn">病人；耐心的</span></li>
-    <li><span class="no">⑩</span><span class="w">recover</span><span class="pos">v.</span><span class="cn">恢复；康复</span></li>
+    <li><span class="no">①</span><span class="w">health</span><span class="ipa">/ˈhɛlθ/</span><span class="pos">n.</span><span class="cn">健康</span></li>
+    <li><span class="no">②</span><span class="w">healthy</span><span class="ipa">/ˈhɛlθi/</span><span class="pos">adj.</span><span class="cn">健康的</span></li>
+    <li><span class="no">③</span><span class="w">exercise</span><span class="ipa">/ˈɛksɚˌsaɪz/</span><span class="pos">n./v.</span><span class="cn">锻炼；练习</span></li>
+    <li><span class="no">④</span><span class="w">diet</span><span class="ipa">/ˈdaɪət/</span><span class="pos">n.</span><span class="cn">饮食；节食</span></li>
+    <li><span class="no">⑤</span><span class="w">medicine</span><span class="ipa">/ˈmɛdəsən/</span><span class="pos">n.</span><span class="cn">药；医学</span></li>
+    <li><span class="no">⑥</span><span class="w">active</span><span class="ipa">/ˈæktɪv/</span><span class="pos">adj.</span><span class="cn">积极的；活跃的</span></li>
+    <li><span class="no">⑦</span><span class="w">prevent</span><span class="ipa">/pɹɪˈvɛnt/</span><span class="pos">v.</span><span class="cn">预防；阻止</span></li>
+    <li><span class="no">⑧</span><span class="w">disease</span><span class="ipa">/dɪˈziz/</span><span class="pos">n.</span><span class="cn">疾病</span></li>
+    <li><span class="no">⑨</span><span class="w">patient</span><span class="ipa">/ˈpeɪʃənt/</span><span class="pos">n./adj.</span><span class="cn">病人；耐心的</span></li>
+    <li><span class="no">⑩</span><span class="w">recover</span><span class="ipa">/ɹɪˈkʌvɚ/</span><span class="pos">v.</span><span class="cn">恢复；康复</span></li>
   </ul>
 </article>
 
@@ -749,16 +757,16 @@
   <p class="en">If you have a <b>serious</b> <b>condition</b> with <b>symptoms</b> like severe <b>pain</b>, go to the <b>hospital</b>, let the <b>doctor</b> <b>examine</b> you, follow his <b>advice</b> and <b>treatment</b>, and with health <b>insurance</b> the <b>cure</b> will cost you less.</p>
   <p class="cn">如果你有严重病症，出现剧烈疼痛等症状，就去医院让医生检查，听从他的建议和治疗方案；有了医保，治愈的花费会更少。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">serious</span><span class="pos">adj.</span><span class="cn">严重的；认真的</span></li>
-    <li><span class="no">②</span><span class="w">condition</span><span class="pos">n.</span><span class="cn">状况；条件</span></li>
-    <li><span class="no">③</span><span class="w">symptom</span><span class="pos">n.</span><span class="cn">症状</span></li>
-    <li><span class="no">④</span><span class="w">pain</span><span class="pos">n./v.</span><span class="cn">疼痛；痛苦</span></li>
-    <li><span class="no">⑤</span><span class="w">hospital</span><span class="pos">n.</span><span class="cn">医院</span></li>
-    <li><span class="no">⑥</span><span class="w">doctor</span><span class="pos">n.</span><span class="cn">医生；博士</span></li>
-    <li><span class="no">⑦</span><span class="w">examine</span><span class="pos">v.</span><span class="cn">检查；考试</span></li>
-    <li><span class="no">⑧</span><span class="w">advice</span><span class="pos">n.</span><span class="cn">建议；忠告</span></li>
-    <li><span class="no">⑨</span><span class="w">treatment</span><span class="pos">n.</span><span class="cn">治疗；对待</span></li>
-    <li><span class="no">⑩</span><span class="w">insurance</span><span class="pos">n.</span><span class="cn">保险</span></li>
+    <li><span class="no">①</span><span class="w">serious</span><span class="ipa">/ˈsɪɹiəs/</span><span class="pos">adj.</span><span class="cn">严重的；认真的</span></li>
+    <li><span class="no">②</span><span class="w">condition</span><span class="ipa">/kəˈndɪʃən/</span><span class="pos">n.</span><span class="cn">状况；条件</span></li>
+    <li><span class="no">③</span><span class="w">symptom</span><span class="ipa">/ˈsɪmptəm/</span><span class="pos">n.</span><span class="cn">症状</span></li>
+    <li><span class="no">④</span><span class="w">pain</span><span class="ipa">/ˈpeɪn/</span><span class="pos">n./v.</span><span class="cn">疼痛；痛苦</span></li>
+    <li><span class="no">⑤</span><span class="w">hospital</span><span class="ipa">/ˈhɑˌspɪtəl/</span><span class="pos">n.</span><span class="cn">医院</span></li>
+    <li><span class="no">⑥</span><span class="w">doctor</span><span class="ipa">/ˈdɑktɚ/</span><span class="pos">n.</span><span class="cn">医生；博士</span></li>
+    <li><span class="no">⑦</span><span class="w">examine</span><span class="ipa">/ɪˈɡzæmɪn/</span><span class="pos">v.</span><span class="cn">检查；考试</span></li>
+    <li><span class="no">⑧</span><span class="w">advice</span><span class="ipa">/æˈdvaɪs/</span><span class="pos">n.</span><span class="cn">建议；忠告</span></li>
+    <li><span class="no">⑨</span><span class="w">treatment</span><span class="ipa">/ˈtɹitmənt/</span><span class="pos">n.</span><span class="cn">治疗；对待</span></li>
+    <li><span class="no">⑩</span><span class="w">insurance</span><span class="ipa">/ˌɪˈnʃʊɹəns/</span><span class="pos">n.</span><span class="cn">保险</span></li>
   </ul>
 </article>
 
@@ -772,16 +780,16 @@
   <p class="en">Going to the <b>gym</b> for <b>fitness</b> can build your <b>muscle</b> and <b>strength</b>; if you <b>jog</b> and <b>sweat</b> regularly, it becomes a good <b>habit</b>, and you can <b>lose</b> or <b>gain</b> <b>weight</b> as you wish.</p>
   <p class="cn">去健身房锻炼可以增强肌肉和力量；如果你坚持慢跑并出汗，这会成为好习惯，你还能按自己的意愿减重或增重。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">gym</span><span class="pos">n.</span><span class="cn">健身房；体育馆</span></li>
-    <li><span class="no">②</span><span class="w">fitness</span><span class="pos">n.</span><span class="cn">健康；健壮</span></li>
-    <li><span class="no">③</span><span class="w">muscle</span><span class="pos">n.</span><span class="cn">肌肉</span></li>
-    <li><span class="no">④</span><span class="w">strength</span><span class="pos">n.</span><span class="cn">力量；强度</span></li>
-    <li><span class="no">⑤</span><span class="w">jog</span><span class="pos">v./n.</span><span class="cn">慢跑</span></li>
-    <li><span class="no">⑥</span><span class="w">sweat</span><span class="pos">n./v.</span><span class="cn">汗水；出汗</span></li>
-    <li><span class="no">⑦</span><span class="w">habit</span><span class="pos">n.</span><span class="cn">习惯</span></li>
-    <li><span class="no">⑧</span><span class="w">lose</span><span class="pos">v.</span><span class="cn">失去；输掉</span></li>
-    <li><span class="no">⑨</span><span class="w">gain</span><span class="pos">v./n.</span><span class="cn">获得；增加</span></li>
-    <li><span class="no">⑩</span><span class="w">weight</span><span class="pos">n.</span><span class="cn">重量；体重</span></li>
+    <li><span class="no">①</span><span class="w">gym</span><span class="ipa">/ˈdʒɪm/</span><span class="pos">n.</span><span class="cn">健身房；体育馆</span></li>
+    <li><span class="no">②</span><span class="w">fitness</span><span class="ipa">/ˈfɪtnəs/</span><span class="pos">n.</span><span class="cn">健康；健壮</span></li>
+    <li><span class="no">③</span><span class="w">muscle</span><span class="ipa">/ˈmʌsəl/</span><span class="pos">n.</span><span class="cn">肌肉</span></li>
+    <li><span class="no">④</span><span class="w">strength</span><span class="ipa">/ˈstɹɛŋkθ/</span><span class="pos">n.</span><span class="cn">力量；强度</span></li>
+    <li><span class="no">⑤</span><span class="w">jog</span><span class="ipa">/ˈdʒɑɡ/</span><span class="pos">v./n.</span><span class="cn">慢跑</span></li>
+    <li><span class="no">⑥</span><span class="w">sweat</span><span class="ipa">/ˈswɛt/</span><span class="pos">n./v.</span><span class="cn">汗水；出汗</span></li>
+    <li><span class="no">⑦</span><span class="w">habit</span><span class="ipa">/ˈhæbət/</span><span class="pos">n.</span><span class="cn">习惯</span></li>
+    <li><span class="no">⑧</span><span class="w">lose</span><span class="ipa">/ˈluz/</span><span class="pos">v.</span><span class="cn">失去；输掉</span></li>
+    <li><span class="no">⑨</span><span class="w">gain</span><span class="ipa">/ˈɡeɪn/</span><span class="pos">v./n.</span><span class="cn">获得；增加</span></li>
+    <li><span class="no">⑩</span><span class="w">weight</span><span class="ipa">/ˈweɪt/</span><span class="pos">n.</span><span class="cn">重量；体重</span></li>
   </ul>
 </article>
 
@@ -795,16 +803,16 @@
   <p class="en">If you keep a <b>regular</b> <b>sleep</b> schedule, go to bed <b>early</b> instead of staying up <b>late</b>, get <b>enough</b> <b>rest</b> in a <b>comfortable</b> room with the <b>light</b> off, and <b>wake</b> up at a fixed time, you may even remember a sweet <b>dream</b>.</p>
   <p class="cn">如果你保持规律作息，早睡而不是熬夜，在舒适、关灯的房间得到充分休息，并在固定时间醒来，你甚至能记住一个甜甜的梦。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">regular</span><span class="pos">adj.</span><span class="cn">有规律的；经常的</span></li>
-    <li><span class="no">②</span><span class="w">sleep</span><span class="pos">n./v.</span><span class="cn">睡眠；睡觉</span></li>
-    <li><span class="no">③</span><span class="w">early</span><span class="pos">adj./adv.</span><span class="cn">早的；早</span></li>
-    <li><span class="no">④</span><span class="w">late</span><span class="pos">adj./adv.</span><span class="cn">迟的；晚</span></li>
-    <li><span class="no">⑤</span><span class="w">enough</span><span class="pos">adj./adv.</span><span class="cn">足够的；足够地</span></li>
-    <li><span class="no">⑥</span><span class="w">rest</span><span class="pos">n./v.</span><span class="cn">休息</span></li>
-    <li><span class="no">⑦</span><span class="w">comfortable</span><span class="pos">adj.</span><span class="cn">舒适的</span></li>
-    <li><span class="no">⑧</span><span class="w">light</span><span class="pos">n./adj.</span><span class="cn">光；灯；轻的</span></li>
-    <li><span class="no">⑨</span><span class="w">wake</span><span class="pos">v.</span><span class="cn">醒来；唤醒</span></li>
-    <li><span class="no">⑩</span><span class="w">dream</span><span class="pos">n./v.</span><span class="cn">梦；梦想</span></li>
+    <li><span class="no">①</span><span class="w">regular</span><span class="ipa">/ˈɹɛɡjəlɚ/</span><span class="pos">adj.</span><span class="cn">有规律的；经常的</span></li>
+    <li><span class="no">②</span><span class="w">sleep</span><span class="ipa">/ˈslip/</span><span class="pos">n./v.</span><span class="cn">睡眠；睡觉</span></li>
+    <li><span class="no">③</span><span class="w">early</span><span class="ipa">/ˈɝli/</span><span class="pos">adj./adv.</span><span class="cn">早的；早</span></li>
+    <li><span class="no">④</span><span class="w">late</span><span class="ipa">/ˈleɪt/</span><span class="pos">adj./adv.</span><span class="cn">迟的；晚</span></li>
+    <li><span class="no">⑤</span><span class="w">enough</span><span class="ipa">/ɪˈnʌf/</span><span class="pos">adj./adv.</span><span class="cn">足够的；足够地</span></li>
+    <li><span class="no">⑥</span><span class="w">rest</span><span class="ipa">/ˈɹɛst/</span><span class="pos">n./v.</span><span class="cn">休息</span></li>
+    <li><span class="no">⑦</span><span class="w">comfortable</span><span class="ipa">/ˈkʌmfɚtəbəl/</span><span class="pos">adj.</span><span class="cn">舒适的</span></li>
+    <li><span class="no">⑧</span><span class="w">light</span><span class="ipa">/ˈlaɪt/</span><span class="pos">n./adj.</span><span class="cn">光；灯；轻的</span></li>
+    <li><span class="no">⑨</span><span class="w">wake</span><span class="ipa">/ˈweɪk/</span><span class="pos">v.</span><span class="cn">醒来；唤醒</span></li>
+    <li><span class="no">⑩</span><span class="w">dream</span><span class="ipa">/ˈdɹim/</span><span class="pos">n./v.</span><span class="cn">梦；梦想</span></li>
   </ul>
 </article>
 
@@ -819,16 +827,16 @@
   <p class="en">My mother <b>cooks</b> every <b>meal</b> with <b>fresh</b> <b>vegetables</b> and <b>fruit</b>; she follows simple <b>recipes</b>, and the <b>food</b> <b>tastes</b> <b>delicious</b> and is full of <b>nutrition</b>.</p>
   <p class="cn">我妈妈用新鲜蔬菜和水果做每一顿饭；她按简单的食谱来做，食物美味又营养。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">cook</span><span class="pos">v./n.</span><span class="cn">烹饪；厨师</span></li>
-    <li><span class="no">②</span><span class="w">meal</span><span class="pos">n.</span><span class="cn">一餐；饭</span></li>
-    <li><span class="no">③</span><span class="w">fresh</span><span class="pos">adj.</span><span class="cn">新鲜的</span></li>
-    <li><span class="no">④</span><span class="w">vegetable</span><span class="pos">n.</span><span class="cn">蔬菜</span></li>
-    <li><span class="no">⑤</span><span class="w">fruit</span><span class="pos">n.</span><span class="cn">水果；果实</span></li>
-    <li><span class="no">⑥</span><span class="w">recipe</span><span class="pos">n.</span><span class="cn">食谱；配方</span></li>
-    <li><span class="no">⑦</span><span class="w">food</span><span class="pos">n.</span><span class="cn">食物</span></li>
-    <li><span class="no">⑧</span><span class="w">taste</span><span class="pos">n./v.</span><span class="cn">味道；品尝</span></li>
-    <li><span class="no">⑨</span><span class="w">delicious</span><span class="pos">adj.</span><span class="cn">美味的</span></li>
-    <li><span class="no">⑩</span><span class="w">nutrition</span><span class="pos">n.</span><span class="cn">营养</span></li>
+    <li><span class="no">①</span><span class="w">cook</span><span class="ipa">/ˈkʊk/</span><span class="pos">v./n.</span><span class="cn">烹饪；厨师</span></li>
+    <li><span class="no">②</span><span class="w">meal</span><span class="ipa">/ˈmil/</span><span class="pos">n.</span><span class="cn">一餐；饭</span></li>
+    <li><span class="no">③</span><span class="w">fresh</span><span class="ipa">/ˈfɹɛʃ/</span><span class="pos">adj.</span><span class="cn">新鲜的</span></li>
+    <li><span class="no">④</span><span class="w">vegetable</span><span class="ipa">/ˈvɛdʒtəbəl/</span><span class="pos">n.</span><span class="cn">蔬菜</span></li>
+    <li><span class="no">⑤</span><span class="w">fruit</span><span class="ipa">/ˈfɹut/</span><span class="pos">n.</span><span class="cn">水果；果实</span></li>
+    <li><span class="no">⑥</span><span class="w">recipe</span><span class="ipa">/ˈɹɛsəpi/</span><span class="pos">n.</span><span class="cn">食谱；配方</span></li>
+    <li><span class="no">⑦</span><span class="w">food</span><span class="ipa">/ˈfud/</span><span class="pos">n.</span><span class="cn">食物</span></li>
+    <li><span class="no">⑧</span><span class="w">taste</span><span class="ipa">/ˈteɪst/</span><span class="pos">n./v.</span><span class="cn">味道；品尝</span></li>
+    <li><span class="no">⑨</span><span class="w">delicious</span><span class="ipa">/dɪˈlɪʃəs/</span><span class="pos">adj.</span><span class="cn">美味的</span></li>
+    <li><span class="no">⑩</span><span class="w">nutrition</span><span class="ipa">/nuˈtɹɪʃən/</span><span class="pos">n.</span><span class="cn">营养</span></li>
   </ul>
 </article>
 
@@ -842,16 +850,16 @@
   <p class="en">For our next <b>trip</b>, we will <b>travel</b> by <b>train</b> instead of taking a <b>flight</b>; we will buy the <b>tickets</b> at the <b>station</b>, pack our <b>luggage</b>, and visit famous <b>tourist</b> spots at the final <b>destination</b> — it will be a wonderful <b>journey</b>.</p>
   <p class="cn">下次旅行我们打算坐火车而不是乘飞机；我们会在车站买票、收拾行李，到达最终目的地后游览著名景点——这将是美妙的旅程。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">trip</span><span class="pos">n.</span><span class="cn">旅行；旅程</span></li>
-    <li><span class="no">②</span><span class="w">travel</span><span class="pos">v./n.</span><span class="cn">旅行</span></li>
-    <li><span class="no">③</span><span class="w">train</span><span class="pos">n./v.</span><span class="cn">火车；训练</span></li>
-    <li><span class="no">④</span><span class="w">flight</span><span class="pos">n.</span><span class="cn">航班；飞行</span></li>
-    <li><span class="no">⑤</span><span class="w">ticket</span><span class="pos">n.</span><span class="cn">票；入场券</span></li>
-    <li><span class="no">⑥</span><span class="w">station</span><span class="pos">n.</span><span class="cn">车站；站</span></li>
-    <li><span class="no">⑦</span><span class="w">luggage</span><span class="pos">n.</span><span class="cn">行李</span></li>
-    <li><span class="no">⑧</span><span class="w">tourist</span><span class="pos">n.</span><span class="cn">游客；观光者</span></li>
-    <li><span class="no">⑨</span><span class="w">destination</span><span class="pos">n.</span><span class="cn">目的地</span></li>
-    <li><span class="no">⑩</span><span class="w">journey</span><span class="pos">n.</span><span class="cn">旅途；行程</span></li>
+    <li><span class="no">①</span><span class="w">trip</span><span class="ipa">/ˈtɹɪp/</span><span class="pos">n.</span><span class="cn">旅行；旅程</span></li>
+    <li><span class="no">②</span><span class="w">travel</span><span class="ipa">/ˈtɹævəl/</span><span class="pos">v./n.</span><span class="cn">旅行</span></li>
+    <li><span class="no">③</span><span class="w">train</span><span class="ipa">/ˈtɹeɪn/</span><span class="pos">n./v.</span><span class="cn">火车；训练</span></li>
+    <li><span class="no">④</span><span class="w">flight</span><span class="ipa">/ˈflaɪt/</span><span class="pos">n.</span><span class="cn">航班；飞行</span></li>
+    <li><span class="no">⑤</span><span class="w">ticket</span><span class="ipa">/ˈtɪkət/</span><span class="pos">n.</span><span class="cn">票；入场券</span></li>
+    <li><span class="no">⑥</span><span class="w">station</span><span class="ipa">/ˈsteɪʃən/</span><span class="pos">n.</span><span class="cn">车站；站</span></li>
+    <li><span class="no">⑦</span><span class="w">luggage</span><span class="ipa">/ˈlʌɡədʒ/</span><span class="pos">n.</span><span class="cn">行李</span></li>
+    <li><span class="no">⑧</span><span class="w">tourist</span><span class="ipa">/ˈtʊɹəst/</span><span class="pos">n.</span><span class="cn">游客；观光者</span></li>
+    <li><span class="no">⑨</span><span class="w">destination</span><span class="ipa">/ˌdɛstəˈneɪʃən/</span><span class="pos">n.</span><span class="cn">目的地</span></li>
+    <li><span class="no">⑩</span><span class="w">journey</span><span class="ipa">/ˈdʒɝni/</span><span class="pos">n.</span><span class="cn">旅途；行程</span></li>
   </ul>
 </article>
 
@@ -865,16 +873,16 @@
   <p class="en">During the <b>rush</b> <b>hour</b>, the <b>traffic</b> is heavy and the <b>bus</b> is <b>crowded</b>, so many people take the <b>subway</b> for their <b>daily</b> <b>ride</b>; no matter the <b>distance</b>, it saves them nearly an hour compared with driving a <b>vehicle</b>.</p>
   <p class="cn">高峰时段交通拥挤、公交很挤，所以很多人每天乘地铁通勤；不管路程多远，都比开车省下将近一个小时。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">rush</span><span class="pos">n./v.</span><span class="cn">匆忙；冲</span></li>
-    <li><span class="no">②</span><span class="w">hour</span><span class="pos">n.</span><span class="cn">小时</span></li>
-    <li><span class="no">③</span><span class="w">traffic</span><span class="pos">n.</span><span class="cn">交通；流量</span></li>
-    <li><span class="no">④</span><span class="w">bus</span><span class="pos">n.</span><span class="cn">公共汽车</span></li>
-    <li><span class="no">⑤</span><span class="w">crowded</span><span class="pos">adj.</span><span class="cn">拥挤的</span></li>
-    <li><span class="no">⑥</span><span class="w">subway</span><span class="pos">n.</span><span class="cn">地铁</span></li>
-    <li><span class="no">⑦</span><span class="w">daily</span><span class="pos">adj./adv.</span><span class="cn">每日的；日常</span></li>
-    <li><span class="no">⑧</span><span class="w">ride</span><span class="pos">n./v.</span><span class="cn">乘坐；骑</span></li>
-    <li><span class="no">⑨</span><span class="w">distance</span><span class="pos">n.</span><span class="cn">距离</span></li>
-    <li><span class="no">⑩</span><span class="w">vehicle</span><span class="pos">n.</span><span class="cn">车辆；交通工具</span></li>
+    <li><span class="no">①</span><span class="w">rush</span><span class="ipa">/ˈɹʌʃ/</span><span class="pos">n./v.</span><span class="cn">匆忙；冲</span></li>
+    <li><span class="no">②</span><span class="w">hour</span><span class="ipa">/ˈaʊɚ/</span><span class="pos">n.</span><span class="cn">小时</span></li>
+    <li><span class="no">③</span><span class="w">traffic</span><span class="ipa">/ˈtɹæfɪk/</span><span class="pos">n.</span><span class="cn">交通；流量</span></li>
+    <li><span class="no">④</span><span class="w">bus</span><span class="ipa">/ˈbʌs/</span><span class="pos">n.</span><span class="cn">公共汽车</span></li>
+    <li><span class="no">⑤</span><span class="w">crowded</span><span class="ipa">/ˈkɹaʊdəd/</span><span class="pos">adj.</span><span class="cn">拥挤的</span></li>
+    <li><span class="no">⑥</span><span class="w">subway</span><span class="ipa">/ˈsʌˌbweɪ/</span><span class="pos">n.</span><span class="cn">地铁</span></li>
+    <li><span class="no">⑦</span><span class="w">daily</span><span class="ipa">/ˈdeɪli/</span><span class="pos">adj./adv.</span><span class="cn">每日的；日常</span></li>
+    <li><span class="no">⑧</span><span class="w">ride</span><span class="ipa">/ˈɹaɪd/</span><span class="pos">n./v.</span><span class="cn">乘坐；骑</span></li>
+    <li><span class="no">⑨</span><span class="w">distance</span><span class="ipa">/ˈdɪstəns/</span><span class="pos">n.</span><span class="cn">距离</span></li>
+    <li><span class="no">⑩</span><span class="w">vehicle</span><span class="ipa">/ˈvihɪkəl/</span><span class="pos">n.</span><span class="cn">车辆；交通工具</span></li>
   </ul>
 </article>
 
@@ -888,16 +896,16 @@
   <p class="en">Before you <b>drive</b> on a new <b>road</b>, check the <b>map</b> for the right <b>direction</b>, obey the traffic <b>signals</b>, and always look both ways before you <b>cross</b>, so you can <b>avoid</b> <b>danger</b> and put <b>safety</b> first; never drive without a <b>license</b>.</p>
   <p class="cn">在新路上开车前，先查地图确认正确方向，遵守交通信号，过马路前左右张望，这样才能避开危险、把安全放在第一位；无证绝不能开车。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">drive</span><span class="pos">v./n.</span><span class="cn">驾驶；驱赶</span></li>
-    <li><span class="no">②</span><span class="w">road</span><span class="pos">n.</span><span class="cn">道路</span></li>
-    <li><span class="no">③</span><span class="w">map</span><span class="pos">n.</span><span class="cn">地图</span></li>
-    <li><span class="no">④</span><span class="w">direction</span><span class="pos">n.</span><span class="cn">方向；指导</span></li>
-    <li><span class="no">⑤</span><span class="w">signal</span><span class="pos">n./v.</span><span class="cn">信号；示意</span></li>
-    <li><span class="no">⑥</span><span class="w">cross</span><span class="pos">v./n.</span><span class="cn">穿过；十字路口</span></li>
-    <li><span class="no">⑦</span><span class="w">avoid</span><span class="pos">v.</span><span class="cn">避免；避开</span></li>
-    <li><span class="no">⑧</span><span class="w">danger</span><span class="pos">n.</span><span class="cn">危险</span></li>
-    <li><span class="no">⑨</span><span class="w">safety</span><span class="pos">n.</span><span class="cn">安全</span></li>
-    <li><span class="no">⑩</span><span class="w">license</span><span class="pos">n.</span><span class="cn">执照；许可证</span></li>
+    <li><span class="no">①</span><span class="w">drive</span><span class="ipa">/ˈdɹaɪv/</span><span class="pos">v./n.</span><span class="cn">驾驶；驱赶</span></li>
+    <li><span class="no">②</span><span class="w">road</span><span class="ipa">/ˈɹoʊd/</span><span class="pos">n.</span><span class="cn">道路</span></li>
+    <li><span class="no">③</span><span class="w">map</span><span class="ipa">/ˈmæp/</span><span class="pos">n.</span><span class="cn">地图</span></li>
+    <li><span class="no">④</span><span class="w">direction</span><span class="ipa">/dɚˈɛkʃən/</span><span class="pos">n.</span><span class="cn">方向；指导</span></li>
+    <li><span class="no">⑤</span><span class="w">signal</span><span class="ipa">/ˈsɪɡnəl/</span><span class="pos">n./v.</span><span class="cn">信号；示意</span></li>
+    <li><span class="no">⑥</span><span class="w">cross</span><span class="ipa">/ˈkɹɔs/</span><span class="pos">v./n.</span><span class="cn">穿过；十字路口</span></li>
+    <li><span class="no">⑦</span><span class="w">avoid</span><span class="ipa">/əˈvɔɪd/</span><span class="pos">v.</span><span class="cn">避免；避开</span></li>
+    <li><span class="no">⑧</span><span class="w">danger</span><span class="ipa">/ˈdeɪndʒɚ/</span><span class="pos">n.</span><span class="cn">危险</span></li>
+    <li><span class="no">⑨</span><span class="w">safety</span><span class="ipa">/ˈseɪfti/</span><span class="pos">n.</span><span class="cn">安全</span></li>
+    <li><span class="no">⑩</span><span class="w">license</span><span class="ipa">/ˈlaɪsəns/</span><span class="pos">n.</span><span class="cn">执照；许可证</span></li>
   </ul>
 </article>
 
@@ -911,16 +919,16 @@
   <p class="en">Before you <b>move</b> into the <b>apartment</b>, you should sign a <b>contract</b> with the <b>landlord</b>, pay a <b>deposit</b>, check the <b>furniture</b>, and make an <b>agreement</b> about the rules with the <b>owner</b> and the <b>neighbors</b>; then you can <b>decorate</b> the place as you like.</p>
   <p class="cn">搬进公寓前，你应该和房东签合同、付押金、检查家具，并与房主和邻居就规则达成协议；然后就可以按自己的喜好装修布置了。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">move</span><span class="pos">v.</span><span class="cn">搬家；移动</span></li>
-    <li><span class="no">②</span><span class="w">apartment</span><span class="pos">n.</span><span class="cn">公寓</span></li>
-    <li><span class="no">③</span><span class="w">contract</span><span class="pos">n.</span><span class="cn">合同；契约</span></li>
-    <li><span class="no">④</span><span class="w">landlord</span><span class="pos">n.</span><span class="cn">房东；地主</span></li>
-    <li><span class="no">⑤</span><span class="w">deposit</span><span class="pos">n./v.</span><span class="cn">押金；存款</span></li>
-    <li><span class="no">⑥</span><span class="w">furniture</span><span class="pos">n.</span><span class="cn">家具</span></li>
-    <li><span class="no">⑦</span><span class="w">agreement</span><span class="pos">n.</span><span class="cn">协议；同意</span></li>
-    <li><span class="no">⑧</span><span class="w">owner</span><span class="pos">n.</span><span class="cn">所有者；主人</span></li>
-    <li><span class="no">⑨</span><span class="w">neighbor</span><span class="pos">n.</span><span class="cn">邻居</span></li>
-    <li><span class="no">⑩</span><span class="w">decorate</span><span class="pos">v.</span><span class="cn">装饰；装修</span></li>
+    <li><span class="no">①</span><span class="w">move</span><span class="ipa">/ˈmuv/</span><span class="pos">v.</span><span class="cn">搬家；移动</span></li>
+    <li><span class="no">②</span><span class="w">apartment</span><span class="ipa">/əˈpɑɹtmənt/</span><span class="pos">n.</span><span class="cn">公寓</span></li>
+    <li><span class="no">③</span><span class="w">contract</span><span class="ipa">/ˈkɑˌntɹækt/</span><span class="pos">n.</span><span class="cn">合同；契约</span></li>
+    <li><span class="no">④</span><span class="w">landlord</span><span class="ipa">/ˈlæˌndlɔɹd/</span><span class="pos">n.</span><span class="cn">房东；地主</span></li>
+    <li><span class="no">⑤</span><span class="w">deposit</span><span class="ipa">/dəˈpɑzɪt/</span><span class="pos">n./v.</span><span class="cn">押金；存款</span></li>
+    <li><span class="no">⑥</span><span class="w">furniture</span><span class="ipa">/ˈfɝnɪtʃɚ/</span><span class="pos">n.</span><span class="cn">家具</span></li>
+    <li><span class="no">⑦</span><span class="w">agreement</span><span class="ipa">/əˈɡɹimənt/</span><span class="pos">n.</span><span class="cn">协议；同意</span></li>
+    <li><span class="no">⑧</span><span class="w">owner</span><span class="ipa">/ˈoʊnɚ/</span><span class="pos">n.</span><span class="cn">所有者；主人</span></li>
+    <li><span class="no">⑨</span><span class="w">neighbor</span><span class="ipa">/ˈneɪbɚ/</span><span class="pos">n.</span><span class="cn">邻居</span></li>
+    <li><span class="no">⑩</span><span class="w">decorate</span><span class="ipa">/ˈdɛkɚˌeɪt/</span><span class="pos">v.</span><span class="cn">装饰；装修</span></li>
   </ul>
 </article>
 
@@ -934,16 +942,16 @@
   <p class="en">In our <b>family</b>, <b>parents</b> <b>care</b> for the <b>children</b> with <b>love</b>, children <b>trust</b> their parents, we visit <b>relatives</b> during festivals, and everyone remembers the <b>duty</b> to look after the older <b>generation</b>, whose happy <b>marriage</b> and life we all respect.</p>
   <p class="cn">在我们家，父母用爱照顾孩子，孩子信任父母，节日里我们走亲戚，每个人都记得照顾长辈的责任，我们都尊重他们幸福的婚姻与生活。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">family</span><span class="pos">n.</span><span class="cn">家庭</span></li>
-    <li><span class="no">②</span><span class="w">parent</span><span class="pos">n.</span><span class="cn">父母；家长</span></li>
-    <li><span class="no">③</span><span class="w">care</span><span class="pos">v./n.</span><span class="cn">照顾；关心</span></li>
-    <li><span class="no">④</span><span class="w">child</span><span class="pos">n.</span><span class="cn">孩子；儿童</span></li>
-    <li><span class="no">⑤</span><span class="w">love</span><span class="pos">n./v.</span><span class="cn">爱；喜爱</span></li>
-    <li><span class="no">⑥</span><span class="w">trust</span><span class="pos">v./n.</span><span class="cn">信任</span></li>
-    <li><span class="no">⑦</span><span class="w">relative</span><span class="pos">n./adj.</span><span class="cn">亲戚；相对的</span></li>
-    <li><span class="no">⑧</span><span class="w">duty</span><span class="pos">n.</span><span class="cn">责任；义务</span></li>
-    <li><span class="no">⑨</span><span class="w">generation</span><span class="pos">n.</span><span class="cn">一代人；产生</span></li>
-    <li><span class="no">⑩</span><span class="w">marriage</span><span class="pos">n.</span><span class="cn">婚姻</span></li>
+    <li><span class="no">①</span><span class="w">family</span><span class="ipa">/ˈfæməli/</span><span class="pos">n.</span><span class="cn">家庭</span></li>
+    <li><span class="no">②</span><span class="w">parent</span><span class="ipa">/ˈpɛɹənt/</span><span class="pos">n.</span><span class="cn">父母；家长</span></li>
+    <li><span class="no">③</span><span class="w">care</span><span class="ipa">/ˈkɛɹ/</span><span class="pos">v./n.</span><span class="cn">照顾；关心</span></li>
+    <li><span class="no">④</span><span class="w">child</span><span class="ipa">/ˈtʃaɪld/</span><span class="pos">n.</span><span class="cn">孩子；儿童</span></li>
+    <li><span class="no">⑤</span><span class="w">love</span><span class="ipa">/ˈlʌv/</span><span class="pos">n./v.</span><span class="cn">爱；喜爱</span></li>
+    <li><span class="no">⑥</span><span class="w">trust</span><span class="ipa">/ˈtɹʌst/</span><span class="pos">v./n.</span><span class="cn">信任</span></li>
+    <li><span class="no">⑦</span><span class="w">relative</span><span class="ipa">/ˈɹɛlətɪv/</span><span class="pos">n./adj.</span><span class="cn">亲戚；相对的</span></li>
+    <li><span class="no">⑧</span><span class="w">duty</span><span class="ipa">/ˈduti/</span><span class="pos">n.</span><span class="cn">责任；义务</span></li>
+    <li><span class="no">⑨</span><span class="w">generation</span><span class="ipa">/ˌdʒɛnɚˈeɪʃən/</span><span class="pos">n.</span><span class="cn">一代人；产生</span></li>
+    <li><span class="no">⑩</span><span class="w">marriage</span><span class="ipa">/ˈmɛɹɪdʒ/</span><span class="pos">n.</span><span class="cn">婚姻</span></li>
   </ul>
 </article>
 
@@ -957,16 +965,16 @@
   <p class="en">Doing <b>housework</b> is never easy: I <b>clean</b> and <b>tidy</b> the rooms, <b>wash</b> the dishes, <b>remove</b> the dust, and when a <b>machine</b> or <b>tool</b> is <b>broken</b>, I try to <b>repair</b> and <b>fix</b> it myself.</p>
   <p class="cn">做家务从来不容易：我要打扫整理房间、洗碗、除尘，当机器或工具坏了，我还得自己尝试修理。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">housework</span><span class="pos">n.</span><span class="cn">家务活</span></li>
-    <li><span class="no">②</span><span class="w">clean</span><span class="pos">adj./v.</span><span class="cn">干净的；打扫</span></li>
-    <li><span class="no">③</span><span class="w">tidy</span><span class="pos">adj./v.</span><span class="cn">整洁的；整理</span></li>
-    <li><span class="no">④</span><span class="w">wash</span><span class="pos">v./n.</span><span class="cn">洗；洗涤</span></li>
-    <li><span class="no">⑤</span><span class="w">remove</span><span class="pos">v.</span><span class="cn">移除；去掉</span></li>
-    <li><span class="no">⑥</span><span class="w">machine</span><span class="pos">n.</span><span class="cn">机器</span></li>
-    <li><span class="no">⑦</span><span class="w">tool</span><span class="pos">n.</span><span class="cn">工具</span></li>
-    <li><span class="no">⑧</span><span class="w">broken</span><span class="pos">adj.</span><span class="cn">坏了的；破碎的</span></li>
-    <li><span class="no">⑨</span><span class="w">repair</span><span class="pos">v./n.</span><span class="cn">修理；维修</span></li>
-    <li><span class="no">⑩</span><span class="w">fix</span><span class="pos">v.</span><span class="cn">修理；固定</span></li>
+    <li><span class="no">①</span><span class="w">housework</span><span class="ipa">/ˈhaʊˌswɝk/</span><span class="pos">n.</span><span class="cn">家务活</span></li>
+    <li><span class="no">②</span><span class="w">clean</span><span class="ipa">/ˈklin/</span><span class="pos">adj./v.</span><span class="cn">干净的；打扫</span></li>
+    <li><span class="no">③</span><span class="w">tidy</span><span class="ipa">/ˈtaɪdi/</span><span class="pos">adj./v.</span><span class="cn">整洁的；整理</span></li>
+    <li><span class="no">④</span><span class="w">wash</span><span class="ipa">/ˈwɑʃ/</span><span class="pos">v./n.</span><span class="cn">洗；洗涤</span></li>
+    <li><span class="no">⑤</span><span class="w">remove</span><span class="ipa">/ɹiˈmuv/</span><span class="pos">v.</span><span class="cn">移除；去掉</span></li>
+    <li><span class="no">⑥</span><span class="w">machine</span><span class="ipa">/məˈʃin/</span><span class="pos">n.</span><span class="cn">机器</span></li>
+    <li><span class="no">⑦</span><span class="w">tool</span><span class="ipa">/ˈtul/</span><span class="pos">n.</span><span class="cn">工具</span></li>
+    <li><span class="no">⑧</span><span class="w">broken</span><span class="ipa">/ˈbɹoʊkən/</span><span class="pos">adj.</span><span class="cn">坏了的；破碎的</span></li>
+    <li><span class="no">⑨</span><span class="w">repair</span><span class="ipa">/ɹɪˈpɛɹ/</span><span class="pos">v./n.</span><span class="cn">修理；维修</span></li>
+    <li><span class="no">⑩</span><span class="w">fix</span><span class="ipa">/ˈfɪks/</span><span class="pos">v.</span><span class="cn">修理；固定</span></li>
   </ul>
 </article>
 
@@ -980,16 +988,16 @@
   <p class="en">A true <b>friend</b> is <b>honest</b> and <b>sincere</b>, <b>generous</b> and <b>loyal</b>; when you make a mistake, he will <b>forgive</b> you, <b>comfort</b> you, and make you <b>laugh</b>, because <b>friendship</b> means keeping every <b>promise</b>.</p>
   <p class="cn">真正的朋友诚实真挚、慷慨忠诚；当你犯错时，他会原谅你、安慰你、逗你笑，因为友谊意味着信守每一个承诺。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">friend</span><span class="pos">n.</span><span class="cn">朋友</span></li>
-    <li><span class="no">②</span><span class="w">honest</span><span class="pos">adj.</span><span class="cn">诚实的</span></li>
-    <li><span class="no">③</span><span class="w">sincere</span><span class="pos">adj.</span><span class="cn">真诚的</span></li>
-    <li><span class="no">④</span><span class="w">generous</span><span class="pos">adj.</span><span class="cn">慷慨的；大方的</span></li>
-    <li><span class="no">⑤</span><span class="w">loyal</span><span class="pos">adj.</span><span class="cn">忠诚的</span></li>
-    <li><span class="no">⑥</span><span class="w">forgive</span><span class="pos">v.</span><span class="cn">原谅</span></li>
-    <li><span class="no">⑦</span><span class="w">comfort</span><span class="pos">n./v.</span><span class="cn">安慰；舒适</span></li>
-    <li><span class="no">⑧</span><span class="w">laugh</span><span class="pos">v./n.</span><span class="cn">笑</span></li>
-    <li><span class="no">⑨</span><span class="w">friendship</span><span class="pos">n.</span><span class="cn">友谊</span></li>
-    <li><span class="no">⑩</span><span class="w">promise</span><span class="pos">n./v.</span><span class="cn">承诺；许诺</span></li>
+    <li><span class="no">①</span><span class="w">friend</span><span class="ipa">/ˈfɹɛnd/</span><span class="pos">n.</span><span class="cn">朋友</span></li>
+    <li><span class="no">②</span><span class="w">honest</span><span class="ipa">/ˈɑnəst/</span><span class="pos">adj.</span><span class="cn">诚实的</span></li>
+    <li><span class="no">③</span><span class="w">sincere</span><span class="ipa">/sɪˈnsɪɹ/</span><span class="pos">adj.</span><span class="cn">真诚的</span></li>
+    <li><span class="no">④</span><span class="w">generous</span><span class="ipa">/ˈdʒɛnɚəs/</span><span class="pos">adj.</span><span class="cn">慷慨的；大方的</span></li>
+    <li><span class="no">⑤</span><span class="w">loyal</span><span class="ipa">/ˈlɔɪəl/</span><span class="pos">adj.</span><span class="cn">忠诚的</span></li>
+    <li><span class="no">⑥</span><span class="w">forgive</span><span class="ipa">/fɚˈɡɪv/</span><span class="pos">v.</span><span class="cn">原谅</span></li>
+    <li><span class="no">⑦</span><span class="w">comfort</span><span class="ipa">/ˈkʌmfɚt/</span><span class="pos">n./v.</span><span class="cn">安慰；舒适</span></li>
+    <li><span class="no">⑧</span><span class="w">laugh</span><span class="ipa">/ˈlæf/</span><span class="pos">v./n.</span><span class="cn">笑</span></li>
+    <li><span class="no">⑨</span><span class="w">friendship</span><span class="ipa">/ˈfɹɛndʃɪp/</span><span class="pos">n.</span><span class="cn">友谊</span></li>
+    <li><span class="no">⑩</span><span class="w">promise</span><span class="ipa">/ˈpɹɑməs/</span><span class="pos">n./v.</span><span class="cn">承诺；许诺</span></li>
   </ul>
 </article>
 
@@ -1003,16 +1011,16 @@
   <p class="en">On our first <b>date</b>, he was <b>gentle</b> and <b>sweet</b>, and his <b>romantic</b> words touched my <b>heart</b>; our <b>relationship</b> grew from that <b>sweet</b> <b>feeling</b>, and a <b>kiss</b> turned my <b>emotions</b> into real love — he is the right <b>partner</b>.</p>
   <p class="cn">第一次约会时，他温柔又贴心，浪漫的话语打动了我的心；我们的关系从那种甜蜜的感觉开始发展，一个吻把我的情感变成了真正的爱——他就是对的那个人。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">date</span><span class="pos">n./v.</span><span class="cn">约会；日期</span></li>
-    <li><span class="no">②</span><span class="w">gentle</span><span class="pos">adj.</span><span class="cn">温柔的；轻柔的</span></li>
-    <li><span class="no">③</span><span class="w">sweet</span><span class="pos">adj.</span><span class="cn">甜的；可爱的</span></li>
-    <li><span class="no">④</span><span class="w">romantic</span><span class="pos">adj.</span><span class="cn">浪漫的</span></li>
-    <li><span class="no">⑤</span><span class="w">heart</span><span class="pos">n.</span><span class="cn">心；心脏</span></li>
-    <li><span class="no">⑥</span><span class="w">relationship</span><span class="pos">n.</span><span class="cn">关系；感情</span></li>
-    <li><span class="no">⑦</span><span class="w">feeling</span><span class="pos">n.</span><span class="cn">感觉；感情</span></li>
-    <li><span class="no">⑧</span><span class="w">kiss</span><span class="pos">n./v.</span><span class="cn">吻</span></li>
-    <li><span class="no">⑨</span><span class="w">emotion</span><span class="pos">n.</span><span class="cn">情感；情绪</span></li>
-    <li><span class="no">⑩</span><span class="w">partner</span><span class="pos">n.</span><span class="cn">伴侣；伙伴</span></li>
+    <li><span class="no">①</span><span class="w">date</span><span class="ipa">/ˈdeɪt/</span><span class="pos">n./v.</span><span class="cn">约会；日期</span></li>
+    <li><span class="no">②</span><span class="w">gentle</span><span class="ipa">/ˈdʒɛntəl/</span><span class="pos">adj.</span><span class="cn">温柔的；轻柔的</span></li>
+    <li><span class="no">③</span><span class="w">sweet</span><span class="ipa">/ˈswit/</span><span class="pos">adj.</span><span class="cn">甜的；可爱的</span></li>
+    <li><span class="no">④</span><span class="w">romantic</span><span class="ipa">/ɹoʊˈmæntɪk/</span><span class="pos">adj.</span><span class="cn">浪漫的</span></li>
+    <li><span class="no">⑤</span><span class="w">heart</span><span class="ipa">/ˈhɑɹt/</span><span class="pos">n.</span><span class="cn">心；心脏</span></li>
+    <li><span class="no">⑥</span><span class="w">relationship</span><span class="ipa">/ɹiˈleɪʃəˌnʃɪp/</span><span class="pos">n.</span><span class="cn">关系；感情</span></li>
+    <li><span class="no">⑦</span><span class="w">feeling</span><span class="ipa">/ˈfilɪŋ/</span><span class="pos">n.</span><span class="cn">感觉；感情</span></li>
+    <li><span class="no">⑧</span><span class="w">kiss</span><span class="ipa">/ˈkɪs/</span><span class="pos">n./v.</span><span class="cn">吻</span></li>
+    <li><span class="no">⑨</span><span class="w">emotion</span><span class="ipa">/ɪˈmoʊʃən/</span><span class="pos">n.</span><span class="cn">情感；情绪</span></li>
+    <li><span class="no">⑩</span><span class="w">partner</span><span class="ipa">/ˈpɑɹtnɚ/</span><span class="pos">n.</span><span class="cn">伴侣；伙伴</span></li>
   </ul>
 </article>
 
@@ -1026,16 +1034,16 @@
   <p class="en">To <b>celebrate</b> the <b>festival</b>, we <b>invited</b> many <b>guests</b> to the <b>party</b> and gave each of them a small <b>gift</b>; everyone <b>enjoyed</b> the happy <b>moment</b>, and this special <b>occasion</b> will stay in our <b>memory</b> forever.</p>
   <p class="cn">为了庆祝节日，我们邀请了许多客人来参加聚会，给每位客人送上一份小礼物；每个人都享受着欢乐时刻，这个特别的场合将永远留在我们的记忆里。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">celebrate</span><span class="pos">v.</span><span class="cn">庆祝</span></li>
-    <li><span class="no">②</span><span class="w">festival</span><span class="pos">n.</span><span class="cn">节日</span></li>
-    <li><span class="no">③</span><span class="w">invite</span><span class="pos">v.</span><span class="cn">邀请</span></li>
-    <li><span class="no">④</span><span class="w">guest</span><span class="pos">n.</span><span class="cn">客人</span></li>
-    <li><span class="no">⑤</span><span class="w">party</span><span class="pos">n.</span><span class="cn">聚会；政党</span></li>
-    <li><span class="no">⑥</span><span class="w">gift</span><span class="pos">n.</span><span class="cn">礼物；天赋</span></li>
-    <li><span class="no">⑦</span><span class="w">enjoy</span><span class="pos">v.</span><span class="cn">享受；喜欢</span></li>
-    <li><span class="no">⑧</span><span class="w">moment</span><span class="pos">n.</span><span class="cn">时刻；瞬间</span></li>
-    <li><span class="no">⑨</span><span class="w">occasion</span><span class="pos">n.</span><span class="cn">场合；时刻</span></li>
-    <li><span class="no">⑩</span><span class="w">memory</span><span class="pos">n.</span><span class="cn">记忆；回忆</span></li>
+    <li><span class="no">①</span><span class="w">celebrate</span><span class="ipa">/ˈsɛləˌbɹeɪt/</span><span class="pos">v.</span><span class="cn">庆祝</span></li>
+    <li><span class="no">②</span><span class="w">festival</span><span class="ipa">/ˈfɛstəvəl/</span><span class="pos">n.</span><span class="cn">节日</span></li>
+    <li><span class="no">③</span><span class="w">invite</span><span class="ipa">/ˌɪˈnvaɪt/</span><span class="pos">v.</span><span class="cn">邀请</span></li>
+    <li><span class="no">④</span><span class="w">guest</span><span class="ipa">/ˈɡɛst/</span><span class="pos">n.</span><span class="cn">客人</span></li>
+    <li><span class="no">⑤</span><span class="w">party</span><span class="ipa">/ˈpɑɹti/</span><span class="pos">n.</span><span class="cn">聚会；政党</span></li>
+    <li><span class="no">⑥</span><span class="w">gift</span><span class="ipa">/ˈɡɪft/</span><span class="pos">n.</span><span class="cn">礼物；天赋</span></li>
+    <li><span class="no">⑦</span><span class="w">enjoy</span><span class="ipa">/ˌɛˈndʒɔɪ/</span><span class="pos">v.</span><span class="cn">享受；喜欢</span></li>
+    <li><span class="no">⑧</span><span class="w">moment</span><span class="ipa">/ˈmoʊmənt/</span><span class="pos">n.</span><span class="cn">时刻；瞬间</span></li>
+    <li><span class="no">⑨</span><span class="w">occasion</span><span class="ipa">/əˈkeɪʒən/</span><span class="pos">n.</span><span class="cn">场合；时刻</span></li>
+    <li><span class="no">⑩</span><span class="w">memory</span><span class="ipa">/ˈmɛmɚi/</span><span class="pos">n.</span><span class="cn">记忆；回忆</span></li>
   </ul>
 </article>
 
@@ -1050,16 +1058,16 @@
   <p class="en">The <b>weather</b> <b>forecast</b> says the <b>temperature</b> will <b>change</b> this week: <b>sunny</b> in the morning, <b>rain</b> and strong <b>wind</b> at noon, and maybe <b>snow</b> at night, which is quite normal for this <b>season</b> and this <b>climate</b>.</p>
   <p class="cn">天气预报说本周气温会有变化：上午晴朗，中午下雨刮大风，晚上可能下雪，这对这个季节和这种气候来说很正常。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">weather</span><span class="pos">n.</span><span class="cn">天气</span></li>
-    <li><span class="no">②</span><span class="w">forecast</span><span class="pos">n./v.</span><span class="cn">预报；预测</span></li>
-    <li><span class="no">③</span><span class="w">temperature</span><span class="pos">n.</span><span class="cn">温度</span></li>
-    <li><span class="no">④</span><span class="w">change</span><span class="pos">v./n.</span><span class="cn">变化；改变</span></li>
-    <li><span class="no">⑤</span><span class="w">sunny</span><span class="pos">adj.</span><span class="cn">晴朗的</span></li>
-    <li><span class="no">⑥</span><span class="w">rain</span><span class="pos">n./v.</span><span class="cn">雨；下雨</span></li>
-    <li><span class="no">⑦</span><span class="w">wind</span><span class="pos">n.</span><span class="cn">风</span></li>
-    <li><span class="no">⑧</span><span class="w">snow</span><span class="pos">n./v.</span><span class="cn">雪；下雪</span></li>
-    <li><span class="no">⑨</span><span class="w">season</span><span class="pos">n.</span><span class="cn">季节</span></li>
-    <li><span class="no">⑩</span><span class="w">climate</span><span class="pos">n.</span><span class="cn">气候</span></li>
+    <li><span class="no">①</span><span class="w">weather</span><span class="ipa">/ˈwɛðɚ/</span><span class="pos">n.</span><span class="cn">天气</span></li>
+    <li><span class="no">②</span><span class="w">forecast</span><span class="ipa">/ˈfɔˌɹkæst/</span><span class="pos">n./v.</span><span class="cn">预报；预测</span></li>
+    <li><span class="no">③</span><span class="w">temperature</span><span class="ipa">/ˈtɛmpɹətʃɚ/</span><span class="pos">n.</span><span class="cn">温度</span></li>
+    <li><span class="no">④</span><span class="w">change</span><span class="ipa">/ˈtʃeɪndʒ/</span><span class="pos">v./n.</span><span class="cn">变化；改变</span></li>
+    <li><span class="no">⑤</span><span class="w">sunny</span><span class="ipa">/ˈsʌni/</span><span class="pos">adj.</span><span class="cn">晴朗的</span></li>
+    <li><span class="no">⑥</span><span class="w">rain</span><span class="ipa">/ˈɹeɪn/</span><span class="pos">n./v.</span><span class="cn">雨；下雨</span></li>
+    <li><span class="no">⑦</span><span class="w">wind</span><span class="ipa">/ˈwaɪnd/</span><span class="pos">n.</span><span class="cn">风</span></li>
+    <li><span class="no">⑧</span><span class="w">snow</span><span class="ipa">/ˈsnoʊ/</span><span class="pos">n./v.</span><span class="cn">雪；下雪</span></li>
+    <li><span class="no">⑨</span><span class="w">season</span><span class="ipa">/ˈsizən/</span><span class="pos">n.</span><span class="cn">季节</span></li>
+    <li><span class="no">⑩</span><span class="w">climate</span><span class="ipa">/ˈklaɪmət/</span><span class="pos">n.</span><span class="cn">气候</span></li>
   </ul>
 </article>
 
@@ -1073,16 +1081,16 @@
   <p class="en">To <b>protect</b> the <b>environment</b> and <b>reduce</b> <b>pollution</b>, we should <b>reuse</b> and <b>recycle</b> plastic, plant more <b>green</b> trees, and stop <b>damaging</b> <b>nature</b>, or many <b>species</b> will disappear forever.</p>
   <p class="cn">为了保护环境、减少污染，我们应该重复使用和回收塑料，多种绿树，停止破坏自然，否则许多物种将永远消失。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">protect</span><span class="pos">v.</span><span class="cn">保护</span></li>
-    <li><span class="no">②</span><span class="w">environment</span><span class="pos">n.</span><span class="cn">环境</span></li>
-    <li><span class="no">③</span><span class="w">reduce</span><span class="pos">v.</span><span class="cn">减少；降低</span></li>
-    <li><span class="no">④</span><span class="w">pollution</span><span class="pos">n.</span><span class="cn">污染</span></li>
-    <li><span class="no">⑤</span><span class="w">reuse</span><span class="pos">v.</span><span class="cn">重新使用</span></li>
-    <li><span class="no">⑥</span><span class="w">recycle</span><span class="pos">v.</span><span class="cn">回收利用</span></li>
-    <li><span class="no">⑦</span><span class="w">green</span><span class="pos">adj./n.</span><span class="cn">绿色的；绿色</span></li>
-    <li><span class="no">⑧</span><span class="w">damage</span><span class="pos">n./v.</span><span class="cn">损害；破坏</span></li>
-    <li><span class="no">⑨</span><span class="w">nature</span><span class="pos">n.</span><span class="cn">自然；本性</span></li>
-    <li><span class="no">⑩</span><span class="w">species</span><span class="pos">n.</span><span class="cn">物种；种类</span></li>
+    <li><span class="no">①</span><span class="w">protect</span><span class="ipa">/pɹəˈtɛkt/</span><span class="pos">v.</span><span class="cn">保护</span></li>
+    <li><span class="no">②</span><span class="w">environment</span><span class="ipa">/ɪˈnvaɪɹənmənt/</span><span class="pos">n.</span><span class="cn">环境</span></li>
+    <li><span class="no">③</span><span class="w">reduce</span><span class="ipa">/ɹəˈdus/</span><span class="pos">v.</span><span class="cn">减少；降低</span></li>
+    <li><span class="no">④</span><span class="w">pollution</span><span class="ipa">/pəˈluʃən/</span><span class="pos">n.</span><span class="cn">污染</span></li>
+    <li><span class="no">⑤</span><span class="w">reuse</span><span class="ipa">/ɹiˈjus/</span><span class="pos">v.</span><span class="cn">重新使用</span></li>
+    <li><span class="no">⑥</span><span class="w">recycle</span><span class="ipa">/ɹiˈsaɪkəl/</span><span class="pos">v.</span><span class="cn">回收利用</span></li>
+    <li><span class="no">⑦</span><span class="w">green</span><span class="ipa">/ˈɡɹin/</span><span class="pos">adj./n.</span><span class="cn">绿色的；绿色</span></li>
+    <li><span class="no">⑧</span><span class="w">damage</span><span class="ipa">/ˈdæmədʒ/</span><span class="pos">n./v.</span><span class="cn">损害；破坏</span></li>
+    <li><span class="no">⑨</span><span class="w">nature</span><span class="ipa">/ˈneɪtʃɚ/</span><span class="pos">n.</span><span class="cn">自然；本性</span></li>
+    <li><span class="no">⑩</span><span class="w">species</span><span class="ipa">/ˈspiʃiz/</span><span class="pos">n.</span><span class="cn">物种；种类</span></li>
   </ul>
 </article>
 
@@ -1096,16 +1104,16 @@
   <p class="en">In a <b>flood</b>, <b>earthquake</b>, or <b>storm</b>, people may <b>suffer</b> heavy <b>losses</b>, so everyone must learn how to <b>escape</b> quickly and stay <b>safe</b> in an <b>emergency</b>, and <b>rescue</b> workers will come to help after the <b>disaster</b>.</p>
   <p class="cn">在洪水、地震或风暴中，人们可能遭受惨重损失，所以每个人都必须学会如何快速逃生、在紧急情况下保持安全，灾难发生后救援人员会赶来帮助。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">flood</span><span class="pos">n./v.</span><span class="cn">洪水；淹没</span></li>
-    <li><span class="no">②</span><span class="w">earthquake</span><span class="pos">n.</span><span class="cn">地震</span></li>
-    <li><span class="no">③</span><span class="w">storm</span><span class="pos">n.</span><span class="cn">暴风雨</span></li>
-    <li><span class="no">④</span><span class="w">suffer</span><span class="pos">v.</span><span class="cn">遭受；忍受</span></li>
-    <li><span class="no">⑤</span><span class="w">loss</span><span class="pos">n.</span><span class="cn">损失；失去</span></li>
-    <li><span class="no">⑥</span><span class="w">escape</span><span class="pos">v./n.</span><span class="cn">逃跑；逃脱</span></li>
-    <li><span class="no">⑦</span><span class="w">safe</span><span class="pos">adj.</span><span class="cn">安全的</span></li>
-    <li><span class="no">⑧</span><span class="w">emergency</span><span class="pos">n.</span><span class="cn">紧急情况</span></li>
-    <li><span class="no">⑨</span><span class="w">rescue</span><span class="pos">v./n.</span><span class="cn">营救；救援</span></li>
-    <li><span class="no">⑩</span><span class="w">disaster</span><span class="pos">n.</span><span class="cn">灾难</span></li>
+    <li><span class="no">①</span><span class="w">flood</span><span class="ipa">/ˈflʌd/</span><span class="pos">n./v.</span><span class="cn">洪水；淹没</span></li>
+    <li><span class="no">②</span><span class="w">earthquake</span><span class="ipa">/ˈɝˌθkweɪk/</span><span class="pos">n.</span><span class="cn">地震</span></li>
+    <li><span class="no">③</span><span class="w">storm</span><span class="ipa">/ˈstɔɹm/</span><span class="pos">n.</span><span class="cn">暴风雨</span></li>
+    <li><span class="no">④</span><span class="w">suffer</span><span class="ipa">/ˈsʌfɚ/</span><span class="pos">v.</span><span class="cn">遭受；忍受</span></li>
+    <li><span class="no">⑤</span><span class="w">loss</span><span class="ipa">/ˈlɔs/</span><span class="pos">n.</span><span class="cn">损失；失去</span></li>
+    <li><span class="no">⑥</span><span class="w">escape</span><span class="ipa">/ɪˈskeɪp/</span><span class="pos">v./n.</span><span class="cn">逃跑；逃脱</span></li>
+    <li><span class="no">⑦</span><span class="w">safe</span><span class="ipa">/ˈseɪf/</span><span class="pos">adj.</span><span class="cn">安全的</span></li>
+    <li><span class="no">⑧</span><span class="w">emergency</span><span class="ipa">/ɪˈmɝdʒənsi/</span><span class="pos">n.</span><span class="cn">紧急情况</span></li>
+    <li><span class="no">⑨</span><span class="w">rescue</span><span class="ipa">/ˈɹɛskju/</span><span class="pos">v./n.</span><span class="cn">营救；救援</span></li>
+    <li><span class="no">⑩</span><span class="w">disaster</span><span class="ipa">/dɪˈzæstɚ/</span><span class="pos">n.</span><span class="cn">灾难</span></li>
   </ul>
 </article>
 
@@ -1119,16 +1127,16 @@
   <p class="en">Your <b>choice</b> will <b>determine</b> the final <b>result</b>, so <b>consider</b> every <b>factor</b> carefully, think about the <b>reason</b> and the possible <b>effect</b> or <b>consequence</b>, because your decision may also <b>influence</b> others and <b>depend</b> on many things.</p>
   <p class="cn">你的选择将决定最终结果，所以要仔细考虑每一个因素，想清楚原因以及可能的影响或后果，因为你的决定还可能影响他人，并取决于很多事情。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">choice</span><span class="pos">n.</span><span class="cn">选择</span></li>
-    <li><span class="no">②</span><span class="w">determine</span><span class="pos">v.</span><span class="cn">决定；确定</span></li>
-    <li><span class="no">③</span><span class="w">result</span><span class="pos">n./v.</span><span class="cn">结果；导致</span></li>
-    <li><span class="no">④</span><span class="w">consider</span><span class="pos">v.</span><span class="cn">考虑；认为</span></li>
-    <li><span class="no">⑤</span><span class="w">factor</span><span class="pos">n.</span><span class="cn">因素</span></li>
-    <li><span class="no">⑥</span><span class="w">reason</span><span class="pos">n./v.</span><span class="cn">原因；推理</span></li>
-    <li><span class="no">⑦</span><span class="w">effect</span><span class="pos">n.</span><span class="cn">效果；影响</span></li>
-    <li><span class="no">⑧</span><span class="w">consequence</span><span class="pos">n.</span><span class="cn">后果；结果</span></li>
-    <li><span class="no">⑨</span><span class="w">influence</span><span class="pos">n./v.</span><span class="cn">影响</span></li>
-    <li><span class="no">⑩</span><span class="w">depend</span><span class="pos">v.</span><span class="cn">依靠；取决于</span></li>
+    <li><span class="no">①</span><span class="w">choice</span><span class="ipa">/ˈtʃɔɪs/</span><span class="pos">n.</span><span class="cn">选择</span></li>
+    <li><span class="no">②</span><span class="w">determine</span><span class="ipa">/dəˈtɝmən/</span><span class="pos">v.</span><span class="cn">决定；确定</span></li>
+    <li><span class="no">③</span><span class="w">result</span><span class="ipa">/ɹɪˈzʌlt/</span><span class="pos">n./v.</span><span class="cn">结果；导致</span></li>
+    <li><span class="no">④</span><span class="w">consider</span><span class="ipa">/kəˈnsɪdɚ/</span><span class="pos">v.</span><span class="cn">考虑；认为</span></li>
+    <li><span class="no">⑤</span><span class="w">factor</span><span class="ipa">/ˈfæktɚ/</span><span class="pos">n.</span><span class="cn">因素</span></li>
+    <li><span class="no">⑥</span><span class="w">reason</span><span class="ipa">/ˈɹizən/</span><span class="pos">n./v.</span><span class="cn">原因；推理</span></li>
+    <li><span class="no">⑦</span><span class="w">effect</span><span class="ipa">/ɪˈfɛkt/</span><span class="pos">n.</span><span class="cn">效果；影响</span></li>
+    <li><span class="no">⑧</span><span class="w">consequence</span><span class="ipa">/ˈkɑnsəkwəns/</span><span class="pos">n.</span><span class="cn">后果；结果</span></li>
+    <li><span class="no">⑨</span><span class="w">influence</span><span class="ipa">/ˈɪnfluəns/</span><span class="pos">n./v.</span><span class="cn">影响</span></li>
+    <li><span class="no">⑩</span><span class="w">depend</span><span class="ipa">/dɪˈpɛnd/</span><span class="pos">v.</span><span class="cn">依靠；取决于</span></li>
   </ul>
 </article>
 
@@ -1142,16 +1150,16 @@
   <p class="en">When you are in a bad <b>mood</b>, you may feel <b>sad</b>, <b>angry</b>, or <b>anxious</b>, and <b>worry</b> about small things instead of staying <b>happy</b>; try to <b>calm</b> down, keep a clear <b>mind</b> and a <b>sense</b> of humor, and don't be <b>nervous</b> about everything.</p>
   <p class="cn">当你心情不好时，你可能会感到悲伤、愤怒或焦虑，为小事担心而不是保持快乐；试着冷静下来，保持清晰的头脑和幽默感，不要对什么都紧张。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">mood</span><span class="pos">n.</span><span class="cn">情绪；心情</span></li>
-    <li><span class="no">②</span><span class="w">sad</span><span class="pos">adj.</span><span class="cn">悲伤的</span></li>
-    <li><span class="no">③</span><span class="w">angry</span><span class="pos">adj.</span><span class="cn">生气的</span></li>
-    <li><span class="no">④</span><span class="w">anxious</span><span class="pos">adj.</span><span class="cn">焦虑的</span></li>
-    <li><span class="no">⑤</span><span class="w">worry</span><span class="pos">v./n.</span><span class="cn">担心；烦恼</span></li>
-    <li><span class="no">⑥</span><span class="w">happy</span><span class="pos">adj.</span><span class="cn">快乐的</span></li>
-    <li><span class="no">⑦</span><span class="w">calm</span><span class="pos">adj./v.</span><span class="cn">平静的；使镇定</span></li>
-    <li><span class="no">⑧</span><span class="w">mind</span><span class="pos">n./v.</span><span class="cn">头脑；介意</span></li>
-    <li><span class="no">⑨</span><span class="w">sense</span><span class="pos">n./v.</span><span class="cn">感觉；意识到</span></li>
-    <li><span class="no">⑩</span><span class="w">nervous</span><span class="pos">adj.</span><span class="cn">紧张的</span></li>
+    <li><span class="no">①</span><span class="w">mood</span><span class="ipa">/ˈmud/</span><span class="pos">n.</span><span class="cn">情绪；心情</span></li>
+    <li><span class="no">②</span><span class="w">sad</span><span class="ipa">/ˈsæd/</span><span class="pos">adj.</span><span class="cn">悲伤的</span></li>
+    <li><span class="no">③</span><span class="w">angry</span><span class="ipa">/ˈæŋɡɹi/</span><span class="pos">adj.</span><span class="cn">生气的</span></li>
+    <li><span class="no">④</span><span class="w">anxious</span><span class="ipa">/ˈæŋkʃəs/</span><span class="pos">adj.</span><span class="cn">焦虑的</span></li>
+    <li><span class="no">⑤</span><span class="w">worry</span><span class="ipa">/ˈwɝi/</span><span class="pos">v./n.</span><span class="cn">担心；烦恼</span></li>
+    <li><span class="no">⑥</span><span class="w">happy</span><span class="ipa">/ˈhæpi/</span><span class="pos">adj.</span><span class="cn">快乐的</span></li>
+    <li><span class="no">⑦</span><span class="w">calm</span><span class="ipa">/ˈkɑm/</span><span class="pos">adj./v.</span><span class="cn">平静的；使镇定</span></li>
+    <li><span class="no">⑧</span><span class="w">mind</span><span class="ipa">/ˈmaɪnd/</span><span class="pos">n./v.</span><span class="cn">头脑；介意</span></li>
+    <li><span class="no">⑨</span><span class="w">sense</span><span class="ipa">/ˈsɛns/</span><span class="pos">n./v.</span><span class="cn">感觉；意识到</span></li>
+    <li><span class="no">⑩</span><span class="w">nervous</span><span class="ipa">/ˈnɝvəs/</span><span class="pos">adj.</span><span class="cn">紧张的</span></li>
   </ul>
 </article>
 
@@ -1165,16 +1173,16 @@
   <p class="en">With <b>ambition</b> and a strong <b>will</b>, you can turn your <b>desire</b> and <b>hope</b> into reality; keep a positive <b>attitude</b>, face every <b>struggle</b> with <b>courage</b> and <b>determination</b>, and never lose your fighting <b>spirit</b> — this is my sincere <b>wish</b> for you.</p>
   <p class="cn">有了抱负和坚强的意志，你能把渴望与希望变成现实；保持积极态度，用勇气和决心面对每一次奋斗，永不失去斗志——这是我对你最真诚的祝愿。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">ambition</span><span class="pos">n.</span><span class="cn">抱负；野心</span></li>
-    <li><span class="no">②</span><span class="w">will</span><span class="pos">n./v.</span><span class="cn">意志；意愿</span></li>
-    <li><span class="no">③</span><span class="w">desire</span><span class="pos">n./v.</span><span class="cn">渴望；欲望</span></li>
-    <li><span class="no">④</span><span class="w">hope</span><span class="pos">n./v.</span><span class="cn">希望</span></li>
-    <li><span class="no">⑤</span><span class="w">attitude</span><span class="pos">n.</span><span class="cn">态度</span></li>
-    <li><span class="no">⑥</span><span class="w">struggle</span><span class="pos">v./n.</span><span class="cn">奋斗；挣扎</span></li>
-    <li><span class="no">⑦</span><span class="w">courage</span><span class="pos">n.</span><span class="cn">勇气</span></li>
-    <li><span class="no">⑧</span><span class="w">determination</span><span class="pos">n.</span><span class="cn">决心</span></li>
-    <li><span class="no">⑨</span><span class="w">spirit</span><span class="pos">n.</span><span class="cn">精神；灵魂</span></li>
-    <li><span class="no">⑩</span><span class="w">wish</span><span class="pos">n./v.</span><span class="cn">愿望；祝愿</span></li>
+    <li><span class="no">①</span><span class="w">ambition</span><span class="ipa">/æˈmbɪʃən/</span><span class="pos">n.</span><span class="cn">抱负；野心</span></li>
+    <li><span class="no">②</span><span class="w">will</span><span class="ipa">/ˈwɪl/</span><span class="pos">n./v.</span><span class="cn">意志；意愿</span></li>
+    <li><span class="no">③</span><span class="w">desire</span><span class="ipa">/dɪˈzaɪɚ/</span><span class="pos">n./v.</span><span class="cn">渴望；欲望</span></li>
+    <li><span class="no">④</span><span class="w">hope</span><span class="ipa">/ˈhoʊp/</span><span class="pos">n./v.</span><span class="cn">希望</span></li>
+    <li><span class="no">⑤</span><span class="w">attitude</span><span class="ipa">/ˈætəˌtud/</span><span class="pos">n.</span><span class="cn">态度</span></li>
+    <li><span class="no">⑥</span><span class="w">struggle</span><span class="ipa">/ˈstɹʌɡəl/</span><span class="pos">v./n.</span><span class="cn">奋斗；挣扎</span></li>
+    <li><span class="no">⑦</span><span class="w">courage</span><span class="ipa">/ˈkɝədʒ/</span><span class="pos">n.</span><span class="cn">勇气</span></li>
+    <li><span class="no">⑧</span><span class="w">determination</span><span class="ipa">/dɪˌtɝməˈneɪʃən/</span><span class="pos">n.</span><span class="cn">决心</span></li>
+    <li><span class="no">⑨</span><span class="w">spirit</span><span class="ipa">/ˈspɪɹət/</span><span class="pos">n.</span><span class="cn">精神；灵魂</span></li>
+    <li><span class="no">⑩</span><span class="w">wish</span><span class="ipa">/ˈwɪʃ/</span><span class="pos">n./v.</span><span class="cn">愿望；祝愿</span></li>
   </ul>
 </article>
 
@@ -1188,16 +1196,16 @@
   <p class="en"><b>Time</b> is precious, so don't <b>waste</b> it or <b>delay</b> your work; put <b>important</b> and <b>urgent</b> tasks in <b>order</b> of <b>priority</b>, follow a daily <b>routine</b>, and be <b>punctual</b> and <b>prompt</b> in everything you do.</p>
   <p class="cn">时间宝贵，所以不要浪费时间或拖延工作；按优先级安排重要和紧急的任务，坚持日常作息，做任何事都守时、及时。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">time</span><span class="pos">n.</span><span class="cn">时间</span></li>
-    <li><span class="no">②</span><span class="w">waste</span><span class="pos">v./n.</span><span class="cn">浪费</span></li>
-    <li><span class="no">③</span><span class="w">delay</span><span class="pos">v./n.</span><span class="cn">推迟；延误</span></li>
-    <li><span class="no">④</span><span class="w">important</span><span class="pos">adj.</span><span class="cn">重要的</span></li>
-    <li><span class="no">⑤</span><span class="w">urgent</span><span class="pos">adj.</span><span class="cn">紧急的</span></li>
-    <li><span class="no">⑥</span><span class="w">order</span><span class="pos">n./v.</span><span class="cn">顺序；命令；订购</span></li>
-    <li><span class="no">⑦</span><span class="w">priority</span><span class="pos">n.</span><span class="cn">优先事项；优先权</span></li>
-    <li><span class="no">⑧</span><span class="w">routine</span><span class="pos">n./adj.</span><span class="cn">常规；日常的</span></li>
-    <li><span class="no">⑨</span><span class="w">punctual</span><span class="pos">adj.</span><span class="cn">守时的</span></li>
-    <li><span class="no">⑩</span><span class="w">prompt</span><span class="pos">adj./v.</span><span class="cn">迅速的；促使</span></li>
+    <li><span class="no">①</span><span class="w">time</span><span class="ipa">/ˈtaɪm/</span><span class="pos">n.</span><span class="cn">时间</span></li>
+    <li><span class="no">②</span><span class="w">waste</span><span class="ipa">/ˈweɪst/</span><span class="pos">v./n.</span><span class="cn">浪费</span></li>
+    <li><span class="no">③</span><span class="w">delay</span><span class="ipa">/dɪˈleɪ/</span><span class="pos">v./n.</span><span class="cn">推迟；延误</span></li>
+    <li><span class="no">④</span><span class="w">important</span><span class="ipa">/ˌɪˈmpɔɹtənt/</span><span class="pos">adj.</span><span class="cn">重要的</span></li>
+    <li><span class="no">⑤</span><span class="w">urgent</span><span class="ipa">/ˈɝdʒənt/</span><span class="pos">adj.</span><span class="cn">紧急的</span></li>
+    <li><span class="no">⑥</span><span class="w">order</span><span class="ipa">/ˈɔɹdɚ/</span><span class="pos">n./v.</span><span class="cn">顺序；命令；订购</span></li>
+    <li><span class="no">⑦</span><span class="w">priority</span><span class="ipa">/pɹaɪˈɔɹəti/</span><span class="pos">n.</span><span class="cn">优先事项；优先权</span></li>
+    <li><span class="no">⑧</span><span class="w">routine</span><span class="ipa">/ɹuˈtin/</span><span class="pos">n./adj.</span><span class="cn">常规；日常的</span></li>
+    <li><span class="no">⑨</span><span class="w">punctual</span><span class="ipa">/ˈpʌŋktʃuəl/</span><span class="pos">adj.</span><span class="cn">守时的</span></li>
+    <li><span class="no">⑩</span><span class="w">prompt</span><span class="ipa">/ˈpɹɑmpt/</span><span class="pos">adj./v.</span><span class="cn">迅速的；促使</span></li>
   </ul>
 </article>
 
@@ -1211,16 +1219,16 @@
   <p class="en">With <b>modern</b> <b>technology</b>, I use my <b>phone</b> to send <b>messages</b>, <b>download</b> <b>apps</b>, and <b>connect</b> to the <b>network</b>; the <b>digital</b> world on a small <b>screen</b> makes life easier, but I still try to put the phone down.</p>
   <p class="cn">借助现代科技，我用手机发消息、下载应用、连接网络；小小屏幕里的数字世界让生活更便利，但我仍会试着放下手机。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">modern</span><span class="pos">adj.</span><span class="cn">现代的</span></li>
-    <li><span class="no">②</span><span class="w">technology</span><span class="pos">n.</span><span class="cn">技术</span></li>
-    <li><span class="no">③</span><span class="w">phone</span><span class="pos">n./v.</span><span class="cn">电话；打电话</span></li>
-    <li><span class="no">④</span><span class="w">message</span><span class="pos">n./v.</span><span class="cn">消息；留言</span></li>
-    <li><span class="no">⑤</span><span class="w">download</span><span class="pos">v./n.</span><span class="cn">下载</span></li>
-    <li><span class="no">⑥</span><span class="w">app</span><span class="pos">n.</span><span class="cn">应用程序</span></li>
-    <li><span class="no">⑦</span><span class="w">connect</span><span class="pos">v.</span><span class="cn">连接</span></li>
-    <li><span class="no">⑧</span><span class="w">network</span><span class="pos">n.</span><span class="cn">网络</span></li>
-    <li><span class="no">⑨</span><span class="w">digital</span><span class="pos">adj.</span><span class="cn">数字的</span></li>
-    <li><span class="no">⑩</span><span class="w">screen</span><span class="pos">n.</span><span class="cn">屏幕</span></li>
+    <li><span class="no">①</span><span class="w">modern</span><span class="ipa">/ˈmɑdɚn/</span><span class="pos">adj.</span><span class="cn">现代的</span></li>
+    <li><span class="no">②</span><span class="w">technology</span><span class="ipa">/tɛˈknɑlədʒi/</span><span class="pos">n.</span><span class="cn">技术</span></li>
+    <li><span class="no">③</span><span class="w">phone</span><span class="ipa">/ˈfoʊn/</span><span class="pos">n./v.</span><span class="cn">电话；打电话</span></li>
+    <li><span class="no">④</span><span class="w">message</span><span class="ipa">/ˈmɛsədʒ/</span><span class="pos">n./v.</span><span class="cn">消息；留言</span></li>
+    <li><span class="no">⑤</span><span class="w">download</span><span class="ipa">/ˈdaʊˌnloʊd/</span><span class="pos">v./n.</span><span class="cn">下载</span></li>
+    <li><span class="no">⑥</span><span class="w">app</span><span class="ipa">/ˈæp/</span><span class="pos">n.</span><span class="cn">应用程序</span></li>
+    <li><span class="no">⑦</span><span class="w">connect</span><span class="ipa">/kəˈnɛkt/</span><span class="pos">v.</span><span class="cn">连接</span></li>
+    <li><span class="no">⑧</span><span class="w">network</span><span class="ipa">/ˈnɛˌtwɝk/</span><span class="pos">n.</span><span class="cn">网络</span></li>
+    <li><span class="no">⑨</span><span class="w">digital</span><span class="ipa">/ˈdɪdʒətəl/</span><span class="pos">adj.</span><span class="cn">数字的</span></li>
+    <li><span class="no">⑩</span><span class="w">screen</span><span class="ipa">/ˈskɹin/</span><span class="pos">n.</span><span class="cn">屏幕</span></li>
   </ul>
 </article>
 
@@ -1234,16 +1242,16 @@
   <p class="en">The <b>media</b> should <b>publish</b> honest <b>news</b> <b>articles</b> so that the <b>public</b> can learn the <b>truth</b> and the <b>facts</b> about important <b>events</b>; a good <b>editor</b> always checks every story before it appears in the <b>newspaper</b>.</p>
   <p class="cn">媒体应该发布诚实的新闻报道，让公众了解重要事件的真相和事实；好的编辑在每篇报道登上报纸之前都会仔细核实。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">media</span><span class="pos">n.</span><span class="cn">媒体</span></li>
-    <li><span class="no">②</span><span class="w">publish</span><span class="pos">v.</span><span class="cn">出版；发表</span></li>
-    <li><span class="no">③</span><span class="w">news</span><span class="pos">n.</span><span class="cn">新闻</span></li>
-    <li><span class="no">④</span><span class="w">article</span><span class="pos">n.</span><span class="cn">文章；物品</span></li>
-    <li><span class="no">⑤</span><span class="w">public</span><span class="pos">n./adj.</span><span class="cn">公众；公共的</span></li>
-    <li><span class="no">⑥</span><span class="w">truth</span><span class="pos">n.</span><span class="cn">真相；真理</span></li>
-    <li><span class="no">⑦</span><span class="w">fact</span><span class="pos">n.</span><span class="cn">事实</span></li>
-    <li><span class="no">⑧</span><span class="w">event</span><span class="pos">n.</span><span class="cn">事件；活动</span></li>
-    <li><span class="no">⑨</span><span class="w">editor</span><span class="pos">n.</span><span class="cn">编辑</span></li>
-    <li><span class="no">⑩</span><span class="w">newspaper</span><span class="pos">n.</span><span class="cn">报纸</span></li>
+    <li><span class="no">①</span><span class="w">media</span><span class="ipa">/ˈmidiə/</span><span class="pos">n.</span><span class="cn">媒体</span></li>
+    <li><span class="no">②</span><span class="w">publish</span><span class="ipa">/ˈpʌblɪʃ/</span><span class="pos">v.</span><span class="cn">出版；发表</span></li>
+    <li><span class="no">③</span><span class="w">news</span><span class="ipa">/ˈnuz/</span><span class="pos">n.</span><span class="cn">新闻</span></li>
+    <li><span class="no">④</span><span class="w">article</span><span class="ipa">/ˈɑɹtəkəl/</span><span class="pos">n.</span><span class="cn">文章；物品</span></li>
+    <li><span class="no">⑤</span><span class="w">public</span><span class="ipa">/ˈpʌblɪk/</span><span class="pos">n./adj.</span><span class="cn">公众；公共的</span></li>
+    <li><span class="no">⑥</span><span class="w">truth</span><span class="ipa">/ˈtɹuθ/</span><span class="pos">n.</span><span class="cn">真相；真理</span></li>
+    <li><span class="no">⑦</span><span class="w">fact</span><span class="ipa">/ˈfækt/</span><span class="pos">n.</span><span class="cn">事实</span></li>
+    <li><span class="no">⑧</span><span class="w">event</span><span class="ipa">/ɪˈvɛnt/</span><span class="pos">n.</span><span class="cn">事件；活动</span></li>
+    <li><span class="no">⑨</span><span class="w">editor</span><span class="ipa">/ˈɛdətɚ/</span><span class="pos">n.</span><span class="cn">编辑</span></li>
+    <li><span class="no">⑩</span><span class="w">newspaper</span><span class="ipa">/ˈnuˌzpeɪpɚ/</span><span class="pos">n.</span><span class="cn">报纸</span></li>
   </ul>
 </article>
 
@@ -1257,16 +1265,16 @@
   <p class="en">I love reading <b>books</b>, especially <b>novels</b> and <b>poems</b>; the <b>author</b> tells a moving <b>story</b>, and each <b>chapter</b> brings its <b>characters</b> to life — great <b>literature</b> from a talented <b>writer</b> can make you turn every <b>page</b> without stopping.</p>
   <p class="cn">我爱读书，尤其是小说和诗歌；作者讲述动人的故事，每一章都让角色鲜活起来——才华横溢的作家写出的伟大文学能让你一页接一页停不下来。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">book</span><span class="pos">n./v.</span><span class="cn">书；预订</span></li>
-    <li><span class="no">②</span><span class="w">novel</span><span class="pos">n.</span><span class="cn">小说</span></li>
-    <li><span class="no">③</span><span class="w">poem</span><span class="pos">n.</span><span class="cn">诗</span></li>
-    <li><span class="no">④</span><span class="w">author</span><span class="pos">n.</span><span class="cn">作者</span></li>
-    <li><span class="no">⑤</span><span class="w">story</span><span class="pos">n.</span><span class="cn">故事</span></li>
-    <li><span class="no">⑥</span><span class="w">chapter</span><span class="pos">n.</span><span class="cn">章；回</span></li>
-    <li><span class="no">⑦</span><span class="w">character</span><span class="pos">n.</span><span class="cn">角色；性格</span></li>
-    <li><span class="no">⑧</span><span class="w">literature</span><span class="pos">n.</span><span class="cn">文学</span></li>
-    <li><span class="no">⑨</span><span class="w">writer</span><span class="pos">n.</span><span class="cn">作家；作者</span></li>
-    <li><span class="no">⑩</span><span class="w">page</span><span class="pos">n.</span><span class="cn">页</span></li>
+    <li><span class="no">①</span><span class="w">book</span><span class="ipa">/ˈbʊk/</span><span class="pos">n./v.</span><span class="cn">书；预订</span></li>
+    <li><span class="no">②</span><span class="w">novel</span><span class="ipa">/ˈnɑvəl/</span><span class="pos">n.</span><span class="cn">小说</span></li>
+    <li><span class="no">③</span><span class="w">poem</span><span class="ipa">/ˈpoʊəm/</span><span class="pos">n.</span><span class="cn">诗</span></li>
+    <li><span class="no">④</span><span class="w">author</span><span class="ipa">/ˈɔθɚ/</span><span class="pos">n.</span><span class="cn">作者</span></li>
+    <li><span class="no">⑤</span><span class="w">story</span><span class="ipa">/ˈstɔɹi/</span><span class="pos">n.</span><span class="cn">故事</span></li>
+    <li><span class="no">⑥</span><span class="w">chapter</span><span class="ipa">/ˈtʃæptɚ/</span><span class="pos">n.</span><span class="cn">章；回</span></li>
+    <li><span class="no">⑦</span><span class="w">character</span><span class="ipa">/ˈkɛɹɪktɚ/</span><span class="pos">n.</span><span class="cn">角色；性格</span></li>
+    <li><span class="no">⑧</span><span class="w">literature</span><span class="ipa">/ˈlɪtɚətʃɚ/</span><span class="pos">n.</span><span class="cn">文学</span></li>
+    <li><span class="no">⑨</span><span class="w">writer</span><span class="ipa">/ˈɹaɪtɚ/</span><span class="pos">n.</span><span class="cn">作家；作者</span></li>
+    <li><span class="no">⑩</span><span class="w">page</span><span class="ipa">/ˈpeɪdʒ/</span><span class="pos">n.</span><span class="cn">页</span></li>
   </ul>
 </article>
 
@@ -1280,16 +1288,16 @@
   <p class="en">At the <b>concert</b>, the singer's sweet <b>voice</b> filled the hall and the <b>audience</b> enjoyed every <b>song</b>; after the <b>music</b>, we watched a <b>film</b>, a moving <b>movie</b> with famous <b>actors</b>, wonderful <b>scenes</b> and real <b>drama</b>.</p>
   <p class="cn">音乐会上，歌手甜美的嗓音响彻大厅，观众陶醉于每一首歌；之后我们看了一部电影——一部有著名演员、精彩画面和真实戏剧冲突的感人影片。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">concert</span><span class="pos">n.</span><span class="cn">音乐会</span></li>
-    <li><span class="no">②</span><span class="w">voice</span><span class="pos">n.</span><span class="cn">声音；嗓音</span></li>
-    <li><span class="no">③</span><span class="w">audience</span><span class="pos">n.</span><span class="cn">观众；听众</span></li>
-    <li><span class="no">④</span><span class="w">song</span><span class="pos">n.</span><span class="cn">歌曲</span></li>
-    <li><span class="no">⑤</span><span class="w">music</span><span class="pos">n.</span><span class="cn">音乐</span></li>
-    <li><span class="no">⑥</span><span class="w">film</span><span class="pos">n.</span><span class="cn">电影；胶卷</span></li>
-    <li><span class="no">⑦</span><span class="w">movie</span><span class="pos">n.</span><span class="cn">电影</span></li>
-    <li><span class="no">⑧</span><span class="w">actor</span><span class="pos">n.</span><span class="cn">演员</span></li>
-    <li><span class="no">⑨</span><span class="w">scene</span><span class="pos">n.</span><span class="cn">场景；场面</span></li>
-    <li><span class="no">⑩</span><span class="w">drama</span><span class="pos">n.</span><span class="cn">戏剧</span></li>
+    <li><span class="no">①</span><span class="w">concert</span><span class="ipa">/ˈkɑnsɚt/</span><span class="pos">n.</span><span class="cn">音乐会</span></li>
+    <li><span class="no">②</span><span class="w">voice</span><span class="ipa">/ˈvɔɪs/</span><span class="pos">n.</span><span class="cn">声音；嗓音</span></li>
+    <li><span class="no">③</span><span class="w">audience</span><span class="ipa">/ˈɑdiəns/</span><span class="pos">n.</span><span class="cn">观众；听众</span></li>
+    <li><span class="no">④</span><span class="w">song</span><span class="ipa">/ˈsɔŋ/</span><span class="pos">n.</span><span class="cn">歌曲</span></li>
+    <li><span class="no">⑤</span><span class="w">music</span><span class="ipa">/ˈmjuzɪk/</span><span class="pos">n.</span><span class="cn">音乐</span></li>
+    <li><span class="no">⑥</span><span class="w">film</span><span class="ipa">/ˈfɪlm/</span><span class="pos">n.</span><span class="cn">电影；胶卷</span></li>
+    <li><span class="no">⑦</span><span class="w">movie</span><span class="ipa">/ˈmuvi/</span><span class="pos">n.</span><span class="cn">电影</span></li>
+    <li><span class="no">⑧</span><span class="w">actor</span><span class="ipa">/ˈæktɚ/</span><span class="pos">n.</span><span class="cn">演员</span></li>
+    <li><span class="no">⑨</span><span class="w">scene</span><span class="ipa">/ˈsin/</span><span class="pos">n.</span><span class="cn">场景；场面</span></li>
+    <li><span class="no">⑩</span><span class="w">drama</span><span class="ipa">/ˈdɹɑmə/</span><span class="pos">n.</span><span class="cn">戏剧</span></li>
   </ul>
 </article>
 
@@ -1303,16 +1311,16 @@
   <p class="en"><b>Scientists</b> <b>create</b> new <b>inventions</b> and <b>discover</b> unknown truths through <b>experiments</b> and <b>theories</b>; these <b>principles</b> help <b>industry</b> <b>produce</b> better <b>products</b> and improve our daily life.</p>
   <p class="cn">科学家通过实验和理论创造新发明、发现未知的真理；这些原理帮助工业制造更好的产品，改善我们的日常生活。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">scientist</span><span class="pos">n.</span><span class="cn">科学家</span></li>
-    <li><span class="no">②</span><span class="w">create</span><span class="pos">v.</span><span class="cn">创造</span></li>
-    <li><span class="no">③</span><span class="w">invention</span><span class="pos">n.</span><span class="cn">发明</span></li>
-    <li><span class="no">④</span><span class="w">discover</span><span class="pos">v.</span><span class="cn">发现</span></li>
-    <li><span class="no">⑤</span><span class="w">experiment</span><span class="pos">n./v.</span><span class="cn">实验</span></li>
-    <li><span class="no">⑥</span><span class="w">theory</span><span class="pos">n.</span><span class="cn">理论</span></li>
-    <li><span class="no">⑦</span><span class="w">principle</span><span class="pos">n.</span><span class="cn">原理；原则</span></li>
-    <li><span class="no">⑧</span><span class="w">industry</span><span class="pos">n.</span><span class="cn">工业；行业</span></li>
-    <li><span class="no">⑨</span><span class="w">produce</span><span class="pos">v./n.</span><span class="cn">生产；制造</span></li>
-    <li><span class="no">⑩</span><span class="w">product</span><span class="pos">n.</span><span class="cn">产品</span></li>
+    <li><span class="no">①</span><span class="w">scientist</span><span class="ipa">/ˈsaɪəntɪst/</span><span class="pos">n.</span><span class="cn">科学家</span></li>
+    <li><span class="no">②</span><span class="w">create</span><span class="ipa">/kɹiˈeɪt/</span><span class="pos">v.</span><span class="cn">创造</span></li>
+    <li><span class="no">③</span><span class="w">invention</span><span class="ipa">/ˌɪˈnvɛnʃən/</span><span class="pos">n.</span><span class="cn">发明</span></li>
+    <li><span class="no">④</span><span class="w">discover</span><span class="ipa">/dɪˈskʌvɚ/</span><span class="pos">v.</span><span class="cn">发现</span></li>
+    <li><span class="no">⑤</span><span class="w">experiment</span><span class="ipa">/ɪˈkspɛɹəmənt/</span><span class="pos">n./v.</span><span class="cn">实验</span></li>
+    <li><span class="no">⑥</span><span class="w">theory</span><span class="ipa">/ˈθɪɹi/</span><span class="pos">n.</span><span class="cn">理论</span></li>
+    <li><span class="no">⑦</span><span class="w">principle</span><span class="ipa">/ˈpɹɪnsəpəl/</span><span class="pos">n.</span><span class="cn">原理；原则</span></li>
+    <li><span class="no">⑧</span><span class="w">industry</span><span class="ipa">/ˈɪndəstɹi/</span><span class="pos">n.</span><span class="cn">工业；行业</span></li>
+    <li><span class="no">⑨</span><span class="w">produce</span><span class="ipa">/pɹəˈdus/</span><span class="pos">v./n.</span><span class="cn">生产；制造</span></li>
+    <li><span class="no">⑩</span><span class="w">product</span><span class="ipa">/ˈpɹɑdəkt/</span><span class="pos">n.</span><span class="cn">产品</span></li>
   </ul>
 </article>
 
@@ -1326,16 +1334,16 @@
   <p class="en">In many <b>areas</b>, the <b>population</b> is moving from <b>villages</b> to big <b>cities</b>, so the <b>government</b> and <b>society</b> should protect <b>local</b> <b>culture</b> and <b>tradition</b> and build a better <b>community</b> for everyone.</p>
   <p class="cn">在许多地区，人口正从乡村流向大城市，因此政府和社会应保护地方文化与传统，为大家建设更美好的社区。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">area</span><span class="pos">n.</span><span class="cn">地区；面积</span></li>
-    <li><span class="no">②</span><span class="w">population</span><span class="pos">n.</span><span class="cn">人口</span></li>
-    <li><span class="no">③</span><span class="w">village</span><span class="pos">n.</span><span class="cn">村庄</span></li>
-    <li><span class="no">④</span><span class="w">city</span><span class="pos">n.</span><span class="cn">城市</span></li>
-    <li><span class="no">⑤</span><span class="w">government</span><span class="pos">n.</span><span class="cn">政府</span></li>
-    <li><span class="no">⑥</span><span class="w">society</span><span class="pos">n.</span><span class="cn">社会</span></li>
-    <li><span class="no">⑦</span><span class="w">local</span><span class="pos">adj./n.</span><span class="cn">当地的；本地人</span></li>
-    <li><span class="no">⑧</span><span class="w">culture</span><span class="pos">n.</span><span class="cn">文化</span></li>
-    <li><span class="no">⑨</span><span class="w">tradition</span><span class="pos">n.</span><span class="cn">传统</span></li>
-    <li><span class="no">⑩</span><span class="w">community</span><span class="pos">n.</span><span class="cn">社区；团体</span></li>
+    <li><span class="no">①</span><span class="w">area</span><span class="ipa">/ˈɛɹiə/</span><span class="pos">n.</span><span class="cn">地区；面积</span></li>
+    <li><span class="no">②</span><span class="w">population</span><span class="ipa">/ˌpɑpjəˈleɪʃən/</span><span class="pos">n.</span><span class="cn">人口</span></li>
+    <li><span class="no">③</span><span class="w">village</span><span class="ipa">/ˈvɪlədʒ/</span><span class="pos">n.</span><span class="cn">村庄</span></li>
+    <li><span class="no">④</span><span class="w">city</span><span class="ipa">/ˈsɪti/</span><span class="pos">n.</span><span class="cn">城市</span></li>
+    <li><span class="no">⑤</span><span class="w">government</span><span class="ipa">/ˈɡʌvɚmənt/</span><span class="pos">n.</span><span class="cn">政府</span></li>
+    <li><span class="no">⑥</span><span class="w">society</span><span class="ipa">/səˈsaɪəti/</span><span class="pos">n.</span><span class="cn">社会</span></li>
+    <li><span class="no">⑦</span><span class="w">local</span><span class="ipa">/ˈloʊkəl/</span><span class="pos">adj./n.</span><span class="cn">当地的；本地人</span></li>
+    <li><span class="no">⑧</span><span class="w">culture</span><span class="ipa">/ˈkʌltʃɚ/</span><span class="pos">n.</span><span class="cn">文化</span></li>
+    <li><span class="no">⑨</span><span class="w">tradition</span><span class="ipa">/tɹəˈdɪʃən/</span><span class="pos">n.</span><span class="cn">传统</span></li>
+    <li><span class="no">⑩</span><span class="w">community</span><span class="ipa">/kəˈmjunəti/</span><span class="pos">n.</span><span class="cn">社区；团体</span></li>
   </ul>
 </article>
 
@@ -1349,16 +1357,16 @@
   <p class="en">To <b>speak</b> a foreign <b>language</b> well, you need enough <b>vocabulary</b> and correct <b>grammar</b>, clear <b>pronunciation</b>, and an understanding of the <b>meaning</b> of every <b>word</b> and <b>sentence</b>; practice <b>conversation</b> often, and use a dictionary to <b>translate</b> new words.</p>
   <p class="cn">要流利说一门外语，你需要足够的词汇、正确的语法、清晰的发音，并理解每个单词和句子的含义；还要经常练习对话，用词典翻译生词。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">speak</span><span class="pos">v.</span><span class="cn">说；讲</span></li>
-    <li><span class="no">②</span><span class="w">language</span><span class="pos">n.</span><span class="cn">语言</span></li>
-    <li><span class="no">③</span><span class="w">vocabulary</span><span class="pos">n.</span><span class="cn">词汇；词汇量</span></li>
-    <li><span class="no">④</span><span class="w">grammar</span><span class="pos">n.</span><span class="cn">语法</span></li>
-    <li><span class="no">⑤</span><span class="w">pronunciation</span><span class="pos">n.</span><span class="cn">发音</span></li>
-    <li><span class="no">⑥</span><span class="w">meaning</span><span class="pos">n.</span><span class="cn">意义；含义</span></li>
-    <li><span class="no">⑦</span><span class="w">word</span><span class="pos">n.</span><span class="cn">单词；话语</span></li>
-    <li><span class="no">⑧</span><span class="w">sentence</span><span class="pos">n.</span><span class="cn">句子</span></li>
-    <li><span class="no">⑨</span><span class="w">conversation</span><span class="pos">n.</span><span class="cn">对话；交谈</span></li>
-    <li><span class="no">⑩</span><span class="w">translate</span><span class="pos">v.</span><span class="cn">翻译</span></li>
+    <li><span class="no">①</span><span class="w">speak</span><span class="ipa">/ˈspik/</span><span class="pos">v.</span><span class="cn">说；讲</span></li>
+    <li><span class="no">②</span><span class="w">language</span><span class="ipa">/ˈlæŋɡwədʒ/</span><span class="pos">n.</span><span class="cn">语言</span></li>
+    <li><span class="no">③</span><span class="w">vocabulary</span><span class="ipa">/voʊˈkæbjəˌlɛɹi/</span><span class="pos">n.</span><span class="cn">词汇；词汇量</span></li>
+    <li><span class="no">④</span><span class="w">grammar</span><span class="ipa">/ˈɡɹæmɚ/</span><span class="pos">n.</span><span class="cn">语法</span></li>
+    <li><span class="no">⑤</span><span class="w">pronunciation</span><span class="ipa">/pɹoʊˌnʌnsiˈeɪʃən/</span><span class="pos">n.</span><span class="cn">发音</span></li>
+    <li><span class="no">⑥</span><span class="w">meaning</span><span class="ipa">/ˈminɪŋ/</span><span class="pos">n.</span><span class="cn">意义；含义</span></li>
+    <li><span class="no">⑦</span><span class="w">word</span><span class="ipa">/ˈwɝd/</span><span class="pos">n.</span><span class="cn">单词；话语</span></li>
+    <li><span class="no">⑧</span><span class="w">sentence</span><span class="ipa">/ˈsɛntəns/</span><span class="pos">n.</span><span class="cn">句子</span></li>
+    <li><span class="no">⑨</span><span class="w">conversation</span><span class="ipa">/ˌkɑnvɚˈseɪʃən/</span><span class="pos">n.</span><span class="cn">对话；交谈</span></li>
+    <li><span class="no">⑩</span><span class="w">translate</span><span class="ipa">/tɹæˈnzleɪt/</span><span class="pos">v.</span><span class="cn">翻译</span></li>
   </ul>
 </article>
 
@@ -1372,16 +1380,16 @@
   <p class="en">In social life, we should <b>greet</b> people in a <b>polite</b> <b>manner</b>, follow local <b>customs</b>, use <b>proper</b> and <b>appropriate</b> words in <b>formal</b> situations, keep a friendly <b>exchange</b>, and avoid rude <b>gestures</b> in <b>informal</b> settings.</p>
   <p class="cn">在社交生活中，我们应该礼貌地问候他人、尊重当地习俗、在正式场合使用恰当得体的措辞、保持友好的交流，并在非正式场合避免无礼的手势。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">greet</span><span class="pos">v.</span><span class="cn">问候；迎接</span></li>
-    <li><span class="no">②</span><span class="w">polite</span><span class="pos">adj.</span><span class="cn">有礼貌的</span></li>
-    <li><span class="no">③</span><span class="w">manner</span><span class="pos">n.</span><span class="cn">方式；礼貌</span></li>
-    <li><span class="no">④</span><span class="w">custom</span><span class="pos">n.</span><span class="cn">习俗；风俗</span></li>
-    <li><span class="no">⑤</span><span class="w">proper</span><span class="pos">adj.</span><span class="cn">恰当的；合适的</span></li>
-    <li><span class="no">⑥</span><span class="w">appropriate</span><span class="pos">adj.</span><span class="cn">适当的</span></li>
-    <li><span class="no">⑦</span><span class="w">formal</span><span class="pos">adj.</span><span class="cn">正式的</span></li>
-    <li><span class="no">⑧</span><span class="w">exchange</span><span class="pos">v./n.</span><span class="cn">交换；交流</span></li>
-    <li><span class="no">⑨</span><span class="w">gesture</span><span class="pos">n.</span><span class="cn">手势；姿态</span></li>
-    <li><span class="no">⑩</span><span class="w">informal</span><span class="pos">adj.</span><span class="cn">非正式的</span></li>
+    <li><span class="no">①</span><span class="w">greet</span><span class="ipa">/ˈɡɹit/</span><span class="pos">v.</span><span class="cn">问候；迎接</span></li>
+    <li><span class="no">②</span><span class="w">polite</span><span class="ipa">/pəˈlaɪt/</span><span class="pos">adj.</span><span class="cn">有礼貌的</span></li>
+    <li><span class="no">③</span><span class="w">manner</span><span class="ipa">/ˈmænɚ/</span><span class="pos">n.</span><span class="cn">方式；礼貌</span></li>
+    <li><span class="no">④</span><span class="w">custom</span><span class="ipa">/ˈkʌstəm/</span><span class="pos">n.</span><span class="cn">习俗；风俗</span></li>
+    <li><span class="no">⑤</span><span class="w">proper</span><span class="ipa">/ˈpɹɑpɚ/</span><span class="pos">adj.</span><span class="cn">恰当的；合适的</span></li>
+    <li><span class="no">⑥</span><span class="w">appropriate</span><span class="ipa">/əˈpɹoʊpɹiət/</span><span class="pos">adj.</span><span class="cn">适当的</span></li>
+    <li><span class="no">⑦</span><span class="w">formal</span><span class="ipa">/ˈfɔɹməl/</span><span class="pos">adj.</span><span class="cn">正式的</span></li>
+    <li><span class="no">⑧</span><span class="w">exchange</span><span class="ipa">/ɪˈkstʃeɪndʒ/</span><span class="pos">v./n.</span><span class="cn">交换；交流</span></li>
+    <li><span class="no">⑨</span><span class="w">gesture</span><span class="ipa">/ˈdʒɛstʃɚ/</span><span class="pos">n.</span><span class="cn">手势；姿态</span></li>
+    <li><span class="no">⑩</span><span class="w">informal</span><span class="ipa">/ˌɪˈnfɔɹməl/</span><span class="pos">adj.</span><span class="cn">非正式的</span></li>
   </ul>
 </article>
 
@@ -1395,16 +1403,16 @@
   <p class="en">To <b>evaluate</b> a student, teachers <b>assess</b> both <b>grades</b> and class performance, <b>measure</b> the <b>average</b> of every test, <b>rank</b> the results and show them in <b>percent</b>, and then give <b>feedback</b> based on the <b>data</b> and <b>figures</b>.</p>
   <p class="cn">评价学生时，老师会评估成绩和课堂表现，计算每次考试的平均分，对结果排名并用百分比呈现，然后根据数据和数字给出反馈。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">evaluate</span><span class="pos">v.</span><span class="cn">评估；评价</span></li>
-    <li><span class="no">②</span><span class="w">assess</span><span class="pos">v.</span><span class="cn">评估；评定</span></li>
-    <li><span class="no">③</span><span class="w">grade</span><span class="pos">n./v.</span><span class="cn">成绩；评分</span></li>
-    <li><span class="no">④</span><span class="w">measure</span><span class="pos">v./n.</span><span class="cn">测量；措施</span></li>
-    <li><span class="no">⑤</span><span class="w">average</span><span class="pos">n./adj.</span><span class="cn">平均；平均的</span></li>
-    <li><span class="no">⑥</span><span class="w">rank</span><span class="pos">n./v.</span><span class="cn">排名；等级</span></li>
-    <li><span class="no">⑦</span><span class="w">percent</span><span class="pos">n.</span><span class="cn">百分比</span></li>
-    <li><span class="no">⑧</span><span class="w">feedback</span><span class="pos">n.</span><span class="cn">反馈</span></li>
-    <li><span class="no">⑨</span><span class="w">data</span><span class="pos">n.</span><span class="cn">数据</span></li>
-    <li><span class="no">⑩</span><span class="w">figure</span><span class="pos">n.</span><span class="cn">数字；人物</span></li>
+    <li><span class="no">①</span><span class="w">evaluate</span><span class="ipa">/ɪˈvæljuˌeɪt/</span><span class="pos">v.</span><span class="cn">评估；评价</span></li>
+    <li><span class="no">②</span><span class="w">assess</span><span class="ipa">/əˈsɛs/</span><span class="pos">v.</span><span class="cn">评估；评定</span></li>
+    <li><span class="no">③</span><span class="w">grade</span><span class="ipa">/ˈɡɹeɪd/</span><span class="pos">n./v.</span><span class="cn">成绩；评分</span></li>
+    <li><span class="no">④</span><span class="w">measure</span><span class="ipa">/ˈmɛʒɚ/</span><span class="pos">v./n.</span><span class="cn">测量；措施</span></li>
+    <li><span class="no">⑤</span><span class="w">average</span><span class="ipa">/ˈævɚɪdʒ/</span><span class="pos">n./adj.</span><span class="cn">平均；平均的</span></li>
+    <li><span class="no">⑥</span><span class="w">rank</span><span class="ipa">/ˈɹæŋk/</span><span class="pos">n./v.</span><span class="cn">排名；等级</span></li>
+    <li><span class="no">⑦</span><span class="w">percent</span><span class="ipa">/pɚˈsɛnt/</span><span class="pos">n.</span><span class="cn">百分比</span></li>
+    <li><span class="no">⑧</span><span class="w">feedback</span><span class="ipa">/ˈfiˌdbæk/</span><span class="pos">n.</span><span class="cn">反馈</span></li>
+    <li><span class="no">⑨</span><span class="w">data</span><span class="ipa">/ˈdeɪtə/</span><span class="pos">n.</span><span class="cn">数据</span></li>
+    <li><span class="no">⑩</span><span class="w">figure</span><span class="ipa">/ˈfɪɡjɚ/</span><span class="pos">n.</span><span class="cn">数字；人物</span></li>
   </ul>
 </article>
 
@@ -1418,16 +1426,16 @@
   <p class="en">In the <b>competition</b>, we <b>competed</b> against a strong <b>opponent</b> in every <b>match</b>; we tried hard to <b>win</b> and <b>defeat</b> them, and finally became the <b>champion</b> and got a gold <b>medal</b> — the <b>judge</b> said it was a <b>fair</b> result.</p>
   <p class="cn">比赛中，我们每一场都对抗强大的对手；我们努力取胜、击败他们，最终成为冠军并获得金牌——裁判说这是公平的结果。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">competition</span><span class="pos">n.</span><span class="cn">比赛；竞争</span></li>
-    <li><span class="no">②</span><span class="w">compete</span><span class="pos">v.</span><span class="cn">竞争；比赛</span></li>
-    <li><span class="no">③</span><span class="w">opponent</span><span class="pos">n.</span><span class="cn">对手</span></li>
-    <li><span class="no">④</span><span class="w">match</span><span class="pos">n./v.</span><span class="cn">比赛；匹配</span></li>
-    <li><span class="no">⑤</span><span class="w">win</span><span class="pos">v./n.</span><span class="cn">赢；胜利</span></li>
-    <li><span class="no">⑥</span><span class="w">defeat</span><span class="pos">v./n.</span><span class="cn">击败；失败</span></li>
-    <li><span class="no">⑦</span><span class="w">champion</span><span class="pos">n.</span><span class="cn">冠军</span></li>
-    <li><span class="no">⑧</span><span class="w">medal</span><span class="pos">n.</span><span class="cn">奖牌</span></li>
-    <li><span class="no">⑨</span><span class="w">judge</span><span class="pos">n./v.</span><span class="cn">裁判；法官；判断</span></li>
-    <li><span class="no">⑩</span><span class="w">fair</span><span class="pos">adj.</span><span class="cn">公平的</span></li>
+    <li><span class="no">①</span><span class="w">competition</span><span class="ipa">/ˌkɑmpəˈtɪʃən/</span><span class="pos">n.</span><span class="cn">比赛；竞争</span></li>
+    <li><span class="no">②</span><span class="w">compete</span><span class="ipa">/kəˈmpit/</span><span class="pos">v.</span><span class="cn">竞争；比赛</span></li>
+    <li><span class="no">③</span><span class="w">opponent</span><span class="ipa">/əˈpoʊnənt/</span><span class="pos">n.</span><span class="cn">对手</span></li>
+    <li><span class="no">④</span><span class="w">match</span><span class="ipa">/ˈmætʃ/</span><span class="pos">n./v.</span><span class="cn">比赛；匹配</span></li>
+    <li><span class="no">⑤</span><span class="w">win</span><span class="ipa">/ˈwɪn/</span><span class="pos">v./n.</span><span class="cn">赢；胜利</span></li>
+    <li><span class="no">⑥</span><span class="w">defeat</span><span class="ipa">/dɪˈfit/</span><span class="pos">v./n.</span><span class="cn">击败；失败</span></li>
+    <li><span class="no">⑦</span><span class="w">champion</span><span class="ipa">/ˈtʃæmpiən/</span><span class="pos">n.</span><span class="cn">冠军</span></li>
+    <li><span class="no">⑧</span><span class="w">medal</span><span class="ipa">/ˈmɛdəl/</span><span class="pos">n.</span><span class="cn">奖牌</span></li>
+    <li><span class="no">⑨</span><span class="w">judge</span><span class="ipa">/ˈdʒʌdʒ/</span><span class="pos">n./v.</span><span class="cn">裁判；法官；判断</span></li>
+    <li><span class="no">⑩</span><span class="w">fair</span><span class="ipa">/ˈfɛɹ/</span><span class="pos">adj.</span><span class="cn">公平的</span></li>
   </ul>
 </article>
 
@@ -1441,16 +1449,16 @@
   <p class="en">From <b>childhood</b> to <b>youth</b>, we <b>grow</b> and <b>develop</b> at every <b>stage</b>; life gives us <b>challenges</b> and <b>difficulties</b>, but if we <b>overcome</b> them, we learn valuable <b>lessons</b> and gain <b>wisdom</b>.</p>
   <p class="cn">从童年到青年，我们在每个阶段成长和发展；生活会给我们挑战和困难，但如果我们克服它们，就能学到宝贵的经验并获得智慧。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">childhood</span><span class="pos">n.</span><span class="cn">童年</span></li>
-    <li><span class="no">②</span><span class="w">youth</span><span class="pos">n.</span><span class="cn">青年；青春</span></li>
-    <li><span class="no">③</span><span class="w">grow</span><span class="pos">v.</span><span class="cn">成长；生长</span></li>
-    <li><span class="no">④</span><span class="w">develop</span><span class="pos">v.</span><span class="cn">发展；培养</span></li>
-    <li><span class="no">⑤</span><span class="w">stage</span><span class="pos">n.</span><span class="cn">阶段；舞台</span></li>
-    <li><span class="no">⑥</span><span class="w">challenge</span><span class="pos">n./v.</span><span class="cn">挑战</span></li>
-    <li><span class="no">⑦</span><span class="w">difficulty</span><span class="pos">n.</span><span class="cn">困难</span></li>
-    <li><span class="no">⑧</span><span class="w">overcome</span><span class="pos">v.</span><span class="cn">克服</span></li>
-    <li><span class="no">⑨</span><span class="w">lesson</span><span class="pos">n.</span><span class="cn">教训；课</span></li>
-    <li><span class="no">⑩</span><span class="w">wisdom</span><span class="pos">n.</span><span class="cn">智慧</span></li>
+    <li><span class="no">①</span><span class="w">childhood</span><span class="ipa">/ˈtʃaɪˌldhʊd/</span><span class="pos">n.</span><span class="cn">童年</span></li>
+    <li><span class="no">②</span><span class="w">youth</span><span class="ipa">/ˈjuθ/</span><span class="pos">n.</span><span class="cn">青年；青春</span></li>
+    <li><span class="no">③</span><span class="w">grow</span><span class="ipa">/ˈɡɹoʊ/</span><span class="pos">v.</span><span class="cn">成长；生长</span></li>
+    <li><span class="no">④</span><span class="w">develop</span><span class="ipa">/dɪˈvɛləp/</span><span class="pos">v.</span><span class="cn">发展；培养</span></li>
+    <li><span class="no">⑤</span><span class="w">stage</span><span class="ipa">/ˈsteɪdʒ/</span><span class="pos">n.</span><span class="cn">阶段；舞台</span></li>
+    <li><span class="no">⑥</span><span class="w">challenge</span><span class="ipa">/ˈtʃæləndʒ/</span><span class="pos">n./v.</span><span class="cn">挑战</span></li>
+    <li><span class="no">⑦</span><span class="w">difficulty</span><span class="ipa">/ˈdɪfəkəlti/</span><span class="pos">n.</span><span class="cn">困难</span></li>
+    <li><span class="no">⑧</span><span class="w">overcome</span><span class="ipa">/ˈoʊvɚˌkʌm/</span><span class="pos">v.</span><span class="cn">克服</span></li>
+    <li><span class="no">⑨</span><span class="w">lesson</span><span class="ipa">/ˈlɛsən/</span><span class="pos">n.</span><span class="cn">教训；课</span></li>
+    <li><span class="no">⑩</span><span class="w">wisdom</span><span class="ipa">/ˈwɪzdəm/</span><span class="pos">n.</span><span class="cn">智慧</span></li>
   </ul>
 </article>
 
@@ -1464,16 +1472,16 @@
   <p class="en">After they <b>retire</b>, many <b>elderly</b> people enjoy a <b>quiet</b> and <b>peaceful</b> life with a <b>pension</b>; they spend their <b>leisure</b> time in the <b>garden</b>, and taking up a <b>hobby</b> or a light <b>activity</b> makes their days <b>easy</b> and happy.</p>
   <p class="cn">退休后，许多老人靠着养老金过着安静平和的生活；他们在花园里消磨闲暇时光，培养一个爱好或做些轻松的活动，让日子过得轻松愉快。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">retire</span><span class="pos">v.</span><span class="cn">退休；退役</span></li>
-    <li><span class="no">②</span><span class="w">elderly</span><span class="pos">adj.</span><span class="cn">年长的；老年的</span></li>
-    <li><span class="no">③</span><span class="w">quiet</span><span class="pos">adj./n.</span><span class="cn">安静的；安静</span></li>
-    <li><span class="no">④</span><span class="w">peaceful</span><span class="pos">adj.</span><span class="cn">平静的；和平的</span></li>
-    <li><span class="no">⑤</span><span class="w">pension</span><span class="pos">n.</span><span class="cn">养老金；退休金</span></li>
-    <li><span class="no">⑥</span><span class="w">leisure</span><span class="pos">n.</span><span class="cn">闲暇；空闲</span></li>
-    <li><span class="no">⑦</span><span class="w">garden</span><span class="pos">n.</span><span class="cn">花园</span></li>
-    <li><span class="no">⑧</span><span class="w">hobby</span><span class="pos">n.</span><span class="cn">爱好</span></li>
-    <li><span class="no">⑨</span><span class="w">activity</span><span class="pos">n.</span><span class="cn">活动</span></li>
-    <li><span class="no">⑩</span><span class="w">easy</span><span class="pos">adj.</span><span class="cn">容易的；轻松的</span></li>
+    <li><span class="no">①</span><span class="w">retire</span><span class="ipa">/ɹɪˈtaɪɹ/</span><span class="pos">v.</span><span class="cn">退休；退役</span></li>
+    <li><span class="no">②</span><span class="w">elderly</span><span class="ipa">/ˈɛldɚli/</span><span class="pos">adj.</span><span class="cn">年长的；老年的</span></li>
+    <li><span class="no">③</span><span class="w">quiet</span><span class="ipa">/ˈkwaɪət/</span><span class="pos">adj./n.</span><span class="cn">安静的；安静</span></li>
+    <li><span class="no">④</span><span class="w">peaceful</span><span class="ipa">/ˈpisfəl/</span><span class="pos">adj.</span><span class="cn">平静的；和平的</span></li>
+    <li><span class="no">⑤</span><span class="w">pension</span><span class="ipa">/ˈpɛnʃən/</span><span class="pos">n.</span><span class="cn">养老金；退休金</span></li>
+    <li><span class="no">⑥</span><span class="w">leisure</span><span class="ipa">/ˈlɛʒɚ/</span><span class="pos">n.</span><span class="cn">闲暇；空闲</span></li>
+    <li><span class="no">⑦</span><span class="w">garden</span><span class="ipa">/ˈɡɑɹdən/</span><span class="pos">n.</span><span class="cn">花园</span></li>
+    <li><span class="no">⑧</span><span class="w">hobby</span><span class="ipa">/ˈhɑbi/</span><span class="pos">n.</span><span class="cn">爱好</span></li>
+    <li><span class="no">⑨</span><span class="w">activity</span><span class="ipa">/æˈktɪvəti/</span><span class="pos">n.</span><span class="cn">活动</span></li>
+    <li><span class="no">⑩</span><span class="w">easy</span><span class="ipa">/ˈizi/</span><span class="pos">adj.</span><span class="cn">容易的；轻松的</span></li>
   </ul>
 </article>
 
@@ -1487,16 +1495,16 @@
   <p class="en">A good <b>education</b> can <b>increase</b> your <b>chances</b> and bring many <b>benefits</b>; it is <b>common</b> for schools to <b>encourage</b> good <b>behavior</b>, share useful <b>information</b>, and teach <b>popular</b> knowledge that gives you an <b>advantage</b> in life.</p>
   <p class="cn">良好的教育能增加你的机会、带来许多好处；学校普遍鼓励良好行为、分享有用信息、传授受欢迎的知识，这些都会让你在生活中占据优势。</p>
   <ul class="words">
-    <li><span class="no">①</span><span class="w">education</span><span class="pos">n.</span><span class="cn">教育</span></li>
-    <li><span class="no">②</span><span class="w">increase</span><span class="pos">v./n.</span><span class="cn">增加；增长</span></li>
-    <li><span class="no">③</span><span class="w">chance</span><span class="pos">n.</span><span class="cn">机会；可能性</span></li>
-    <li><span class="no">④</span><span class="w">benefit</span><span class="pos">n./v.</span><span class="cn">好处；受益</span></li>
-    <li><span class="no">⑤</span><span class="w">common</span><span class="pos">adj.</span><span class="cn">常见的；共同的</span></li>
-    <li><span class="no">⑥</span><span class="w">encourage</span><span class="pos">v.</span><span class="cn">鼓励</span></li>
-    <li><span class="no">⑦</span><span class="w">behavior</span><span class="pos">n.</span><span class="cn">行为；举止</span></li>
-    <li><span class="no">⑧</span><span class="w">information</span><span class="pos">n.</span><span class="cn">信息</span></li>
-    <li><span class="no">⑨</span><span class="w">popular</span><span class="pos">adj.</span><span class="cn">受欢迎的；流行的</span></li>
-    <li><span class="no">⑩</span><span class="w">advantage</span><span class="pos">n.</span><span class="cn">优势；优点</span></li>
+    <li><span class="no">①</span><span class="w">education</span><span class="ipa">/ˌɛdʒəˈkeɪʃən/</span><span class="pos">n.</span><span class="cn">教育</span></li>
+    <li><span class="no">②</span><span class="w">increase</span><span class="ipa">/ˌɪˈnkɹis/</span><span class="pos">v./n.</span><span class="cn">增加；增长</span></li>
+    <li><span class="no">③</span><span class="w">chance</span><span class="ipa">/ˈtʃæns/</span><span class="pos">n.</span><span class="cn">机会；可能性</span></li>
+    <li><span class="no">④</span><span class="w">benefit</span><span class="ipa">/ˈbɛnəfɪt/</span><span class="pos">n./v.</span><span class="cn">好处；受益</span></li>
+    <li><span class="no">⑤</span><span class="w">common</span><span class="ipa">/ˈkɑmən/</span><span class="pos">adj.</span><span class="cn">常见的；共同的</span></li>
+    <li><span class="no">⑥</span><span class="w">encourage</span><span class="ipa">/ɛˈnkɝɪdʒ/</span><span class="pos">v.</span><span class="cn">鼓励</span></li>
+    <li><span class="no">⑦</span><span class="w">behavior</span><span class="ipa">/bɪˈheɪvjɚ/</span><span class="pos">n.</span><span class="cn">行为；举止</span></li>
+    <li><span class="no">⑧</span><span class="w">information</span><span class="ipa">/ˌɪnfɚˈmeɪʃən/</span><span class="pos">n.</span><span class="cn">信息</span></li>
+    <li><span class="no">⑨</span><span class="w">popular</span><span class="ipa">/ˈpɑpjəlɚ/</span><span class="pos">adj.</span><span class="cn">受欢迎的；流行的</span></li>
+    <li><span class="no">⑩</span><span class="w">advantage</span><span class="ipa">/æˈdvæntɪdʒ/</span><span class="pos">n.</span><span class="cn">优势；优点</span></li>
   </ul>
 </article>
 
@@ -1720,6 +1728,19 @@
     });
   }
   renderSpeed();
+
+
+  // 5) 搜索过滤
+  var si = document.getElementById('wordSearch');
+  if(si){
+    si.addEventListener('input', function(){
+      var q = (si.value || '').trim().toLowerCase();
+      document.querySelectorAll('article.card').forEach(function(card){
+        var hit = !q || (card.textContent || '').toLowerCase().indexOf(q) !== -1;
+        card.classList.toggle('filtered-none', !hit);
+      });
+    });
+  }
 
   // 4) 全局停止按钮；切走页面时自动停止
   var stopBtn = document.getElementById('btnStop');
