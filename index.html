@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>专升本英语 500 高频词 · 情景短句记忆手册</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231A2E4B'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='36' font-weight='bold' text-anchor='middle' fill='%23FAF7F2'%3EW%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%231A2E4B'/%3E%3Ctext x='90' y='124' font-family='Georgia,serif' font-size='104' font-weight='bold' text-anchor='middle' fill='%23FAF7F2'%3EW%3C/text%3E%3C/svg%3E">
+<meta name="description" content="专升本英语 500 高频词，按 50 个日常主题串词成句，配整句与逐词真人级发音，支持一键隐藏译文自测。">
 <style>
   :root{
     --ink:#2B2B2B;
@@ -204,6 +207,11 @@
     animation:speakpulse .9s ease-in-out infinite;
   }
   @keyframes speakpulse{0%,100%{opacity:1}50%{opacity:.5}}
+  /* 预生成音频取不到、正在用设备自带语音兜底时，用虚线框标出来，不再静默降级 */
+  .speak-sentence.is-fallback,.speak-word.is-fallback{outline:2px dashed var(--accent);outline-offset:2px;animation:none;opacity:.75;}
+  .speak-sentence.is-fallback::after{
+    content:"备用发音";margin-left:6px;font-size:12px;opacity:.9;
+  }
   .btn-stop{
     background:transparent;color:var(--accent);border:1px solid var(--accent);
     -webkit-tap-highlight-color:transparent;touch-action:manipulation;
@@ -1504,7 +1512,7 @@
 
   /* ============ 一、英文朗读（预生成神经语音，浏览器语音兜底） ============ */
   var SPEED = 'n';                 // s = 慢速(91 wpm) / n = 常速(111 wpm，默认) / f = 快速(138 wpm)
-  var AUDIO_BASE = 'audio-v5/';
+  var AUDIO_BASE = 'audio-v6/';
 
   /* --- 兜底：浏览器自带语音（音频文件加载失败 / 离线首次访问时使用） --- */
   var synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
@@ -1538,24 +1546,38 @@
     return pool[0];
   }
 
-  /* --- 播放器 --- */
-  var audioEl = null, activeBtn = null, speakTimer = null;
+  /* --- 播放器：双元素轮换 + Blob 兜底 + 系统语音兜底 ---
+     改这三处的原因：
+     1) 原来全站只用一个 <audio>，连点下一个词时 pause() 把上一段硬切，残留尾音
+        会拼进新词开头，听感就是"开头有杂音"。改成 2 个元素轮换 + 播放前归零重载。
+     2) GitHub Pages 给 mp3 返回的是 audio/mp3（非标准，标准是 audio/mpeg），个别
+        浏览器/设备会据此拒绝播放。所以直连失败时自己取字节、包成 audio/mpeg 的
+        Blob 再播，彻底绕开服务器的 Content-Type。
+     3) 以上都失败才退回系统语音，并在按钮上打标记 + 控制台告警，不再静默降级。 */
+  var POOL = [], poolIdx = 0, activeBtn = null, speakTimer = null, playToken = 0;
   function getAudio(){
-    if(!audioEl){
-      audioEl = document.createElement('audio');
-      audioEl.preload = 'auto';
-      audioEl.setAttribute('playsinline', '');   // iOS 不弹出全屏播放器
-      audioEl.style.display = 'none';
-      (document.body || document.documentElement).appendChild(audioEl);
+    while(POOL.length < 2){
+      var el = document.createElement('audio');
+      el.preload = 'auto';
+      el.setAttribute('playsinline', '');   // iOS 不弹出全屏播放器
+      el.style.display = 'none';
+      (document.body || document.documentElement).appendChild(el);
+      POOL.push(el);
     }
-    return audioEl;
+    poolIdx = (poolIdx + 1) % POOL.length;  // 轮换，避免硬切上一段
+    return POOL[poolIdx];
   }
   function clearActive(){
+    // 注意：这里故意不清 is-fallback。系统语音经常在合成失败的瞬间触发 onend/onerror，
+    // 一并清掉的话标记会一闪而过、用户根本看不到。它由下一次 playClip 重新尝试时清除。
     if(activeBtn){ activeBtn.classList.remove('playing'); activeBtn = null; }
   }
   function stopSpeak(){
+    playToken++;                            // 让所有在途回调失效
     if(speakTimer){ clearTimeout(speakTimer); speakTimer = null; }
-    if(audioEl){ try{ audioEl.pause(); }catch(e){} }
+    for(var i = 0; i < POOL.length; i++){
+      try{ POOL[i].onended = null; POOL[i].onerror = null; POOL[i].pause(); }catch(e){}
+    }
     if(synth){ try{ synth.cancel(); }catch(e){} }
     clearActive();
   }
@@ -1571,31 +1593,56 @@
     u.onend = u.onerror = function(){ if(activeBtn === btn){ clearActive(); } };
     try{ synth.speak(u); }catch(e){ clearActive(); }
   }
-  // 播放预生成音频；文件不可用时自动退回浏览器语音
+  // 播放预生成音频：直连 → Blob 重建 → 系统语音，三级降级且最后一档可被看见
   function playClip(url, btn, fb){
     if(speakTimer){ clearTimeout(speakTimer); speakTimer = null; }
     if(synth){ try{ synth.cancel(); }catch(e){} }
     clearActive();
     activeBtn = btn;
+    btn.classList.remove('is-fallback');     // 重新尝试一次：恢复正常就摘掉标记
     btn.classList.add('playing');
+    var my = ++playToken;                    // 本次播放令牌，防止旧回调污染新播放
     var a = getAudio(), settled = false;
-    var fallback = function(){
-      if(settled){ return; }
+    function mine(){ return my === playToken && activeBtn === btn; }
+    function finish(){ if(!settled){ settled = true; clearActive(); } }
+    function warn(msg){ try{ if(window.console && console.warn){ console.warn('[words] ' + msg); } }catch(e){} }
+    function useSynth(why){
+      if(settled || !mine()){ return; }
       settled = true;
-      if(activeBtn !== btn){ return; }
+      warn('预生成音频不可用，已改用设备自带语音：' + url + '（原因：' + why + '）');
+      btn.classList.add('is-fallback');
+      btn.setAttribute('data-fallback', why);
+      btn.title = '预生成音频不可用，正在用设备自带语音';
       speakWithSynth(fb.text, btn, fb.rate, fb.pitch);
-    };
+    }
+    // 第二档：自己取字节，包成标准 audio/mpeg 的 Blob 再播，绕开服务器 MIME
+    function viaBlob(why){
+      if(settled || !mine()){ return; }
+      if(typeof fetch !== 'function' || typeof Blob !== 'function' || !window.URL || !URL.createObjectURL){ useSynth(why); return; }
+      fetch(url, { credentials: 'omit' }).then(function(r){
+        if(!r.ok){ throw new Error('HTTP ' + r.status); }
+        return r.arrayBuffer();
+      }).then(function(buf){
+        if(settled || !mine()){ return; }
+        var objUrl = URL.createObjectURL(new Blob([buf], { type: 'audio/mpeg' }));
+        a.onended = function(){ try{ URL.revokeObjectURL(objUrl); }catch(e){} finish(); };
+        a.onerror = function(){ try{ URL.revokeObjectURL(objUrl); }catch(e){} useSynth('blob-decode'); };
+        try{ a.pause(); }catch(e){}
+        try{ a.currentTime = 0; }catch(e){}
+        try{ a.src = objUrl; a.load(); }catch(e){ useSynth('blob-src'); return; }
+        var q = a.play();
+        if(q && typeof q.then === 'function'){ q.then(function(){}, function(){ useSynth('blob-play'); }); }
+      }).catch(function(){ useSynth('fetch-failed'); });
+    }
+    a.onended = function(){ if(mine()){ finish(); } };
+    a.onerror = function(){ if(mine()){ viaBlob('media-error'); } };
     try{ a.pause(); }catch(e){}
-    a.onended = function(){ if(activeBtn === btn){ clearActive(); } };
-    a.onerror = function(){ if(activeBtn === btn){ fallback(); } };
-    try{ a.src = url; }catch(e){ fallback(); return; }
+    try{ a.currentTime = 0; }catch(e){}      // 归零，避免残留播放位置
+    try{ a.src = url; a.load(); }catch(e){ viaBlob('src-error'); return; }
     var p;
-    try{ p = a.play(); }catch(e){ fallback(); return; }
+    try{ p = a.play(); }catch(e){ viaBlob('play-throw'); return; }
     if(p && typeof p.then === 'function'){
-      p.then(function(){ settled = true; },
-             function(){ if(activeBtn === btn){ fallback(); } });
-    } else {
-      settled = true;
+      p.then(function(){}, function(){ if(mine()){ viaBlob('play-reject'); } });
     }
   }
   // 手机上先触碰再点击，提前把音频拉进缓存，减少首次点击等待
@@ -1625,7 +1672,7 @@
     b.addEventListener('click', function(){
       if(b.classList.contains('playing')){ stopSpeak(); return; }   // 再点一次＝停止
       var text = (p.textContent || '').replace(/\s+/g, ' ').trim();
-      playClip(AUDIO_BASE + SPEED + '/s' + pad2(no) + '.mp3', b, { text: text, rate: 0.72, pitch: 1 });
+      playClip(AUDIO_BASE + SPEED + '/s' + pad2(no) + '.mp3', b, { text: text, rate: 0.90, pitch: 1 });
     });
     row.appendChild(b);
     p.insertAdjacentElement('afterend', row);
@@ -1650,7 +1697,7 @@
     b.addEventListener('click', function(e){
       e.stopPropagation();
       if(b.classList.contains('playing')){ stopSpeak(); return; }
-      playClip(AUDIO_BASE + SPEED + '/w/' + wordSlug(word) + '.mp3', b, { text: word, rate: 0.6, pitch: 1 });
+      playClip(AUDIO_BASE + SPEED + '/w/' + wordSlug(word) + '.mp3', b, { text: word, rate: 0.85, pitch: 1 });
     });
     w.insertAdjacentElement('afterend', b);
   });
