@@ -1520,7 +1520,7 @@
 
   /* ============ 一、英文朗读（预生成神经语音，浏览器语音兜底） ============ */
   var SPEED = 'n';                 // s = 慢速(91 wpm) / n = 常速(111 wpm，默认) / f = 快速(138 wpm)
-  var AUDIO_BASE = 'audio-v7/';
+  var AUDIO_BASE = 'audio-v8/';
 
   /* --- 兜底：浏览器自带语音（音频文件加载失败 / 离线首次访问时使用） --- */
   var synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
@@ -1601,6 +1601,18 @@
     u.onend = u.onerror = function(){ if(activeBtn === btn){ clearActive(); } };
     try{ synth.speak(u); }catch(e){ clearActive(); }
   }
+  // 播放起振软件淡入：即使文件层面有任何瞬态，播放端也再做一次 20ms 音量爬升兜底
+  function softAttack(a){
+    try{
+      a.volume = 0;
+      var i = 0, steps = 5;
+      var iv = setInterval(function(){
+        i++;
+        try{ a.volume = Math.min(1, i / steps); }catch(e){}
+        if(i >= steps){ clearInterval(iv); try{ a.volume = 1; }catch(e2){} }
+      }, 5);
+    }catch(e){ try{ a.volume = 1; }catch(e2){} }
+  }
   // 播放预生成音频：直连 → Blob 重建 → 系统语音，三级降级且最后一档可被看见
   function playClip(url, btn, fb){
     if(speakTimer){ clearTimeout(speakTimer); speakTimer = null; }
@@ -1639,6 +1651,7 @@
         try{ a.currentTime = 0; }catch(e){}
         try{ a.src = objUrl; a.load(); }catch(e){ useSynth('blob-src'); return; }
         var q = a.play();
+        softAttack(a);
         if(q && typeof q.then === 'function'){ q.then(function(){}, function(){ useSynth('blob-play'); }); }
       }).catch(function(){ useSynth('fetch-failed'); });
     }
@@ -1649,6 +1662,7 @@
     try{ a.src = url; a.load(); }catch(e){ viaBlob('src-error'); return; }
     var p;
     try{ p = a.play(); }catch(e){ viaBlob('play-throw'); return; }
+    softAttack(a);
     if(p && typeof p.then === 'function'){
       p.then(function(){}, function(){ if(mine()){ viaBlob('play-reject'); } });
     }
