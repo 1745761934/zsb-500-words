@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>起音 A/B 对比 · Kokoro vs 微软神经语音</title>
+<style>
+  body{font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:#FAF7F2;color:#2B2B2B;margin:0;padding:24px 16px 60px;}
+  .wrap{max-width:720px;margin:0 auto;}
+  h1{font-size:22px;color:#1A2E4B;margin:0 0 6px;}
+  .tip{font-size:14px;color:#6B6359;line-height:1.7;margin-bottom:18px;}
+  .tip b{color:#9C5C38;}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);}
+  th{background:#1A2E4B;color:#FAF7F2;font-size:13px;padding:10px 8px;font-weight:600;}
+  td{padding:8px;border-top:1px solid #EEE;text-align:center;font-size:14px;}
+  td.w{font-weight:700;font-size:16px;color:#1A2E4B;}
+  button{border:1px solid #DCD3C6;background:#fff;border-radius:8px;padding:9px 10px;font-size:13px;cursor:pointer;min-width:74px;color:#2B2B2B;}
+  button:hover{background:#F3E4D3;}
+  button.playing{background:#9C5C38;color:#fff;border-color:#9C5C38;}
+  .k{color:#1A2E4B;font-weight:600;}
+  .note{font-size:12px;color:#999;margin-top:14px;line-height:1.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>起音 A/B 对比测试</h1>
+  <div class="tip">
+    每个单词有三条发音：<span class="k">Kokoro</span>（当前线上使用的引擎）、<span class="k">Aria</span> 和 <span class="k">Ava</span>（微软神经语音）。<br>
+    三条都做了<b>完全相同</b>的开头处理（30ms 静音 + 25ms 起振淡入），唯一区别是合成引擎。<br>
+    <b>请逐个点开对比：哪一列的开头是干净的？哪一列有杂音？</b>把结果告诉我（例如“Kokoro 都有杂音，Ava 干净”）。
+  </div>
+  <table id="t">
+    <tr><th>单词</th><th>Kokoro<br>(当前)</th><th>微软<br>Aria</th><th>微软<br>Ava</th></tr>
+  </table>
+  <div class="note">建议戴耳机、在安静环境听。每个词点一条即可对比开头 0.5 秒。</div>
+</div>
+<script>
+(function(){
+  var WORDS = ["bill","prepare","ability","success","modern","doctor","time","active"];
+  var BASE = { k: "audio-v8/n/w/", a: "ab/aria/", v: "ab/ava/" };
+  var t = document.getElementById('t');
+  var cur = null;
+  function mkBtn(url){
+    var b = document.createElement('button'); b.textContent = '▶ 播放';
+    b.addEventListener('click', function(){
+      if(cur && cur.b === b){ cur.a.pause(); cur.a.currentTime = 0; b.classList.remove('playing'); b.textContent='▶ 播放'; cur=null; return; }
+      if(cur){ cur.a.pause(); cur.b.classList.remove('playing'); cur.b.textContent='▶ 播放'; }
+      var a = new Audio(url);
+      a.volume = 1;
+      a.play();
+      b.classList.add('playing'); b.textContent = '⏹ 停止';
+      a.onended = a.onerror = function(){ b.classList.remove('playing'); b.textContent='▶ 播放'; if(cur && cur.b===b) cur=null; };
+      cur = { a: a, b: b };
+    });
+    return b;
+  }
+  WORDS.forEach(function(w){
+    var tr = document.createElement('tr');
+    var td1 = document.createElement('td'); td1.className='w'; td1.textContent = w; tr.appendChild(td1);
+    [['k','Kokoro'],['a','Aria'],['v','Ava']].forEach(function(p){
+      var td = document.createElement('td');
+      td.appendChild(mkBtn(BASE[p[0]] + w + '.mp3'));
+      tr.appendChild(td);
+    });
+    t.appendChild(tr);
+  });
+})();
+</script>
+</body>
+</html>
